@@ -4,8 +4,8 @@
             <div class="offset-xl-1 col-xl-5">
                 <div class="footer-widget">
                     <div class="footer-logo">
-                        <img src="{{ asset('assets/images/logo_provinsi.png') }}" alt="logo" width="270px"
-                            height="60px">
+                        <img src="{{ asset('assets/images/logo_provinsi.png') }}" alt="logo" width="450px"
+                            height="80px">
                     </div>
                     <div class="footer-address">
                         <p>

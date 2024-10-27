@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Mobile\HomeController;
 use App\Http\Controllers\Web\LandingController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +20,22 @@ Route::get('demografis', [LandingController::class, 'demografis'])->name('demogr
 Route::get('pencatatan-wbtb', [LandingController::class, 'pencatatanWbtb'])->name('pencatatanWbtb');
 Route::get('penetapan-wbtb', [LandingController::class, 'penetapanWbtb'])->name('penetapanWbtb');
 Route::get('kontak', [LandingController::class, 'kontak'])->name('kontak');
+
+Route::group(['middleware' => 'guest'], function () {
+    // Route::get('/login')
+});
+
+Route::group(['middleware' => 'auth'], function () {
+
+});
+
+Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
+
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('/', [HomeController::class, 'splash'])->name('splash');
+    });
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('home', [HomeController::class, 'home'])->name('home');
+    });
+});

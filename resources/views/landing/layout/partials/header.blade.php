@@ -16,7 +16,7 @@
                         </li>
                     </ul>
                     <a class="btn btn-small btn-outline d-none d-lg-inline-block" data-bs-toggle="modal"
-                        href="index.html#login" role="button">Log In</a>
+                        href="{{ route('home') }}#login" role="button">Log In</a>
                 </div>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -81,7 +81,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="index.html#login"
+                        <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{{ route('home') }}#login"
                             role="button">Log In</a>
                     </div>
                 </div>

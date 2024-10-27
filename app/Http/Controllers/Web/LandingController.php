@@ -11,8 +11,21 @@ use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
+        // $userAgent = str_contains($request->header('User-Agent'), 'Android');
+
+        // $userAgent = $request->header('User-Agent');
+        // $deviceAndroid = strpos($userAgent, 'wv');
+        // dd($deviceAndroid);
+
+        // dd($userAgent);
+        // if (auth()->check()) {
+        //     dd('OK');
+        // } else {
+        //     dd('NOT');
+        // }
+
         $pencatatanTerbaru = Warisan::where('status', 'diajukan')->latest()->take(3)->get();
         $pencatatanTerbaru = Warisan::where('status', 'ditetapkan')->latest()->take(3)->get();
         return view('landing.home', compact('pencatatanTerbaru', 'pencatatanTerbaru'));
