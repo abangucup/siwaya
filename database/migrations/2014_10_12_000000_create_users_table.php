@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('biodata_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('instansi_id')->nullable()->constrained()->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

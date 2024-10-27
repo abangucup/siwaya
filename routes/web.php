@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\LandingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingController::class, 'home'])->name('home');
+Route::get('demografis', [LandingController::class, 'demografis'])->name('demografis');
+Route::get('pencatatan-wbtb', [LandingController::class, 'pencatatanWbtb'])->name('pencatatanWbtb');
+Route::get('penetapan-wbtb', [LandingController::class, 'penetapanWbtb'])->name('penetapanWbtb');
+Route::get('kontak', [LandingController::class, 'kontak'])->name('kontak');
