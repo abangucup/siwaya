@@ -18,9 +18,8 @@ class DetectDevice
         // Memeriksa apakah pengguna menggunakan perangkat Android
         $userAgent = $request->header('User-Agent');
 
-	dd($userAgent);
-        if (str_contains(strtolower($userAgent), 'android')) {
-            // Jika perangkat Android, arahkan ke halaman /android
+        if (str_contains($userAgent, 'UserAgentSiwaya')) {
+            // Jika perangkat Android di akses dari aplikasi, arahkan ke halaman /mobile
             if (!$request->is('mobile*')) {
                 // Jika perangkat telah login arahkan ke halamn home
                 if (auth()->check()) {
@@ -30,7 +29,7 @@ class DetectDevice
                 return redirect()->route('mobile.splash');
             }
         } else {
-            // Jika bukan perangkat Android, batasi akses ke /android
+            // Jika bukan perangkat Mobile, batasi akses ke /mobile
             if ($request->is('mobile*')) {
                 return redirect()->route('home');
             }

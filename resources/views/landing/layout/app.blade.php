@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -13,7 +13,10 @@
 
 <body>
 
+    
     @include('landing.layout.partials.header')
+    
+    @include('sweetalert::alert')
 
     @yield('content')
 

@@ -9,7 +9,7 @@
 
 :root {
     --theme-primary: #3C096C;
-    --theme-primary-rgb: rgba(60, 9, 108, 0.80);
+    --theme-primary-rgb: rgba(60, 9, 108, 0.85);
     --theme-secondary: #5A189A;
     --theme-light: #fcd6f9;
     --theme-property: #9D4EDD;
@@ -171,7 +171,7 @@ a:hover i {
 
 .tag {
     display: flex;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     border-radius: 10px;
     padding: 7px 10px;
     align-items: center;
@@ -262,23 +262,23 @@ a:hover i {
 }
 
 .tooltip.bs-tooltip-start .tooltip-arrow::before {
-    border-left-color: #96bcce !important
+    border-left-color: var(--theme-light) !important
 }
 
 .tooltip.bs-tooltip-top .tooltip-arrow::before {
-    border-top-color: #96bcce !important
+    border-top-color: var(--theme-light) !important
 }
 
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
-    border-right-color: #96bcce !important
+    border-right-color: var(--theme-light) !important
 }
 
 .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
-    border-bottom-color: #96bcce !important
+    border-bottom-color: var(--theme-light) !important
 }
 
 .tooltip-inner {
-    background: #96bcce;
+    background: var(--theme-light);
     color: var(--theme-primary);
     font-weight: 600;
     font-size: 1rem
@@ -2054,7 +2054,7 @@ pre[class*=language-] {
     position: absolute;
     width: 5px;
     height: 5px;
-    background-color: #96bcce;
+    background-color: var(--theme-light);
     left: -16px;
     top: 50%;
     transform: translateY(-50%);
@@ -2125,7 +2125,7 @@ pre[class*=language-] {
 }
 
 .blog-single-share ul li a svg path {
-    fill: #96bcce;
+    fill: var(--theme-light);
     transition: all .3s ease-in-out
 }
 
@@ -2198,7 +2198,7 @@ pre[class*=language-] {
 
 .blog-single-blockquotes-v1 {
     max-width: 840px;
-    border-left: 6px solid #96bcce !important;
+    border-left: 6px solid var(--theme-light) !important;
     margin-bottom: 2.5rem
 }
 
@@ -2381,7 +2381,7 @@ pre[class*=language-] {
     width: 8px;
     height: 8px;
     border-radius: 100%;
-    background: #96bcce;
+    background: var(--theme-light);
     left: -16px;
     top: 50%;
     transform: translateY(-50%)
@@ -2790,7 +2790,7 @@ pre[class*=language-] {
 
 .filter-input .form-control {
     background: #fff;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     border-radius: 10px;
     border-right: 0;
     height: 60px
@@ -2798,7 +2798,7 @@ pre[class*=language-] {
 
 .filter-input .form-control:focus {
     background: #fff;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     border-right: 0
 }
 
@@ -2814,7 +2814,7 @@ pre[class*=language-] {
     text-align: center;
     white-space: nowrap;
     background-color: #fff;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     border-left: 0;
     border-radius: 10px
 }
@@ -2827,7 +2827,7 @@ pre[class*=language-] {
 }
 
 .filter-buy .btn {
-    border-color: #96bcce;
+    border-color: var(--theme-light);
     color: var(--theme-secondary);
     background: #fff;
     font-weight: 700;
@@ -2863,7 +2863,7 @@ pre[class*=language-] {
 }
 
 .filter-price .btn {
-    border-color: #96bcce;
+    border-color: var(--theme-light);
     color: var(--theme-secondary);
     background: var(--theme-light-white);
     font-weight: 700;
@@ -2886,7 +2886,7 @@ pre[class*=language-] {
 }
 
 .filter-bed .btn {
-    border-color: #96bcce;
+    border-color: var(--theme-light);
     color: var(--theme-secondary);
     background: var(--theme-light-white);
     font-weight: 700;
@@ -2916,7 +2916,7 @@ pre[class*=language-] {
 }
 
 .filter-more .btn {
-    border-color: #96bcce;
+    border-color: var(--theme-light);
     color: var(--theme-secondary);
     background: var(--theme-light-white);
     font-weight: 700;
@@ -3021,7 +3021,7 @@ pre[class*=language-] {
     border-radius: 10px;
     background-color: #fff;
     color: var(--theme-primary);
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     max-width: 100px
 }
 
@@ -3130,7 +3130,7 @@ pre[class*=language-] {
 
 .listing-map--pin-content {
     background: #fff;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     opacity: .8;
     padding: 1.25rem;
     border-radius: 10px;
@@ -4229,8 +4229,8 @@ pre[class*=language-] {
     text-align: center;
     white-space: nowrap;
     background-color: #fff;
-    border: 1px solid #96bcce;
-    border-right: 0;
+    border: 1px solid var(--theme-light);
+    /* border-right: 1; */
     border-radius: 10px
 }
 
@@ -4293,7 +4293,7 @@ pre[class*=language-] {
 }
 
 .form-control {
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     background: #fff;
     border-radius: 10px;
     height: 60px;
@@ -4306,7 +4306,7 @@ pre[class*=language-] {
 .form-control:focus {
     outline: 0;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     background: #fff;
     border-radius: 10px;
     color: var(--theme-property)
@@ -4500,7 +4500,7 @@ textarea.form-control {
 
 .search .search-form .form-control {
     background: #fff;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     border-radius: 10px;
     border-right: 0;
     height: 60px
@@ -4508,7 +4508,7 @@ textarea.form-control {
 
 .search .search-form .form-control:focus {
     background: #fff;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     border-right: 0
 }
 
@@ -4524,8 +4524,8 @@ textarea.form-control {
     text-align: center;
     white-space: nowrap;
     background-color: #fff;
-    border: 1px solid #96bcce;
-    border-left: 0 solid #96bcce;
+    border: 1px solid var(--theme-light);
+    border-left: 0 solid var(--theme-light);
     border-left: 0;
     border-radius: 10px;
     position: relative
@@ -4544,7 +4544,7 @@ textarea.form-control {
 
 .search-result {
     background: #fff;
-    border: 1px solid #96bcce;
+    border: 1px solid var(--theme-light);
     border-radius: 10px;
     padding: 1.875rem
 }

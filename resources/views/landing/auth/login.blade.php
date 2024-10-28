@@ -18,32 +18,29 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="modal-property-details-form">
-                        <form class="contact-form-items row">
+                        <form class="contact-form-items row" method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="col-12">
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="ph-user"></i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="user / email address">
+                                    <input type="text" name="email_or_username" class="form-control" placeholder="user / email address">
                                 </div>
-                            </div>
+                        </div>
                             <div class="col-12">
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="ph-keyhole"></i>
                                     </span>
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" name="password" class="form-control" placeholder="Password" id="password">
+                                    <span class="input-group-text px-3" onclick="showPassword()">
+                                        <i class="ph ph-eye" id="eye"></i>
+                                    </span>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Remember
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-6">
+                            
+                            <div class="col-12">
                                 <div class="form-check text-end">
                                     <a href="index.html#resetPassword" data-bs-toggle="modal" data-bs-dismiss="modal">
                                         Forget Password</a>
@@ -51,12 +48,6 @@
                             </div>
                             <div class="w-100 contact-form-button">
                                 <button type="submit" class="btn btn-large d-block w-100">Log In</button>
-                            </div>
-                            <div class="w-100 contact-form-button">
-                                <button type="submit" class="btn btn-large btn-outline d-block w-100  mt-3">
-                                    <i class="ph-google-logo align-top"></i>
-                                    <span> Log In with Google </span>
-                                </button>
                             </div>
                         </form>
                     </div>

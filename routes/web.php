@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Mobile\HomeController;
+use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\LandingController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,20 +25,27 @@ Route::get('penetapan-wbtb', [LandingController::class, 'penetapanWbtb'])->name(
 Route::get('kontak', [LandingController::class, 'kontak'])->name('kontak');
 
 Route::group(['middleware' => 'guest'], function () {
-    // Route::get('/login')
+    Route::get('login', [LoginController::class, 'login'])->name('login');
+    Route::post('login', [LoginController::class, 'postLogin'])->name('login');
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::match(['get', 'post'], 'logout', [LogoutController::class, 'logout'])->name('logout');
 });
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
 
     Route::group(['middleware' => 'guest'], function () {
         Route::get('/', [HomeController::class, 'splash'])->name('splash');
+
+        Route::get('login', [LoginController::class, 'mobileLogin'])->name('login');
     });
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
+
+        Route::match(['get', 'post'], 'logout', [LogoutController::class, 'mobileLogout'])->name('logout');
     });
 });

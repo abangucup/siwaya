@@ -13,3 +13,25 @@
 <script src="{{ asset('assets/landing/vendor/scrollit/scrollit.min.js') }}"></script>
 <script src="{{ asset('assets/landing/vendor/magnific-popup/magnific-popup.min.js') }}"></script>
 <script src="{{ asset('assets/landing/js/script.js') }}"></script>
+
+@if(session('error'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            var loginModal = new bootstrap.Modal(document.getElementById('login'));
+            loginModal.show();
+        });
+</script>
+@endif
+
+<script>
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("eye").className = "ph ph-eye-slash";
+        } else {
+            x.type = "password";
+            document.getElementById("eye").className = "ph ph-eye";
+        }
+    }
+</script>
