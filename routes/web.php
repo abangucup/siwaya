@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Mobile\HomeController;
+use App\Http\Controllers\Mobile\SplashController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\LandingController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,7 @@ Route::get('kontak', [LandingController::class, 'kontak'])->name('kontak');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [LoginController::class, 'login'])->name('login');
-    Route::post('login', [LoginController::class, 'postLogin'])->name('login');
+    Route::post('login', [LoginController::class, 'postLogin']);
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -41,6 +42,7 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
         Route::get('/', [HomeController::class, 'splash'])->name('splash');
 
         Route::get('login', [LoginController::class, 'mobileLogin'])->name('login');
+        Route::post('login', [LoginController::class, 'mobilePostLogin'])->name('login');
     });
 
     Route::group(['middleware' => 'auth'], function () {

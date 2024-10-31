@@ -62,7 +62,7 @@
                     <!-- end row -->
                 </div>
                 <!-- ========== title-wrapper end ========== -->
-               
+
                 @yield('content')
 
             </div>

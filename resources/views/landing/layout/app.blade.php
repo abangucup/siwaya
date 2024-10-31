@@ -13,12 +13,13 @@
 
 <body>
 
-    
-    @include('landing.layout.partials.header')
-    
     @include('sweetalert::alert')
 
+    @include('landing.layout.partials.header')
+
     @yield('content')
+
+
 
     @include('landing.layout.partials.footer')
 

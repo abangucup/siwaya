@@ -25,6 +25,8 @@
                         <li><a href="{{ route('penetapanWbtb') }}" class="footer-link">Penetapan Warisan Budaya Tak Benda</a></li>
                         <li><a href="{{ route('demografis') }}" role="button"
                                 class="footer-link">Demografis</a></li>
+                                <li><a href="{{ route('kontak') }}" role="button"
+                                    class="footer-link">Kontak</a></li>
                         <li><a href="{{ asset('assets/download/wbtb.apk') }}" role="button"
                                 class="footer-link">Download Android</a></li>
                     </ul>
@@ -81,6 +83,8 @@
                                 <li><a href="{{ route('penetapanWbtb') }}" class="footer-link">Penetapan Warisan Budaya Tak Benda</a></li>
                                 <li><a href="{{ route('demografis') }}" role="button"
                                         class="footer-link">Demografis</a></li>
+                                        <li><a href="{{ route('kontak') }}" role="button"
+                                            class="footer-link">Kontak</a></li>
                                 <li><a href="{{ asset('assets/download/wbtb.apk') }}" role="button"
                                         class="footer-link">Download Android</a></li>
                             </ul>
@@ -123,6 +127,8 @@
                                 <li><a href="{{ route('penetapanWbtb') }}" class="footer-link">Penetapan Warisan Budaya Tak Benda</a></li>
                                 <li><a href="{{ route('demografis') }}" role="button"
                                         class="footer-link">Demografis</a></li>
+                                        <li><a href="{{ route('kontak') }}" role="button"
+                                            class="footer-link">Kontak</a></li>
                                 <li><a href="{{ asset('assets/download/wbtb.apk') }}" role="button"
                                         class="footer-link">Download Android</a></li>
                             </ul>

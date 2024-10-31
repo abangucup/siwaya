@@ -1,6 +1,6 @@
 
-<link rel="shortcut icon" href="https://realstatic.staticmania.com/images/favicon.ico" type="image/x-icon" />
-<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="{{ asset('assets/images/siwaya.png') }}" type="image/x-icon" />
+<link rel="icon" href="{{ asset('assets/images/siwaya.png') }}" type="image/x-icon" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />

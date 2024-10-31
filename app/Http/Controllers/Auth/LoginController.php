@@ -38,7 +38,7 @@ class LoginController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->back()->with('error', 'Email atau Username dan Password salah')->withInput($request->all());
+        return redirect()->back()->withToastError('error', 'Email atau Username dan Password salah')->withInput($request->all());
     }
 
     public function mobileLogin()
@@ -46,8 +46,29 @@ class LoginController extends Controller
         return view('mobile.auth.login');
     }
 
+
     public function mobilePostLogin(Request $request)
     {
-        dd($request->all());
+        $validasi = Validator::make($request->all(), [
+            'email_or_username' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        if ($validasi->fails()) {
+            return redirect()->back()->withErrors($validasi)->withInput($request->all());
+        }
+
+        $login_type = filter_var($request->input('email_or_username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        $credentials = [
+            $login_type => $request->input('email_or_username'),
+            'password' => $request->input('password')
+        ];
+
+        if (auth()->attempt($credentials)) {
+            return redirect()->route('mobile.home');
+        }
+
+        return redirect()->back()->withToastError('error', 'Email atau Username dan Password salah')->withInput($request->all());
     }
 }

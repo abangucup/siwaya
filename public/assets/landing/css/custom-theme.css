@@ -605,7 +605,7 @@ pre[class*=language-] {
 .navbar {
     position: fixed;
     padding: 1rem 1rem !important;
-    z-index: 100000;
+    z-index: 1000;
     width: 100%;
     background: transparent;
     transition: all .3s ease-in-out
