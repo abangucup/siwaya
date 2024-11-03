@@ -22,7 +22,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/siwaya.png') }}" />
 
     <!-- Title -->
-    <title>@yield('title')</title>
+    <title>@yield('title') | {{ env('APP_NAME') }}</title>
 
     @include('mobile.layouts.partials.style')
 
@@ -41,12 +41,15 @@
         </div>
         <!-- Preloader end-->
 
-        @include('mobile.layouts.partials.header')
-
-        @include('mobile.layouts.partials.sidebar')
 
 
-        @yield('content')
+        <div id="pjax-container">
+            {{-- HEADER --}}
+            @include('mobile.layouts.partials.header')
+            {{-- HEADER --}}
+            
+            @yield('content')
+        </div>
 
         {{-- Modal Form Tambah--}}
         <div class="modal fade" id="formTambah">

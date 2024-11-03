@@ -41,6 +41,9 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\DetectDevice::class,
 
             \RealRashid\SweetAlert\ToSweetAlert::class,
+
+            \Spatie\Pjax\Middleware\FilterIfPjax::class,
+
         ],
 
         'api' => [

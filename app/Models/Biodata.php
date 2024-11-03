@@ -10,8 +10,7 @@ class Biodata extends Model
     use HasFactory;
 
     protected $fillable = [
-        'uuid',
-        'nama_legkap',
+        'nama_lengkap',
         'tanggal_lahir',
         'alamat',
         'jenis_kelamin',

@@ -1,21 +1,10 @@
 @extends('mobile.layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Pengajuan')
 
-
+@section('header', 'Pengajuan WBTB')
+    
 @section('content')
-
-<!-- Banner -->
-<div class="banner-wrapper">
-    <div class="container inner-wrapper text-center">
-        <div class="dz-info">
-            <span class="fs-5 text-white">Selamat Datang !!!</span>
-            <h2 class="name mb-0">{{ auth()->user()->biodata->nama_lengkap }}</h2>
-        </div>
-    </div>
-</div>
-<!-- Banner End -->
-
 <div class="page-content">
         
     <div class="content-inner pt-0">
@@ -337,5 +326,4 @@
     </div>
     
 </div> 
-
 @endsection

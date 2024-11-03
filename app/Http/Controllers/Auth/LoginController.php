@@ -46,7 +46,6 @@ class LoginController extends Controller
         return view('mobile.auth.login');
     }
 
-
     public function mobilePostLogin(Request $request)
     {
         $validasi = Validator::make($request->all(), [

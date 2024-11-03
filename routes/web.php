@@ -6,9 +6,15 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Mobile\HomeController;
+use App\Http\Controllers\Mobile\MobileProfileController;
+use App\Http\Controllers\Mobile\MobileWBTBController;
 use App\Http\Controllers\Mobile\SplashController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\LandingController;
+use App\Http\Controllers\Web\Wilayah\KabkotController;
+use App\Http\Controllers\Web\Wilayah\KecamatanController;
+use App\Http\Controllers\Web\Wilayah\KelurahanController;
+use App\Http\Controllers\Web\Wilayah\ProvinsiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +52,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::match(['get', 'post'], 'logout', [LogoutController::class, 'logout'])->name('logout');
+
+    // Pengaturan Wilayah
+    Route::resource('provinsi', ProvinsiController::class);
+    Route::resource('kabkot', KabkotController::class);
+    Route::resource('kecamatan', KecamatanController::class);
+    Route::resource('kelurahan', KelurahanController::class);
 });
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
@@ -68,6 +80,14 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
+
+        // Profile
+        Route::resource('profile', MobileProfileController::class);
+
+        // Pengajuan WBTB
+        Route::group(['prefix' => 'wbtb', 'as' => 'wbtb.'], function () {
+            Route::get('pengajuan', [MobileWBTBController::class, 'pengajuan'])->name('pengajuan');
+        });
 
         Route::match(['get', 'post'], 'logout', [LogoutController::class, 'mobileLogout'])->name('logout');
     });

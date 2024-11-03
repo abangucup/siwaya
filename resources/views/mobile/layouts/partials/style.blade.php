@@ -13,8 +13,16 @@
     rel="stylesheet"> --}}
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 
+<link href="{{ asset('assets/mobile/vendor/imageuplodify/imageuploadify.min.css') }}" rel="stylesheet">
+
 
 <style>
+    /* pengaturan banner */
+    .banner-wrapper {
+        padding: 20px 0 20px;
+    }
+
+    /* end banner */
     .animate-button {
         animation: button-animasi 0.5s ease-in-out;
     }
@@ -32,4 +40,24 @@
             transform: scale(1);
         }
     }
+</style>
+
+{{-- mengatur spasi antar menubar --}}
+<style>
+    .menubar-area .toolbar-inner {
+        display: flex;
+        justify-content: space-around;
+        /* Membagi elemen secara rata */
+    }
+
+    .menubar-area .toolbar-inner .nav-link,
+    .menubar-area .toolbar-inner .menu-toggler {
+        color: var(--title);
+        text-align: center;
+        flex: 1;
+        /* Mengatur setiap item agar memiliki lebar sama */
+        padding: 0;
+        font-size: 18px;
+    }
+
 </style>
