@@ -9,7 +9,10 @@ use App\Http\Controllers\Mobile\HomeController;
 use App\Http\Controllers\Mobile\MobileProfileController;
 use App\Http\Controllers\Mobile\MobileWBTBController;
 use App\Http\Controllers\Mobile\SplashController;
+use App\Http\Controllers\Settings\RoleController;
+use App\Http\Controllers\Settings\UserController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\InstansiController;
 use App\Http\Controllers\Web\LandingController;
 use App\Http\Controllers\Web\Wilayah\KabkotController;
 use App\Http\Controllers\Web\Wilayah\KecamatanController;
@@ -48,16 +51,25 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('reset-password', [ResetPasswordController::class, 'postResetPassword']);
 });
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('instansi', InstansiController::class);
 
     Route::match(['get', 'post'], 'logout', [LogoutController::class, 'logout'])->name('logout');
 
     // Pengaturan Wilayah
-    Route::resource('provinsi', ProvinsiController::class);
-    Route::resource('kabkot', KabkotController::class);
-    Route::resource('kecamatan', KecamatanController::class);
-    Route::resource('kelurahan', KelurahanController::class);
+    Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
+        Route::resource('kabkot', KabkotController::class);
+        Route::resource('kecamatan', KecamatanController::class);
+        Route::resource('kelurahan', KelurahanController::class);
+    });
+
+    // Settings
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+        Route::resource('user', UserController::class);
+        Route::resource('role', RoleController::class);
+    });
 });
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {

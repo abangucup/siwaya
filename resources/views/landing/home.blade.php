@@ -1,4 +1,4 @@
-@extends('landing.layout.app')
+@extends('landing.layouts.app')
 
 @section('title', 'Home')
 
@@ -13,8 +13,7 @@
                         Warisan Budaya Tak Benda
                     </h1>
                     <p class="hero-content-description text-white">
-                        Menjaga dan melestarikan warisan budaya tak benda di Provinsi Gorontalo sebagai identitas
-                        serta menjadi destinasi wisata budaya yang menarik.
+                        Jadilah bagian dari perlindungan warisan budaya dengan turut mengusulkan warisan budaya tak benda di Bumi Serambi Madinah
                     </p>
                 </div>
             </div>

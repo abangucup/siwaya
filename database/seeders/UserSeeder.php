@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'username' => 'operatorprov',
+                'slug' => 'operatorprov',
                 'email' => 'operatorprov@siwaya.com',
                 'password' => Hash::make('password'),
                 'role_id' => 1,
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'verifikatorprov',
+                'slug' => 'verifikatorprov',
                 'email' => 'verifikatorprov@siwaya.com',
                 'password' => Hash::make('password'),
                 'role_id' => 2,
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'operatorkabkot',
+                'slug' => 'operatorkabkot',
                 'email' => 'operatorkabkot@siwaya.com',
                 'password' => Hash::make('password'),
                 'role_id' => 3,
@@ -38,6 +41,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'verifikatorkabkot',
+                'slug' => 'verifikatorkabkot',
                 'email' => 'verifikatorkabkot@siwaya.com',
                 'password' => Hash::make('password'),
                 'role_id' => 4,
@@ -45,6 +49,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username' => 'masyarakat',
+                'slug' => 'masyarakat',
                 'email' => 'masyarakat@siwaya.com',
                 'password' => Hash::make('password'),
                 'role_id' => 5,

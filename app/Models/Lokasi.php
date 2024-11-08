@@ -19,9 +19,9 @@ class Lokasi extends Model
         'provinsi_id',
     ];
 
-    public function warisan()
+    public function wbtb()
     {
-        return $this->belongsTo(Warisan::class);
+        return $this->belongsTo(Wbtb::class);
     }
 
     public function kelurahan()

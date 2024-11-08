@@ -1,4 +1,4 @@
-@extends('landing.layout.app')
+@extends('landing.layouts.app')
 
 @section('title', 'Kontak')
 

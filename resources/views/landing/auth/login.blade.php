@@ -21,25 +21,34 @@
                         <form class="contact-form-items row" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="col-12">
+                                @error('email_or_username')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="ph-user"></i>
                                     </span>
-                                    <input type="text" name="email_or_username" class="form-control" placeholder="user / email address">
+                                    <input type="text" name="email_or_username" class="form-control"
+                                        placeholder="user / email address" value="{{ old('email_or_username') }}">
                                 </div>
-                        </div>
+                            </div>
                             <div class="col-12">
+                                @error('password')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="ph-keyhole"></i>
                                     </span>
-                                    <input type="password" name="password" class="form-control" placeholder="Password" id="password">
+
+                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                        id="password" value="{{ old('password') }}">
                                     <span class="input-group-text px-3" onclick="showPassword()">
                                         <i class="ph ph-eye" id="eye"></i>
                                     </span>
                                 </div>
                             </div>
-                            
+
                             <div class="col-12">
                                 <div class="form-check text-end">
                                     <a href="index.html#resetPassword" data-bs-toggle="modal" data-bs-dismiss="modal">

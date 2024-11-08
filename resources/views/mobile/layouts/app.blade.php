@@ -66,28 +66,7 @@
             </div>
         </div>
         {{-- End Modal Form --}}
-
-        {{-- @switch(auth()->user()->role->slug)
-        @case('admin')
-        @include('mobile.admin.menubar')
-        @break
-        @case('p2pl')
-        @include('mobile.p2pl.menubar')
-        @break
-        @case('farmamin')
-        @include('mobile.farmamin.menubar')
-        @break
-        @case('perencanaan')
-        @include('mobile.perencanaan.menubar')
-        @break
-        @case('kepeg')
-        @include('mobile.kepeg.menubar')
-        @break
-        @default
-        @php
-        Auth::logout();
-        @endphp
-        @endswitch --}}
+        
         @include('mobile.layouts.partials.menubar')
 
         @include('mobile.layouts.partials.theme')

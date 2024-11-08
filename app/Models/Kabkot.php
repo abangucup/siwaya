@@ -9,7 +9,7 @@ class Kabkot extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $fillable = [
         'nama_kabkot',
         'slug'
     ];

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Biodata;
 use App\Models\Kabkot;
 use App\Models\User;
-use App\Models\Warisan;
+use App\Models\Wbtb;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -26,8 +25,8 @@ class LandingController extends Controller
         //     dd('NOT');
         // }
 
-        $pencatatanTerbaru = Warisan::where('status', 'diajukan')->latest()->take(3)->get();
-        $pencatatanTerbaru = Warisan::where('status', 'ditetapkan')->latest()->take(3)->get();
+        $pencatatanTerbaru = Wbtb::where('status', 'diajukan')->latest()->take(3)->get();
+        $pencatatanTerbaru = Wbtb::where('status', 'ditetapkan')->latest()->take(3)->get();
         return view('landing.home', compact('pencatatanTerbaru', 'pencatatanTerbaru'));
     }
 
@@ -39,13 +38,13 @@ class LandingController extends Controller
 
     public function pencatatanWbtb()
     {
-        $pencatatans = Warisan::where('status', 'diajukan')->latest()->get();
+        $pencatatans = Wbtb::where('status', 'diajukan')->latest()->get();
         return view('landing.pencatatanWbtb', compact('pencatatans'));
     }
 
     public function penetapanWbtb()
     {
-        $penetapans = Warisan::where('status', 'ditetapkan')->latest()->get();
+        $penetapans = Wbtb::where('status', 'ditetapkan')->latest()->get();
         return view('landing.penetapanWbtb', compact('penetapans'));
     }
 

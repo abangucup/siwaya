@@ -10,7 +10,6 @@ class Role extends Model
     use HasFactory;
 
     protected $fillable = [
-        'uuid',
         'role_name',
         'role_level',
         'role_description',

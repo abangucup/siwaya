@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PhpParser\Node\Expr\FuncCall;
 
 class User extends Authenticatable
 {
@@ -18,8 +19,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'uuid',
         'username',
+        'slug',
         'email',
         'password',
         'role_id',
@@ -56,4 +57,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Biodata::class);
     }
+
+    public function instansi()
+    {
+        return $this->belongsTo(Instansi::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
+

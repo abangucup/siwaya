@@ -1,107 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>@yield('title') | {{ env('APP_NAME') }}</title>
 
     @include('dashboard.layouts.partials.style')
+
+    @stack('style')
+
 </head>
 
 <body>
 
     @include('sweetalert::alert')
 
-    <!-- ======== Preloader =========== -->
-    <div id="preloader">
-        <div class="spinner"></div>
+    <div class="preloader" id="preloader">
+        <div class="preloader">
+            <div class="waviy position-relative">
+                <span class="d-inline-block">S</span>
+                <span class="d-inline-block">I</span>
+                <span class="d-inline-block">W</span>
+                <span class="d-inline-block">A</span>
+                <span class="d-inline-block">Y</span>
+                <span class="d-inline-block">A</span>
+            </div>
+        </div>
     </div>
-    <!-- ======== Preloader =========== -->
 
-    <!-- ======== sidebar-nav start =========== -->
+
     @include('dashboard.layouts.partials.sidebar')
-    <!-- ======== sidebar-nav end =========== -->
 
-    <!-- ======== main-wrapper start =========== -->
-    <main class="main-wrapper">
-        <!-- ========== header start ========== -->
-        @include('dashboard.layouts.partials.header')
-        <!-- ========== header end ========== -->
 
-        <!-- ========== section start ========== -->
-        <section class="section">
-            <div class="container-fluid">
-                <!-- ========== title-wrapper start ========== -->
-                <div class="title-wrapper pt-30">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="title">
-                                <h2>eCommerce Dashboard</h2>
-                            </div>
-                        </div>
-                        <!-- end col -->
-                        <div class="col-md-6">
-                            <div class="breadcrumb-wrapper">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a href="index.html#0">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item active" aria-current="page">
-                                            eCommerce
-                                        </li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                        <!-- end col -->
-                    </div>
-                    <!-- end row -->
-                </div>
-                <!-- ========== title-wrapper end ========== -->
+    <div class="container-fluid">
+        <div class="main-content d-flex flex-column">
 
-                @yield('content')
+            
+            @include('dashboard.layouts.partials.header')
 
+            <div class="d-sm-flex text-center justify-content-between align-items-center mb-4">
+                <h3 class="mb-sm-0 mb-1 fs-18">@yield('pageTitle')</h3>
+                <ul class="ps-0 mb-0 list-unstyled d-flex justify-content-center">
+                    @if (!request()->is('dashboard'))
+                    <li>
+                        <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                            <i class="ri-command-line" style="position: relative; top: -1px;"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    <li>
+                        @yield('pageContent')
+                    </li>
+                </ul>
             </div>
-            <!-- end container -->
-        </section>
-        <!-- ========== section end ========== -->
 
-        <!-- ========== footer start =========== -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 order-last order-md-first">
-                        <div class="copyright text-center text-md-start">
-                            <p class="text-sm">
-                                Designed and Developed by
-                                <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                                    PlainAdmin
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end col-->
-                    <div class="col-md-6">
-                        <div class="terms d-flex justify-content-center justify-content-md-end">
-                            <a href="index.html#0" class="text-sm">Term & Conditions</a>
-                            <a href="index.html#0" class="text-sm ml-15">Privacy & Policy</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </footer>
-        <!-- ========== footer end =========== -->
-    </main>
-    <!-- ======== main-wrapper end =========== -->
+            @yield('content')
 
-    <!-- ========= All Javascript files linkup ======== -->
+            <div class="flex-grow-1"></div>
+
+            @include('dashboard.layouts.partials.footer')
+
+        </div>
+    </div>
+
+
     @include('dashboard.layouts.partials.script')
+
+    @stack('script')
 
 </body>
 

@@ -25,7 +25,7 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                         <div class="input-group">
-                            <input type="text" placeholder="Email atau Username" class="form-control" name="email_or_username" required>
+                            <input type="text" placeholder="Email atau Username" class="form-control" name="email_or_username" value="{{ old('email_or_username') }}" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -34,7 +34,7 @@
                         @enderror
                         <div class="input-group">
                             <input type="password" placeholder="Password" id="dz-password" class="form-control be-0"
-                                name="password" required>
+                                name="password" value="{{ old('password') }}" required>
                             <span class="input-group-text show-pass">
                                 <i class="fa fa-eye-slash"></i>
                                 <i class="fa fa-eye"></i>

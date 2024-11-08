@@ -5,6 +5,15 @@
 <script src="{{ asset('assets/mobile/js/custom.js') }}"></script>
 {{-- End Scripts --}}
 
+
+{{-- Upload File --}}
+<script src="{{ asset('assets/mobile/vendor/imageuplodify/imageuploadify.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('input[type="file"]').imageuploadify();
+    })
+</script>
+
 {{-- Home Script --}}
 <script src="{{ asset('assets/mobile/js/dz.carousel.js') }}"></script><!-- Swiper -->
 <script src="{{ asset('assets/mobile/vendor/swiper/swiper-bundle.min.js') }}"></script><!-- Swiper -->
@@ -79,11 +88,3 @@
     }
 </script>
 
-
-{{-- Upload File --}}
-<script src="{{ asset('assets/mobile/vendor/imageuplodify/imageuploadify.min.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $('input[type="file"]').imageuploadify();
-    })
-</script>

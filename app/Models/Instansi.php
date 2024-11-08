@@ -21,10 +21,6 @@ class Instansi extends Model
         return $this->belongsTo(Kabkot::class);
     }
 
-    public function provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
-    }
 
     public function getRouteKeyName()
     {
