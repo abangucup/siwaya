@@ -5,21 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Galeri extends Model
+class VerifikasiWbtb extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'wbtb_id',
-        'hash_name',
-        'url_image',
-        'full_url_image',
-        'original_name',
-        'description_image',
+        'user_id',
+        'tanggal_verifikasi',
+        'keterangan',
+        'status_verifikasi',
     ];
 
     public function wbtb()
     {
         return $this->belongsTo(Wbtb::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

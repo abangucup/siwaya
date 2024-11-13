@@ -27,6 +27,24 @@
                     <span class="title">Instansi</span>
                 </a>
             </li>
+            <li class="menu-item open">
+                <a href="{{ route('kategori.index') }}" class="menu-link {{ request()->routeIs('kategori.*') ? 'active' : '' }}">
+                    <i data-feather="grid" class="menu-icon tf-icons"></i>
+                    <span class="title">Kategori</span>
+                </a>
+            </li>
+            <li class="menu-item open">
+                <a href="{{ route('kondisi.index') }}" class="menu-link {{ request()->routeIs('kondisi.*') ? 'active' : '' }}">
+                    <i data-feather="filter" class="menu-icon tf-icons"></i>
+                    <span class="title">Kondisi</span>
+                </a>
+            </li>
+            <li class="menu-item open">
+                <a href="{{ route('wbtb.index') }}" class="menu-link {{ request()->routeIs('wbtb.*') ? 'active' : '' }}">
+                    <i data-feather="award" class="menu-icon tf-icons"></i>
+                    <span class="title">WBTB</span>
+                </a>
+            </li>
 
             <li class="menu-title small text-uppercase">
                 <span class="menu-title-text">Wilayah</span>

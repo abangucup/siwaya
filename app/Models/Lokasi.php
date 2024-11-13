@@ -10,13 +10,12 @@ class Lokasi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'warisan_id',
+        'wbtb_id',
         'nama_lokasi',
         'slug',
         'kelurahan_id',
         'kecamatan_id',
         'kabkot_id',
-        'provinsi_id',
     ];
 
     public function wbtb()
@@ -37,11 +36,6 @@ class Lokasi extends Model
     public function kabkot()
     {
         return $this->belongsTo(Kabkot::class);
-    }
-
-    public function provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
     }
 
     public function getRouteKeyName()

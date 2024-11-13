@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KondisiController;
 use App\Http\Controllers\Mobile\HomeController;
 use App\Http\Controllers\Mobile\MobileProfileController;
 use App\Http\Controllers\Mobile\MobileWBTBController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\Settings\UserController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\InstansiController;
 use App\Http\Controllers\Web\LandingController;
+use App\Http\Controllers\Web\WebWBTBController;
 use App\Http\Controllers\Web\Wilayah\KabkotController;
 use App\Http\Controllers\Web\Wilayah\KecamatanController;
 use App\Http\Controllers\Web\Wilayah\KelurahanController;
@@ -70,6 +73,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::resource('user', UserController::class);
         Route::resource('role', RoleController::class);
     });
+
+    // Pencatatan WBTB
+    Route::resource('kategori', KategoriController::class);
+    Route::resource('kondisi', KondisiController::class);
+    Route::resource('wbtb', WebWBTBController::class);
 });
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {

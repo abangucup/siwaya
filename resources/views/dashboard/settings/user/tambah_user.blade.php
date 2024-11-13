@@ -12,9 +12,9 @@
                     <div class="row">
 
                         <div class="form-group mb-4">
-                            <label class="label">Nama Instansi</label>
+                            <label class="label">Nama Instansi <span class="text-danger">*</span></label>
                             <div class="form-group position-relative">
-                                <select name="instansi" class="form-select form-control ps-5" style="width: 100%;"
+                                <select name="instansi" class="form-select form-control ps-5 text-primary" style="width: 100%;"
                                     required>
                                     <option value="">Pilih Instansi</option>
                                     @foreach ($dataInstansi as $instansi)
@@ -30,7 +30,7 @@
 
                         <div class="col-6">
                             <div class="form-group mb-4">
-                                <label class="label">Nama Lengkap</label>
+                                <label class="label">Nama Lengkap <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
                                     <input type="text" class="form-control text-dark ps-5"
                                         placeholder="Masukan Nama Lengkap" name="nama_lengkap"
@@ -43,7 +43,35 @@
 
                         <div class="col-6">
                             <div class="form-group mb-4">
-                                <label class="label">Nomor Telpon</label>
+                                <label class="label">Jenis Kelamin <span class="text-danger">*</span></label>
+                                <div class="form-group position-relative">
+                                    <select name="jenis_kelamin" class="form-select form-control ps-5 text-dark" style="width: 100%;"
+                                        required>
+                                        <option value="">Pilih Jenis Kelamin</option>
+                                        <option value="L">Laki - Laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                    <i
+                                        class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group mb-4">
+                                <label class="label">Tanggal Lahir</label>
+                                <div class="form-group position-relative">
+                                    <input type="date" class="form-control text-dark ps-5" placeholder="082154488769"
+                                        name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
+                                    <i
+                                        class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group mb-4">
+                                <label class="label">Nomor Telpon <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
                                     <input type="text" class="form-control text-dark ps-5" placeholder="082154488769"
                                         name="nomor_telepon" value="{{ old('nomor_telepon') }}" required>
@@ -55,7 +83,7 @@
 
                         <div class="col-6">
                             <div class="form-group mb-4">
-                                <label class="label">Email</label>
+                                <label class="label">Email <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
                                     <input type="email" class="form-control text-dark ps-5" placeholder="Masukan Email"
                                         name="email" value="{{ old('email') }}" required>
@@ -67,7 +95,7 @@
 
                         <div class="col-6">
                             <div class="form-group mb-4">
-                                <label class="label">Username</label>
+                                <label class="label">Username <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
                                     <input type="text" class="form-control text-dark ps-5"
                                         placeholder="Masukan Username" name="username" value="{{ old('username') }}"
@@ -81,7 +109,7 @@
                         <div class="col-6">
 
                             <div class="form-group mb-4">
-                                <label class="label">Password</label>
+                                <label class="label">Password <span class="text-danger">*</span></label>
                                 <div class="form-group">
                                     <div class="password-wrapper position-relative">
                                         <input type="password" id="password" class="form-control text-dark ps-5"
@@ -97,15 +125,16 @@
                             </div>
                         </div>
 
+                        
                         <div class="col-6">
                             <div class="form-group mb-4">
-                                <label class="label">Level User</label>
+                                <label class="label">Level User <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
-                                    <select name="role" class="form-select form-control ps-5" style="width: 100%;"
+                                    <select name="role" class="form-select form-control ps-5 text-dark" style="width: 100%;"
                                         required>
                                         <option value="">Pilih Level</option>
                                         @foreach ($dataRole as $role)
-                                        <option value="{{ $role->level }}" class="text-dark">{{ $role->role_name }}
+                                        <option value="{{ $role->role_level }}" class="text-dark">{{ $role->role_name }}
                                         </option>
                                         @endforeach
                                     </select>

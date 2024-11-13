@@ -1,38 +1,45 @@
 @extends('dashboard.layouts.app')
 
-@section('title', 'Kelurahan')
+@section('title', 'Kondisi')
 
-@section('pageTitle', 'Kelurahan')
+@section('pageTitle', 'Kondisi')
 
 @section('pageContent')
-<span class="fw-semibold fs-14 heading-font text-dark dot ms-2">List Kelurahan</span>
+<span class="fw-semibold fs-14 heading-font text-dark dot ms-2">List Kondisi</span>
 @endsection
 
 @section('content')
 
-<button class="btn btn-primary btn-sm text-white mb-2" data-bs-toggle="modal" data-bs-target="#modalTambahKelurahan"><i
-        data-feather="plus-square" class="me-2"></i> Tambah Kelurahan</button>
+<button class="btn btn-primary btn-sm text-white mb-2" data-bs-toggle="modal" data-bs-target="#modalTambahKondisi"><i
+        data-feather="plus-square" class="me-2"></i> Tambah Kondisi</button>
 
-{{-- Tambah Kelurahan --}}
-<div class="modal fade" id="modalTambahKelurahan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="modalTambahKelurahanLabel" aria-hidden="true">
+{{-- Tambah Kondisi --}}
+<div class="modal fade" id="modalTambahKondisi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modalTambahKondisiLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Kelurahan</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Kondisi</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('wilayah.kelurahan.store') }}" method="POST">
+            <form action="{{ route('kondisi.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
 
                     <div class="form-group mb-4">
-                        <label class="label">Nama Kelurahan</label>
+                        <label class="label">Kode Kondisi</label>
                         <div class="form-group">
-                            <input type="text" name="kelurahan" value="{{ old('kelurahan') }}"
-                                class="form-control text-dark h-58" placeholder="Nama Kelurahan" required>
+                            <input type="text" name="kode_kondisi" value="{{ old('kode_kondisi') }}"
+                                class="form-control text-dark h-58" placeholder="Contoh: 1" required>
                         </div>
-                        @error('tambahkelurahan')
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="label">Nama Kondisi</label>
+                        <div class="form-group">
+                            <input type="text" name="nama_kondisi" value="{{ old('nama_kondisi') }}"
+                                class="form-control text-dark h-58" placeholder="Contoh: Sedang Berkembang" required>
+                        </div>
+                        @error('tambahkondisi')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -55,58 +62,68 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nama Kelurahan</th>
+                            <th scope="col">Nama Kondisi</th>
                             <th scope="col">Tanggal Input</th>
                             <th scope="col">Tanggal Update</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($dataKelurahan as $kelurahan)
+                        @foreach ($kondisis as $kondisi)
+
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $kelurahan->nama_kelurahan }}</td>
-                            <td>{{ \Carbon\Carbon::parse($kelurahan->created_at)->isoFormat('LLLL') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($kelurahan->updated_at)->isoFormat('LLLL') }}</td>
+                            <td>{{ $kondisi->nama_kondisi }}</td>
+                            <td>{{ \Carbon\Carbon::parse($kondisi->created_at)->isoFormat('LLLL') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($kondisi->updated_at)->isoFormat('LLLL') }}</td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
                                     <button type="button" class="btn btn-warning btn-sm text-white mt-2 mt-sm-0"
-                                        data-bs-toggle="modal" data-bs-target="#modalUbahKeluraan-{{ $kelurahan->slug }}">
+                                        data-bs-toggle="modal" data-bs-target="#modalUbahKondisi-{{ $kondisi->slug }}">
                                         <i data-feather="edit"></i> Ubah
                                     </button>
                                     <button type="button" class="btn btn-danger btn-sm text-white mt-2 mt-sm-0"
-                                        data-bs-toggle="modal" data-bs-target="#modalHapusKelurahan-{{ $kelurahan->slug }}">
+                                        data-bs-toggle="modal" data-bs-target="#modalHapusKondisi-{{ $kondisi->slug }}">
                                         <i data-feather="trash"></i> Hapus
                                     </button>
                                 </div>
 
                                 <!-- Modal Edit -->
-                                <div class="modal fade" id="modalUbahKeluraan-{{ $kelurahan->slug }}"
+                                <div class="modal fade" id="modalUbahKondisi-{{ $kondisi->slug }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="modalUbahKeluraanLabel" aria-hidden="true">
+                                    aria-labelledby="modalUbahKondisiLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Ubah Kelurahan</h1>
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Ubah Kondisi</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
 
-                                            <form action="{{ route('wilayah.kelurahan.update', $kelurahan->slug) }}"
+                                            <form action="{{ route('kondisi.update', $kondisi->slug) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="modal-body">
 
                                                     <div class="form-group mb-4">
-                                                        <label class="label">Nama Kelurahan</label>
+                                                        <label class="label">Kode Kondisi</label>
                                                         <div class="form-group">
-                                                            <input type="text" name="kelurahan"
-                                                                value="{{ old('kelurahan', $kelurahan->nama_kelurahan) }}"
+                                                            <input type="text" name="kode_kondisi"
+                                                                value="{{ old('kode_kondisi', $kondisi->kode_kondisi) }}"
                                                                 class="form-control text-dark h-58"
-                                                                placeholder="Nama Kelurahan" required>
+                                                                placeholder="Contoh: 1" required>
                                                         </div>
-                                                        @error('ubahkelurahan')
+                                                    </div>
+                                                    <div class="form-group mb-4">
+                                                        <label class="label">Nama Kondisi</label>
+                                                        <div class="form-group">
+                                                            <input type="text" name="nama_kondisi"
+                                                                value="{{ old('nama_kondisi', $kondisi->nama_kondisi) }}"
+                                                                class="form-control text-dark h-58"
+                                                                placeholder="Contoh: Sedang Berkembang" required>
+                                                        </div>
+                                                        @error('ubahkondisi')
                                                         <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -125,23 +142,23 @@
                                 </div>
 
                                 <!-- Modal Hapus -->
-                                <div class="modal fade" id="modalHapusKelurahan-{{ $kelurahan->slug }}"
+                                <div class="modal fade" id="modalHapusKondisi-{{ $kondisi->slug }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="modalHapusKelurahanLabel" aria-hidden="true">
+                                    aria-labelledby="modalHapusKondisiLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Hapus Kelurahan</h1>
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Hapus Kondisi</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <form action="{{ route('wilayah.kelurahan.destroy', $kelurahan->slug) }}"
+                                            <form action="{{ route('kondisi.destroy', $kondisi->slug) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="modal-body">
-                                                    <p>Apakah anda yakin ingin menghapus kelurahan "<b>{{
-                                                            $kelurahan->nama_kelurahan }}</b>" ini?</p>
+                                                    <p>Apakah anda yakin ingin menghapus Kondisi "<b>{{
+                                                            $kondisi->nama_kondisi }}</b>" ini?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger text-white"
@@ -172,26 +189,12 @@
 @endpush
 
 @push('script')
+
+@error('tambahkondisi')
 <script>
-    function copyToClipboard(text) {
-        var input = document.createElement('textarea');
-        input.innerHTML = text;
-        document.body.appendChild(input);
-        input.select();
-        document.execCommand('copy');
-        document.body.removeChild(input);
-    }
-</script>
-@error('tambahkelurahan')
-<script>
-    new bootstrap.Modal(document.getElementById('modalTambahKelurahan')).show();
+    new bootstrap.Modal(document.getElementById('modalTambahKondisi')).show();
 </script>
 @enderror
 
-@error('ubahkelurahan')
-<script>
-    new bootstrap.Modal(document.getElementById('modalUbahKeluraan-{{ $kelurahan->slug }}')).show();
-</script>
-@enderror
 
 @endpush

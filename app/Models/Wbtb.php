@@ -15,13 +15,20 @@ class Wbtb extends Model
         'nama_wbtb',
         'slug',
         'status',
-        'tanggal_penetapan_wbtb',
-        'tanggal_verifikasi_wbtb',
         'kategori_id',
-        'domain_id',
         'kondisi_id',
         'deskripsi_wbtb',
     ];
+    
+    public function verifikasi()
+    {
+        return $this->hasOne(VerifikasiWbtb::class);
+    }
+
+    public function penetapan()
+    {
+        return $this->hasOne(PenetapanWbtb::class);
+    }
 
     public function user()
     {
@@ -33,14 +40,14 @@ class Wbtb extends Model
         return $this->hasMany(Lokasi::class);
     }
 
+    public function galeries()
+    {
+        return $this->hasMany(Galeri::class);
+    }
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
-    }
-
-    public function domain()
-    {
-        return $this->belongsTo(Domain::class);
     }
 
     public function kondisi()

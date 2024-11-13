@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('lokasis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('warisan_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('wbtb_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('nama_lokasi');
             $table->string('slug');
             $table->foreignId('kelurahan_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('kecamatan_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('kabkot_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('provinsi_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

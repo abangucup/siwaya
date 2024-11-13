@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('galeris', function (Blueprint $table) {
             $table->id();
-            $table->string('gambar'); // hash url
-            $table->string('url_gambar');
-            $table->string('nama_asal');
-            $table->string('deskripsi_gambar');
-            $table->foreignId('warisan_id')->constrained()->onDelete('cascade');
+            $table->string('hash_name');
+            $table->string('url_image');
+            $table->string('full_url_image');
+            $table->string('original_name');
+            $table->string('description_image')->nullable();
+            $table->foreignId('wbtb_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

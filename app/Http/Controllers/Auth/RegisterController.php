@@ -25,5 +25,7 @@ class RegisterController extends Controller
     public function mobilePostRegister(Request $request)
     {
         dd($request->all());
+
+        
     }
 }

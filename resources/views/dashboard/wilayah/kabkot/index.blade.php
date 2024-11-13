@@ -73,11 +73,11 @@
                                 <div class="d-flex flex-column flex-sm-row gap-2">
                                     <button type="button" class="btn btn-warning btn-sm text-white mt-2 mt-sm-0"
                                         data-bs-toggle="modal" data-bs-target="#modalUbahKabkot-{{ $kabkot->slug }}">
-                                        <i data-feather="edit"></i> Ubah Data
+                                        <i data-feather="edit"></i> Ubah
                                     </button>
                                     <button type="button" class="btn btn-danger btn-sm text-white mt-2 mt-sm-0"
                                         data-bs-toggle="modal" data-bs-target="#modalHapusKabkot-{{ $kabkot->slug }}">
-                                        <i data-feather="trash"></i> Ubah Data
+                                        <i data-feather="trash"></i> Hapus
                                     </button>
                                 </div>
 
@@ -175,16 +175,7 @@
 @endpush
 
 @push('script')
-<script>
-    function copyToClipboard(text) {
-        var input = document.createElement('textarea');
-        input.innerHTML = text;
-        document.body.appendChild(input);
-        input.select();
-        document.execCommand('copy');
-        document.body.removeChild(input);
-    }
-</script>
+
 @error('tambahkabkot')
 <script>
     new bootstrap.Modal(document.getElementById('modalTambahKabkot')).show();

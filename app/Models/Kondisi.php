@@ -10,7 +10,7 @@ class Kondisi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'status_kondisi',
+        'nama_kondisi',
         'slug',
         'kode_kondisi',
     ];

@@ -29,6 +29,7 @@
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
                             <th scope="col">No. Telepon</th>
+                            <th scope="col">Tanggal Input</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -42,16 +43,20 @@
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->biodata->nomor_telepon }}</td>
+                            <td class="text-nowrap">{{ \Carbon\Carbon::parse($user->created_at)->isoFormat('LL') }}</td>
                             <td>
                                 <div class="d-flex flex-row flex-sm-row gap-1">
-                                    <button type="button" class="btn btn-warning btn-sm text-white d-flex align-items-center mt-2 mt-sm-0"
+                                    <button type="button"
+                                        class="btn btn-warning btn-sm text-white d-flex align-items-center mt-2 mt-sm-0"
                                         data-bs-toggle="modal" data-bs-target="#modalUbahUser-{{ $user->slug }}">
                                         <i data-feather="edit" class="me-1"></i> Edit
                                     </button>
-                                    <a href="{{ route('settings.user.show', $user->slug) }}" type="button" class="btn btn-info btn-sm text-white d-flex align-items-center mt-2 mt-sm-0">
+                                    <a href="{{ route('settings.user.show', $user->slug) }}" type="button"
+                                        class="btn btn-info btn-sm text-white d-flex align-items-center mt-2 mt-sm-0">
                                         <i data-feather="external-link" class="me-1"></i> Detail
                                     </a>
-                                    <button type="button" class="btn btn-danger btn-sm text-white d-flex align-items-center mt-2 mt-sm-0"
+                                    <button type="button"
+                                        class="btn btn-danger btn-sm text-white d-flex align-items-center mt-2 mt-sm-0"
                                         data-bs-toggle="modal" data-bs-target="#modalHapusUser-{{ $user->slug }}">
                                         <i data-feather="trash" class="me-1"></i> Hapus
                                     </button>
