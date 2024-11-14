@@ -16,7 +16,7 @@
 </div>
 <!-- Banner End -->
 
-<div class="page-content">
+{{-- <div class="page-content">
         
     <div class="content-inner pt-0">
         <div class="container fb">
@@ -336,6 +336,6 @@
         </div>    
     </div>
     
-</div> 
+</div>  --}}
 
 @endsection

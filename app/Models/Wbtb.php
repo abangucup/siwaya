@@ -15,7 +15,6 @@ class Wbtb extends Model
         'nama_wbtb',
         'slug',
         'status',
-        'kategori_id',
         'kondisi_id',
         'deskripsi_wbtb',
     ];
@@ -45,9 +44,9 @@ class Wbtb extends Model
         return $this->hasMany(Galeri::class);
     }
 
-    public function kategori()
+    public function kategoris()
     {
-        return $this->belongsTo(Kategori::class);
+        return $this->belongsToMany(Kategori::class, 'kategori_wbtb', 'wbtb_id', 'kategori_id');
     }
 
     public function kondisi()

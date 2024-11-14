@@ -43,7 +43,7 @@
                     </div>
                     <a href="#" class="btn-link d-block text-center">Anda Lupa Password?</a>
                     <div class="input-group">
-                        <button class="btn mt-2 btn-primary w-100">Masuk</button>
+                        <button class="btn mt-2 btn-primary w-100" type="submit">Masuk</button>
                     </div>
                 </form>
             </div>

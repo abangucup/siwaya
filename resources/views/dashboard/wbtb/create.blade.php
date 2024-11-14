@@ -105,7 +105,7 @@
                                 <label class="label">Kondisi <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
                                     <select name="kondisi" class="form-select form-control ps-5 h-58" required>
-                                        <option value="">Pilih Kabupaten</option>
+                                        <option value="">Pilih Kondisi</option>
                                         @foreach ($kondisis as $kondisi)
                                             <option value="{{ $kondisi->slug }}">{{ $kondisi->nama_kondisi }}</option>
                                         @endforeach

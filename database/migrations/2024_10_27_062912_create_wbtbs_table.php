@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('nama_wbtb');
             $table->string('slug')->unique();
             $table->enum('status', ['diajukan','diverifikasi', 'ditolak', 'ditetapkan'])->default('diajukan');
-            $table->foreignId('kategori_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('domain_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('kondisi_id')->nullable()->constrained()->onDelete('set null');
             $table->text('deskripsi_wbtb')->nullable();
             $table->timestamps();

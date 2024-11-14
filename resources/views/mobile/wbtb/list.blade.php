@@ -1,8 +1,8 @@
 @extends('mobile.layouts.app')
 
-@section('title', 'Pengajuan')
+@section('title', 'List')
 
-@section('header', 'Pengajuan WBTB')
+@section('header', 'List WBTB')
 
 @section('content')
 
@@ -12,6 +12,15 @@
 
             <!-- Dashboard Area -->
             <div class="dashboard-area">
+                <div class="sticky-top bg-white" style="top: 60px">
+                    <form action="{{ route('mobile.wbtb.list') }}" method="GET">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cari WBTB" name="search"
+                                value="{{ request()->query('search') }}">
+                            <button class="btn btn-primary" type="submit">Cari</button>
+                        </div>
+                    </form>
+                </div>
                 @forelse ($dataWbtb as $wbtb)
                 <div class="col-12">
                     <div class="card border shadow-sm">
@@ -37,8 +46,8 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
-                            <p class="card-text fs-6 mt-4">
-                                Belum ada pengajuan
+                            <p class="card-text fs-5">
+                                Data Tidak Ditemukan
                             </p>
                         </div>
                     </div>
@@ -48,7 +57,5 @@
         </div>
     </div>
 </div>
-
-@include('mobile.layouts.partials.floatActionButton')
 
 @endsection

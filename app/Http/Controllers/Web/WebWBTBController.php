@@ -55,7 +55,7 @@ class WebWBTBController extends Controller
             'deskripsi_wbtb',
         ]);
 
-        $kategori = Kategori::where('slug', $request->kategori)->firstOrFail();
+        $kategoriIds = Kategori::whereIn('slug', $request->kategori)->pluck('id');
         $kondisi = Kondisi::where('slug', $request->kondisi)->firstOrFail();
 
         if (Wbtb::where('slug', Str::slug($request->nama_wbtb))->exists()) {
@@ -64,12 +64,13 @@ class WebWBTBController extends Controller
 
         $wbtb = new Wbtb();
         $wbtb->user_id = auth()->user()->id;
-        $wbtb->kategori_id = $kategori->id;
         $wbtb->kondisi_id = $kondisi->id;
         $wbtb->nama_wbtb = $request->nama_wbtb;
         $wbtb->slug = Str::slug($request->nama_wbtb);
         $wbtb->deskripsi_wbtb = $request->deskripsi_wbtb;
         $wbtb->save();
+
+        $wbtb->kategoris()->sync($kategoriIds);
 
         if ($request->hasFile('galeri')) {
             foreach ($request->file('galeri') as $file) {

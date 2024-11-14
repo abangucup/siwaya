@@ -7,27 +7,27 @@
 
 
 {{-- Upload File --}}
-<script src="{{ asset('assets/mobile/vendor/imageuplodify/imageuploadify.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/mobile/vendor/imageuplodify/imageuploadify.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('input[type="file"]').imageuploadify();
     })
-</script>
+</script> --}}
 
 {{-- Home Script --}}
 <script src="{{ asset('assets/mobile/js/dz.carousel.js') }}"></script><!-- Swiper -->
 <script src="{{ asset('assets/mobile/vendor/swiper/swiper-bundle.min.js') }}"></script><!-- Swiper -->
 
-<script>
+{{-- <script>
     document.getElementById('animasi-button').addEventListener('click', function() {
         this.classList.add('animate-button');
         setTimeout(function() {
             this.classList.remove('animate-button');
         }.bind(this), 150);
     });
-</script>
+</script> --}}
 
-{{-- <script src="assets/vendor/wow/dist/wow.min.js"></script>
+<script src="assets/vendor/wow/dist/wow.min.js"></script>
 <script>
     new WOW().init();
     
@@ -39,7 +39,7 @@
       mobile:       false       // trigger animations on mobile devices (true is default)
     });
     wow.init();	
-</script> --}}
+</script>
 
 
 
@@ -80,7 +80,11 @@
             document.getElementById('nav-profile').classList.add('active');
             document.getElementById('profile-icon').querySelector('path').setAttribute('opacity', '1');
             document.getElementById('profile-title').classList.remove('d-none');
-        } else if (path.includes('mobile/wbtb/pengajuan')) {
+        } else if (path.includes('mobile/wbtb/list')) {
+            document.getElementById('nav-listwbtb').classList.add('active');
+            document.getElementById('listwbtb-icon').querySelector('path').setAttribute('opacity', '1');
+            document.getElementById('listwbtb-title').classList.remove('d-none');
+        } else if (path.includes('mobile/wbtb/create') || path.includes('mobile/wbtb/pengajuan')) {
             document.getElementById('nav-submission').classList.add('active');
             document.getElementById('submission-icon').querySelector('path').setAttribute('opacity', '1');
             document.getElementById('submission-title').classList.remove('d-none');

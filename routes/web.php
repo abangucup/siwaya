@@ -106,6 +106,10 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
 
         // Pengajuan WBTB
         Route::group(['prefix' => 'wbtb', 'as' => 'wbtb.'], function () {
+            Route::get('list', [MobileWBTBController::class, 'list'])->name('list');
+            Route::get('show/{slug}', [MobileWBTBController::class, 'show'])->name('show');
+            Route::get('create', [MobileWBTBController::class, 'create'])->name('create');
+            Route::post('store', [MobileWBTBController::class, 'store'])->name('store');
             Route::get('pengajuan', [MobileWBTBController::class, 'pengajuan'])->name('pengajuan');
         });
 

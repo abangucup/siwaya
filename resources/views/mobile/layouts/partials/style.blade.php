@@ -1,4 +1,6 @@
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/siwaya.png') }}" />
+<link rel="icon" type="image/png" href="{{ asset('assets/images/siwaya.png') }}">
+
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="{{ asset('assets/mobile/vendor/swiper/swiper-bundle.min.css') }}">
