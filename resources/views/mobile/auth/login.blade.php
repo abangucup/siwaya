@@ -18,7 +18,7 @@
 
         <div class="container">
             <div class="account-area">
-                <form action="{{ route('mobile.login') }}" method="POST">
+                <form action="{{ route('mobile.postLogin') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         @error('email_or_username')
@@ -54,8 +54,7 @@
     <!-- Footer -->
     <footer class="footer fixed">
         <div class="container">
-            <a href="{{ route('mobile.register') }}" class="btn btn-primary light text-primary d-block"
-                data-confirm-delete="true">Buat Akun</a>
+            <a href="{{ route('mobile.register') }}" class="btn btn-primary light text-primary d-block">Buat Akun</a>
         </div>
     </footer>
 @endsection

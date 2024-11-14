@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('role_id')->default(5)->constrained()->cascadeOnDelete();
             $table->foreignId('biodata_id')->constrained()->cascadeOnDelete();
             $table->foreignId('instansi_id')->nullable()->constrained()->onDelete('set null');
             $table->rememberToken();

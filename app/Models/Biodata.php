@@ -11,6 +11,7 @@ class Biodata extends Model
 
     protected $fillable = [
         'nama_lengkap',
+        'slug',
         'tanggal_lahir',
         'alamat',
         'jenis_kelamin',
@@ -22,5 +23,10 @@ class Biodata extends Model
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

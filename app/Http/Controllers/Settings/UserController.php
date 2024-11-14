@@ -43,6 +43,7 @@ class UserController extends Controller
         
         $biodata = new Biodata();
         $biodata->nama_lengkap = $request->nama_lengkap;
+        $biodata->slug = Str::slug($request->nama_lengkap);
         $biodata->nomor_telepon = $request->nomor_telepon;
         $biodata->jenis_kelamin = $request->jenis_kelamin;
         $biodata->save();
@@ -101,6 +102,7 @@ class UserController extends Controller
         $biodata = Biodata::where('id', $user->biodata_id)->firstOrFail();
         $biodata->update([
             'nama_lengkap' => $request->nama_lengkap,
+            'slug' => Str::slug($request->nama_lengkap),
             'nomor_telepon' => $request->nomor_telepon,
             'jenis_kelamin' => $request->jenis_kelamin,
         ]);
@@ -112,6 +114,7 @@ class UserController extends Controller
     {
         $user = User::where('slug', $slug)->firstOrFail();
         $user->delete();
+        $user->biodata()->delete();
         return redirect()->route('settings.user.index')->withToastSuccess('User dihapus');
     }
 }

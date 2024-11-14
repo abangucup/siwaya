@@ -45,7 +45,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('login', [LoginController::class, 'postLogin']);
 
     Route::get('register', [RegisterController::class, 'register'])->name('register');
-    Route::post('register', [RegisterController::class, 'postRegister']);
+    Route::post('register', [RegisterController::class, 'postRegister'])->name('postRegister');
 
     Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot-password');
     Route::post('forgot-password', [ForgotPasswordController::class, 'postForgotPassword']);
@@ -86,10 +86,10 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
         Route::get('/', [HomeController::class, 'splash'])->name('splash');
 
         Route::get('login', [LoginController::class, 'mobileLogin'])->name('login');
-        Route::post('login', [LoginController::class, 'mobilePostLogin'])->name('login');
+        Route::post('login', [LoginController::class, 'mobilePostLogin'])->name('postLogin');
 
         Route::get('register', [RegisterController::class, 'mobileRegister'])->name('register');
-        Route::post('register', [RegisterController::class, 'mobilePostRegister']);
+        Route::post('register', [RegisterController::class, 'mobilePostRegister'])->name('postRegister');
 
         Route::get('forgot-password', [ForgotPasswordController::class, 'mobileForgotPassword'])->name('forgot-password');
         Route::post('forgot-password', [ForgotPasswordController::class, 'mobilePostForgotPassword']);

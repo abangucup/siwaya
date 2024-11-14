@@ -42,7 +42,7 @@
                             <td>{{ $user->biodata->nama_lengkap }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->biodata->nomor_telepon }}</td>
+                            <td>{{ $user->biodata->nomor_telepon ?? $user->biodata->whatsapp }}</td>
                             <td class="text-nowrap">{{ \Carbon\Carbon::parse($user->created_at)->isoFormat('LL') }}</td>
                             <td>
                                 <div class="d-flex flex-row flex-sm-row gap-1">

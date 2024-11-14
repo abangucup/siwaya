@@ -67,7 +67,7 @@ class LoginController extends Controller
         ]);
 
         if ($validasi->fails()) {
-            return redirect()->back()->withErrors($validasi)->withInput($request->all());
+            return redirect()->back()->withErrors($validasi)->withInput($request->all())->withToastError('Kesalahan Inputan');
         }
 
         $login_type = filter_var($request->input('email_or_username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';

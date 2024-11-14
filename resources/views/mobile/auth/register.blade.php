@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="account-area">
-            <form action="{{ route('mobile.register') }}" method="POST">
+            <form action="{{ route('mobile.postRegister') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     @error('nama_lengkap')
@@ -31,12 +31,24 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @error('jenis_kelamin')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    <div class="input-group">
+                        <select class="form-control" name="jenis_kelamin" required>
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="L">Laki - Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     @error('whatsapp')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="input-group">
-                        <input type="text" placeholder="08xxxxxxx" class="form-control" name="whatsapp"
-                            value="{{ old('whatsapp') }}" required>
+                        <input type="text" placeholder="08xxxxxxx" min="10" max="13" class="form-control"
+                            name="whatsapp" value="{{ old('whatsapp') }}" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -71,7 +83,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <button class="btn mt-2 btn-primary w-100">Buat Akun</button>
+                    <button type="submit" class="btn mt-2 btn-primary w-100">Kirim</button>
                 </div>
                 <a href="{{ route('mobile.login') }}" class="btn-link d-block text-center">Sudah Punya Akun? Silahkan<b>
                         Masuk</b></a>
