@@ -26,7 +26,7 @@ class BiodataSeeder extends Seeder
             ],
             [
                 'nama_lengkap' => 'Verifikator Provinsi Diki',
-                'string' => Str::slug('Verifikator Provinsi Diki'),
+                'slug' => Str::slug('Verifikator Provinsi Diki'),
                 'tanggal_lahir' => '2000-01-01',
                 'alamat' => 'Jl. Jalan',
                 'jenis_kelamin' => 'L',
