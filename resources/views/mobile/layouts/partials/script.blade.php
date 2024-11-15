@@ -18,14 +18,14 @@
 <script src="{{ asset('assets/mobile/js/dz.carousel.js') }}"></script><!-- Swiper -->
 <script src="{{ asset('assets/mobile/vendor/swiper/swiper-bundle.min.js') }}"></script><!-- Swiper -->
 
-{{-- <script>
+<script>
     document.getElementById('animasi-button').addEventListener('click', function() {
         this.classList.add('animate-button');
         setTimeout(function() {
             this.classList.remove('animate-button');
         }.bind(this), 150);
     });
-</script> --}}
+</script>
 
 <script src="assets/vendor/wow/dist/wow.min.js"></script>
 <script>
