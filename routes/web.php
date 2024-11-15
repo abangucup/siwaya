@@ -126,6 +126,7 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
             Route::get('create', [MobileWBTBController::class, 'create'])->name('create');
             Route::post('store', [MobileWBTBController::class, 'store'])->name('store');
             Route::get('pengajuan', [MobileWBTBController::class, 'pengajuan'])->name('pengajuan');
+            Route::delete('destroy/{slug}', [MobileWBTBController::class, 'destroy'])->name('destroy');
 
             // verifikasi
             Route::get('verifikasi', [VerifikasiWbtbController::class, 'verifikasi'])->name('verifikasi');

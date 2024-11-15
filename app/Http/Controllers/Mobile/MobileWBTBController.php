@@ -119,4 +119,28 @@ class MobileWBTBController extends Controller
         $wbtb = Wbtb::where('slug', $slug)->firstOrFail();
         return view('mobile.wbtb.detail', compact('wbtb'));
     }
+
+    public function destroy($slug)
+    {
+        // $wbtb = Wbtb::where('slug', $slug)->firstOrFail();
+        // $galeris = Galeri::where('wbtb_id', $wbtb->id)->get();
+        // foreach ($galeris as $galeri) {
+        //     Storage::delete('public/galeri/' . $galeri->hash_name);
+        //     $galeri->delete();
+        // }
+        // $wbtb->delete();
+        $wbtb = Wbtb::where('slug', $slug)->firstOrFail();
+        // Ambil semua data galeri yang terkait dengan $wbtb sebelum menghapusnya
+        $galeriItems = $wbtb->galeries;
+
+        // Hapus setiap file gambar yang terkait dengan $wbtb dari storage
+        foreach ($galeriItems as $galeri) {
+            if ($galeri->url_image) {
+                // Menghapus file dari storage
+                Storage::delete(str_replace('/storage', 'public', $galeri->url_image));
+            }
+        }
+        $wbtb->delete();
+        return back()->withToastSuccess('WBTB Terhapus');
+    }
 }
