@@ -43,7 +43,7 @@
                     <a class="btn btn-sm text-primary" href="{{ route('mobile.wbtb.list') }}">LAINNYA</a>
                 </div>
                 <div class="list item-list recent-jobs-list">
-                    <ul>    
+                    <ul>
                         @forelse ($wbtbDitetapkan as $wbtb)
                         <li>
                             <a href="{{ route('mobile.wbtb.show', $wbtb->slug) }}" class="item-media">
@@ -52,10 +52,12 @@
                             </a>
                             <div class="item-content">
                                 <div class="item-inner">
-                                    <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a></h6>
+                                    <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a>
+                                    </h6>
                                     <div class="item-title-row">
                                         <div class="item-subtitle">
-                                            {{ \Carbon\Carbon::parse($wbtb->penetapan->tanggal_penetapan ?? $wbtb->created_at)->isoFormat('LL') }}
+                                            {{ \Carbon\Carbon::parse($wbtb->penetapan->tanggal_penetapan ??
+                                            $wbtb->created_at)->isoFormat('LL') }}
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
@@ -63,7 +65,8 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <div class="item-price">{{ $wbtb->penetapan->user->biodata->nama_lengkap ?? $wbtb->user->biodata->nama_lengkap }}</div>
+                                        <div class="item-price">{{ $wbtb->penetapan->user->biodata->nama_lengkap ??
+                                            $wbtb->user->biodata->nama_lengkap }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +93,7 @@
                     <a class="btn btn-sm text-primary" href="{{ route('mobile.wbtb.list') }}">LAINNYA</a>
                 </div>
                 <div class="list item-list recent-jobs-list">
-                    <ul>    
+                    <ul>
                         @forelse ($wbtbDitetapkan as $wbtb)
                         <li>
                             <a href="{{ route('mobile.wbtb.show', $wbtb->slug) }}" class="item-media">
@@ -99,10 +102,12 @@
                             </a>
                             <div class="item-content">
                                 <div class="item-inner">
-                                    <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a></h6>
+                                    <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a>
+                                    </h6>
                                     <div class="item-title-row">
                                         <div class="item-subtitle">
-                                            {{ \Carbon\Carbon::parse($wbtb->verifikasi->tanggal_verifikasi ?? $wbtb->created_at)->isoFormat('LL') }}
+                                            {{ \Carbon\Carbon::parse($wbtb->verifikasi->tanggal_verifikasi ??
+                                            $wbtb->created_at)->isoFormat('LL') }}
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
@@ -110,7 +115,8 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <div class="item-price">{{ $wbtb->verifikasi->user->biodata->nama_lengkap ?? $wbtb->user->biodata->nama_lengkap }}</div>
+                                        <div class="item-price">{{ $wbtb->verifikasi->user->biodata->nama_lengkap ??
+                                            $wbtb->user->biodata->nama_lengkap }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -137,38 +143,44 @@
                     <a class="btn btn-sm text-primary" href="{{ route('mobile.wbtb.list') }}">LAINNYA</a>
                 </div>
                 <div class="list item-list recent-jobs-list">
-                    <ul>    
+                    <ul>
                         @forelse ($wbtbDiajukan as $wbtb)
                         <li>
                             <a href="{{ route('mobile.wbtb.show', $wbtb->slug) }}" class="item-media">
                                 <img src="{{ $wbtb->galeries()->first()->url_image ?? asset('assets/images/no_image.svg') }}"
                                     alt="Gambar" style="object-fit: cover;" class="img-fluid w-100">
-                            </a>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a></h6>
-                                    <div class="item-title-row">
-                                        <div class="item-subtitle">
-                                            {{ \Carbon\Carbon::parse($wbtb->verifikasi->tanggal_verifikasi ?? $wbtb->created_at)->isoFormat('LL') }}
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <h6 class="item-title mt-2">{{ $wbtb->nama_wbtb }}</h6>
+                                        <div class="item-title-row">
+                                            <div class="item-subtitle">
+                                                {{ \Carbon\Carbon::parse($wbtb->verifikasi->tanggal_verifikasi ??
+                                                $wbtb->created_at)->isoFormat('LL') }}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="item-subtitle">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="item-subtitle">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...')
+                                                }}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="item-subtitle gap-2">
-                                            @foreach ($wbtb->kategoris as $kategori)
-                                                <span class="badge bg-primary rounded">{{ $kategori->nama_kategori }}</span>
-                                            @endforeach
+                                        <div class="d-flex align-items-center">
+                                            <div class="item-subtitle gap-2">
+                                                @foreach ($wbtb->kategoris as $kategori)
+                                                <span class="badge bg-primary rounded">{{ $kategori->nama_kategori
+                                                    }}</span>
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="item-subtitle">Oleh: {{ $wbtb->verifikasi->user->biodata->nama_lengkap ?? $wbtb->user->biodata->nama_lengkap }}</div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="item-subtitle">Oleh: {{
+                                                $wbtb->verifikasi->user->biodata->nama_lengkap ??
+                                                $wbtb->user->biodata->nama_lengkap }}</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="sortable-handler"></div>
+                                <div class="sortable-handler"></div>
+                            </a>
+
                         </li>
                         @empty
                         <div class="col-12">

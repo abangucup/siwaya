@@ -20,22 +20,26 @@
                     <div class="col-12 mt-4 mb-4">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <a href="{{ route('mobile.profile.show', auth()->user()->biodata->slug) }}" class="text-dark d-flex justify-content-between align-items-center">Profile
+                                <a href="{{ route('mobile.profile.show', auth()->user()->biodata->slug) }}"
+                                    class="text-dark d-flex justify-content-between align-items-center">Profile
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{ route('mobile.wbtb.pengajuan') }}" class="text-dark d-flex justify-content-between align-items-center">Pengajuan Saya
+                                <a href="{{ route('mobile.wbtb.pengajuan') }}"
+                                    class="text-dark d-flex justify-content-between align-items-center">Pengajuan Saya
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{ route('mobile.wbtb.pengajuan') }}" class="text-dark d-flex justify-content-between align-items-center">Update Biodata
+                                <a href="{{ route('mobile.wbtb.pengajuan') }}"
+                                    class="text-dark d-flex justify-content-between align-items-center">Update Biodata
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{ route('mobile.wbtb.pengajuan') }}" class="text-dark d-flex justify-content-between align-items-center">Reset Password
+                                <a href="{{ route('mobile.wbtb.pengajuan') }}"
+                                    class="text-dark d-flex justify-content-between align-items-center">Reset Password
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </li>

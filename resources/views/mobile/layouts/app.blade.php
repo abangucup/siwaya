@@ -50,9 +50,8 @@
 
             @yield('content')
 
-            @include('mobile.layouts.partials.menubar')
+        @include('mobile.layouts.partials.menubar')
 
-            @include('mobile.layouts.partials.theme')
 
         </div>
 
@@ -73,6 +72,9 @@
         {{-- End Modal Form --}}
 
 
+
+
+        @include('mobile.layouts.partials.theme')
 
     </div>
 

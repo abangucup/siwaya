@@ -26,10 +26,10 @@ class HomeController extends Controller
         $wbtbDiajukan = Wbtb::where('status', 'diajukan')->latest()->take(3)->get();
 
         $data = [
-            'WBTB Diverifikasi' => $totalDiverifikasi,
-            'WBTB Ditetapkan' => $totalDitetapkan,
-            'WBTB Ditolak' => $totalDitolak,
-            'WBTB Diajukan' => $totalDiajukan
+            'Diverifikasi' => $totalDiverifikasi,
+            'Ditetapkan' => $totalDitetapkan,
+            'Ditolak' => $totalDitolak,
+            'Diajukan' => $totalDiajukan
         ];
 
         return view('mobile.home', compact('data', 'wbtbDiverifikasi', 'wbtbDitetapkan', 'wbtbDiajukan'));
