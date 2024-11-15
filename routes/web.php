@@ -55,29 +55,30 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        # code...
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('instansi', InstansiController::class);
+        Route::resource('instansi', InstansiController::class);
 
-    Route::match(['get', 'post'], 'logout', [LogoutController::class, 'logout'])->name('logout');
+        Route::match(['get', 'post'], 'logout', [LogoutController::class, 'logout'])->name('logout');
 
-    // Pengaturan Wilayah
-    Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
-        Route::resource('kabkot', KabkotController::class);
-        Route::resource('kecamatan', KecamatanController::class);
-        Route::resource('kelurahan', KelurahanController::class);
-    });
+        // Pengaturan Wilayah
+        Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
+            Route::resource('kabkot', KabkotController::class);
+            Route::resource('kecamatan', KecamatanController::class);
+            Route::resource('kelurahan', KelurahanController::class);
+        });
 
-    // Settings
-    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
-        Route::resource('user', UserController::class);
-        Route::resource('role', RoleController::class);
-    });
+        // Settings
+        Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+            Route::resource('user', UserController::class);
+            Route::resource('role', RoleController::class);
+        });
 
-    // Pencatatan WBTB
-    Route::resource('kategori', KategoriController::class);
-    Route::resource('kondisi', KondisiController::class);
-    Route::resource('wbtb', WebWBTBController::class);
+        // Pencatatan WBTB
+        Route::resource('kategori', KategoriController::class);
+        Route::resource('kondisi', KondisiController::class);
+        Route::resource('wbtb', WebWBTBController::class);
 });
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {

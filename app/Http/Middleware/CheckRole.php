@@ -33,26 +33,6 @@ class CheckRole
             return $redirectLogin();
         }
 
-        // Kode Lama
-        // if (!auth()->check()) {
-        //     if (str_contains($userAgent, 'UserAgentSiwaya')) {
-        //         return redirect()->route('mobile.login');
-        //     } else {
-        //         return redirect()->route('login');
-        //     }
-        // }
-
-        // $role = Auth::user()->role->role_level;
-
-        // if ($role != $roles) {
-        //     Auth::logout();
-        //     if (str_contains($userAgent, 'UserAgentSiwaya')) {
-        //         return redirect()->route('mobile.login');
-        //     } else {
-        //         return redirect()->route('login');
-        //     }
-        // }
-
         return $next($request);
     }
 }

@@ -41,7 +41,12 @@ class LoginController extends Controller
         ];
 
         if (auth()->attempt($credentials)) {
-            return redirect()->route('dashboard')->withToastSuccess('Login Berhasil');
+            if (!auth()->user()->role->role_level == 'masyarakat') {
+                return redirect()->route('dashboard')->withToastSuccess('Login Berhasil');
+            } else {
+                Auth::logout();
+                return redirect()->route('login')->withToastError('Login Gagal');
+            }
         }
 
         $user = User::where($login_type, $request->input('email_or_username'))->first();
