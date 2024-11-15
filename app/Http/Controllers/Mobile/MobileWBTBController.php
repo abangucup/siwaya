@@ -51,6 +51,7 @@ class MobileWBTBController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'nama_wbtb',
             'nama_lokasi',

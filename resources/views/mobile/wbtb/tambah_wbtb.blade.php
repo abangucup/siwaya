@@ -76,13 +76,11 @@
 
                 <div class="form-group mb-3">
                     <label class="form-label">Kategori <span class="text-danger">*</span></label>
-                    {{-- <div class="input-group"> --}}
                         <select name="kategori[]" class="form-control select2-multiple" multiple="multiple" id="select2Multiple" required>
                             @foreach ($kategoris as $kategori)
                                 <option value="{{ $kategori->slug }}">{{ $kategori->nama_kategori }}</option>
                             @endforeach
                         </select>
-                    {{-- </div> --}}
                 </div>
                 <!-- Menyimpan semua nilai terpilih ke dalam hidden input untuk dikirimkan ke server -->
                 <input type="hidden" name="selected_kondisi" id="selected-kondisi-input">

@@ -25,14 +25,24 @@
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{ route('mobile.wbtb.pengajuan') }}" class="text-dark d-flex justify-content-between align-items-center">Pnegajuan Saya
+                                <a href="{{ route('mobile.wbtb.pengajuan') }}" class="text-dark d-flex justify-content-between align-items-center">Pengajuan Saya
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('mobile.wbtb.pengajuan') }}" class="text-dark d-flex justify-content-between align-items-center">Update Biodata
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('mobile.wbtb.pengajuan') }}" class="text-dark d-flex justify-content-between align-items-center">Reset Password
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-12 mt-4">
-                        <form action="{{ route('logout') }}" method="post">
+                        <form action="{{ route('mobile.logout') }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-outline-danger btn-block">Logout</button>
                         </form>
