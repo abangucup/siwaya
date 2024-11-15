@@ -41,11 +41,11 @@ class LoginController extends Controller
         ];
 
         if (auth()->attempt($credentials)) {
-            if (!auth()->user()->role->role_level == 'masyarakat') {
-                return redirect()->route('dashboard')->withToastSuccess('Login Berhasil');
-            } else {
+            if (auth()->user()->role->role_level == 'masyarakat') {
                 Auth::logout();
-                return redirect()->route('login')->withToastError('Login Gagal');
+                return redirect()->route('login')->withToastError('Akun tidak memiliki akses');
+            } else {
+                return redirect()->route('dashboard')->withToastSuccess('Login Berhasil');
             }
         }
 

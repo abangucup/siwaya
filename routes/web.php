@@ -54,31 +54,43 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('reset-password', [ResetPasswordController::class, 'postResetPassword']);
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
-        # code...
+Route::middleware(['auth'])->group(function () {
+    # code...
+
+    Route::group(['prefix' => 'dashboard'], function () {
+
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::resource('instansi', InstansiController::class);
+        Route::group(['middleware' => ['role:operator_kabkot']], function () {
+            Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
+                Route::resource('kecamatan', KecamatanController::class);
+                Route::resource('kelurahan', KelurahanController::class);
+            });
+        });
+
+        Route::group(['middleware' => ['role:operator_provinsi']], function () {
+
+            Route::resource('instansi', InstansiController::class);
+
+            // Pengaturan Wilayah
+            Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
+                Route::resource('kabkot', KabkotController::class);
+            });
+            // Settings
+            Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+                Route::resource('user', UserController::class);
+                Route::resource('role', RoleController::class);
+            });
+
+            // Pencatatan WBTB
+            Route::resource('kategori', KategoriController::class);
+            Route::resource('kondisi', KondisiController::class);
+        });
+
+        Route::resource('wbtb', WebWBTBController::class);
 
         Route::match(['get', 'post'], 'logout', [LogoutController::class, 'logout'])->name('logout');
-
-        // Pengaturan Wilayah
-        Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
-            Route::resource('kabkot', KabkotController::class);
-            Route::resource('kecamatan', KecamatanController::class);
-            Route::resource('kelurahan', KelurahanController::class);
-        });
-
-        // Settings
-        Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
-            Route::resource('user', UserController::class);
-            Route::resource('role', RoleController::class);
-        });
-
-        // Pencatatan WBTB
-        Route::resource('kategori', KategoriController::class);
-        Route::resource('kondisi', KondisiController::class);
-        Route::resource('wbtb', WebWBTBController::class);
+    });
 });
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {

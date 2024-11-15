@@ -28,9 +28,9 @@ class CheckRole
             return $redirectLogin();
         }
 
-        if (Auth::user()->role->role_level != $roles) {
+        if (Auth::user()->role->role_level !== $roles) {
             Auth::logout();
-            return $redirectLogin();
+            return $redirectLogin()->withToastError('Anda melanggar hak akses');
         }
 
         return $next($request);

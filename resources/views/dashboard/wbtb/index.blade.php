@@ -50,17 +50,19 @@
                                 </span>
                             </td>
                             <td>{{ $wbtb->status }}</td>
-                            <td>{{ $wbtb->kategori->nama_kategori }}</td>
+                            <td>
+                                @foreach ($wbtb->kategoris as $kategori)
+                                    {{ $kategori->nama_kategori . ', '}}
+                                @endforeach
+                            </td>
                             <td>{{ $wbtb->kondisi->nama_kondisi }}</td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
-                                    @foreach ($wbtb->galeries as $galeri)
                                     {{-- <a href="{{ $galeri->url_image }}" target="_blank"
                                         class="btn btn-primary btn-sm text-white mt-2 mt-sm-0">
                                         <i data-feather="eye"></i> Lihat
                                     </a> --}}
-                                    <img src="{{ $galeri->url_image }}" alt="">
-                                    @endforeach
+                                    <img src="{{ $wbtb->galeries()->first()->url_image }}" alt="">
                                 </div>
                             </td>
                             <td>
