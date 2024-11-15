@@ -157,7 +157,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <div class="item-subtitle">
+                                        <div class="item-subtitle gap-2">
                                             @foreach ($wbtb->kategoris as $kategori)
                                                 <span class="badge bg-primary rounded">{{ $kategori->nama_kategori }}</span>
                                             @endforeach
