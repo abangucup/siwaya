@@ -74,7 +74,7 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
-                                    <p class="card-text fs-5">
+                                    <p class="card-text fs-5 mt-4">
                                         Belum ada data yang ditetapkan
                                     </p>
                                 </div>
@@ -121,8 +121,62 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
-                                    <p class="card-text fs-5">
-                                        Belum ada data yang ditetapkan
+                                    <p class="card-text fs-5 mt-4">
+                                        Belum ada data yang diverifikasi
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforelse
+                    </ul>
+                </div>
+
+                {{-- Pengajuan Terbaru --}}
+                <div class="title-bar">
+                    <h5 class="dz-title">PENGAJUAN WBTB TERBARU</h5>
+                    <a class="btn btn-sm text-primary" href="{{ route('mobile.wbtb.list') }}">LAINNYA</a>
+                </div>
+                <div class="list item-list recent-jobs-list">
+                    <ul>    
+                        @forelse ($wbtbDiajukan as $wbtb)
+                        <li>
+                            <a href="{{ route('mobile.wbtb.show', $wbtb->slug) }}" class="item-media">
+                                <img src="{{ $wbtb->galeries()->first()->url_image ?? asset('assets/images/no_image.svg') }}"
+                                    alt="Gambar" style="object-fit: cover;" class="img-fluid w-100">
+                            </a>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a></h6>
+                                    <div class="item-title-row">
+                                        <div class="item-subtitle">
+                                            {{ \Carbon\Carbon::parse($wbtb->verifikasi->tanggal_verifikasi ?? $wbtb->created_at)->isoFormat('LL') }}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="item-subtitle">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="item-subtitle">
+                                            @foreach ($wbtb->kategoris as $kategori)
+                                                <span class="badge bg-primary rounded">{{ $kategori->nama_kategori }}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="item-subtitle">Oleh: {{ $wbtb->verifikasi->user->biodata->nama_lengkap ?? $wbtb->user->biodata->nama_lengkap }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sortable-handler"></div>
+                        </li>
+                        @empty
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
+                                    <p class="card-text fs- mt-4">
+                                        Belum ada data yang diverifikasi
                                     </p>
                                 </div>
                             </div>

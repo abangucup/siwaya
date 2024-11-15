@@ -23,6 +23,7 @@ class HomeController extends Controller
 
         $wbtbDitetapkan = Wbtb::where('status', 'ditetapkan')->latest()->take(3)->get();
         $wbtbDiverifikasi = Wbtb::where('status', 'diverifikasi')->latest()->take(3)->get();
+        $wbtbDiajukan = Wbtb::where('status', 'diajukan')->latest()->take(3)->get();
 
         $data = [
             'WBTB Diverifikasi' => $totalDiverifikasi,
@@ -31,6 +32,6 @@ class HomeController extends Controller
             'WBTB Diajukan' => $totalDiajukan
         ];
 
-        return view('mobile.home', compact('data', 'wbtbDiverifikasi', 'wbtbDitetapkan'));
+        return view('mobile.home', compact('data', 'wbtbDiverifikasi', 'wbtbDitetapkan', 'wbtbDiajukan'));
     }
 }

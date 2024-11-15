@@ -47,8 +47,13 @@
             {{-- HEADER --}}
             @include('mobile.layouts.partials.header')
             {{-- HEADER --}}
-            
+
             @yield('content')
+
+            @include('mobile.layouts.partials.menubar')
+
+            @include('mobile.layouts.partials.theme')
+
         </div>
 
         {{-- Modal Form Tambah--}}
@@ -66,10 +71,8 @@
             </div>
         </div>
         {{-- End Modal Form --}}
-        
-        @include('mobile.layouts.partials.menubar')
 
-        @include('mobile.layouts.partials.theme')
+
 
     </div>
 

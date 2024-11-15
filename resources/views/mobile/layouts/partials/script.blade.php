@@ -88,6 +88,14 @@
             document.getElementById('nav-submission').classList.add('active');
             document.getElementById('submission-icon').querySelector('path').setAttribute('opacity', '1');
             document.getElementById('submission-title').classList.remove('d-none');
+        } else if (path.includes('mobile/wbtb/verifikasi')) {
+            document.getElementById('nav-verifikasi').classList.add('active');
+            document.getElementById('verifikasi-icon').querySelector('path').setAttribute('opacity', '1');
+            document.getElementById('verifikasi-title').classList.remove('d-none');
+        } else if (path.includes('mobile/wbtb/penetapan')) {
+            document.getElementById('nav-penetapan').classList.add('active');
+            document.getElementById('penetapan-icon').querySelector('path').setAttribute('opacity', '1');
+            document.getElementById('penetapan-title').classList.remove('d-none');
         }
     }
 </script>

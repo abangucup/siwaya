@@ -11,8 +11,10 @@ use App\Http\Controllers\Mobile\HomeController;
 use App\Http\Controllers\Mobile\MobileProfileController;
 use App\Http\Controllers\Mobile\MobileWBTBController;
 use App\Http\Controllers\Mobile\SplashController;
+use App\Http\Controllers\PenetapanWbtbController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
+use App\Http\Controllers\VerifikasiWbtbController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\InstansiController;
 use App\Http\Controllers\Web\LandingController;
@@ -124,6 +126,14 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
             Route::get('create', [MobileWBTBController::class, 'create'])->name('create');
             Route::post('store', [MobileWBTBController::class, 'store'])->name('store');
             Route::get('pengajuan', [MobileWBTBController::class, 'pengajuan'])->name('pengajuan');
+
+            // verifikasi
+            Route::get('verifikasi', [VerifikasiWbtbController::class, 'verifikasi'])->name('verifikasi');
+            Route::post('verifikasi/{slug}', [VerifikasiWbtbController::class, 'storeVerifikasi'])->name('storeVerifikasi');
+
+            // penetapan
+            Route::get('penetapan', [PenetapanWbtbController::class, 'penetapan'])->name('penetapan');
+            Route::post('penetapan/{slug}', [PenetapanWbtbController::class, 'penetapan'])->name('storePenetapan');
         });
 
         Route::match(['get', 'post'], 'logout', [LogoutController::class, 'mobileLogout'])->name('logout');

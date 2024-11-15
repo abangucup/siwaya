@@ -10,7 +10,7 @@
 
     <div class="container">
 
-        <form action="{{ route('mobile.wbtb.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('mobile.wbtb.store') }}" method="POST" enctype="multipart/form-data" id="wbtbForm">
             @csrf
             <div class="row">
 
@@ -30,7 +30,6 @@
                             placeholder="Dimana Lokasi WBTB Berada" required>
                     </div>
                 </div>
-
 
                 <div class="form-group mb-3">
                     <label class="label">Kabupaten <span class="text-danger">*</span></label>
@@ -76,11 +75,12 @@
 
                 <div class="form-group mb-3">
                     <label class="form-label">Kategori <span class="text-danger">*</span></label>
-                        <select name="kategori[]" class="form-control select2-multiple" multiple="multiple" id="select2Multiple" required>
-                            @foreach ($kategoris as $kategori)
-                                <option value="{{ $kategori->slug }}">{{ $kategori->nama_kategori }}</option>
-                            @endforeach
-                        </select>
+                    <select name="kategori[]" class="form-control select2-multiple" multiple="multiple"
+                        id="select2Multiple" required>
+                        @foreach ($kategoris as $kategori)
+                        <option value="{{ $kategori->slug }}">{{ $kategori->nama_kategori }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <!-- Menyimpan semua nilai terpilih ke dalam hidden input untuk dikirimkan ke server -->
                 <input type="hidden" name="selected_kondisi" id="selected-kondisi-input">
@@ -130,7 +130,13 @@
 
                 <div class="card-body">
 
-                    <button type="submit" class="btn btn-primary fw-semibold text-white w-100">Kirim</button>
+                    <button type="submit" id="submitButton" class="btn btn-primary fw-semibold text-white w-100">
+                        <span id="buttonText">Kirim</span>
+                        <div id="loadingSpinner" class="spinner-border spinner-border-sm text-light ms-2 d-none"
+                            role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
                 </div>
 
             </div>
@@ -253,10 +259,25 @@
 @endpush
 
 @push('script')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('wbtbForm');
+        const submitButton = document.getElementById('submitButton');
+        const buttonText = document.getElementById('buttonText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        form.addEventListener('submit', (e) => {
+            // Tampilkan spinner dan nonaktifkan tombol
+            submitButton.disabled = true;
+            buttonText.textContent = 'Mengirim...';
+            loadingSpinner.classList.remove('d-none');
+        });
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-       
-      <script>
-        $(document).ready(function() {
+
+<script>
+    $(document).ready(function() {
             // Select2 Multiple
             $('.select2-multiple').select2({
                 placeholder: "Select",
@@ -265,7 +286,7 @@
 
         });
 
-    </script>
+</script>
 <script>
     // Menyimpan file yang akan di-upload dalam array
     let selectedFiles = [];

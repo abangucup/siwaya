@@ -2,7 +2,7 @@
 
 @section('title', 'Pengajuan')
 
-@section('header', 'List WBTB')
+@section('header', 'Detail WBTB')
 
 @section('content')
 

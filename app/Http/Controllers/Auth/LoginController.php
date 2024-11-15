@@ -41,7 +41,7 @@ class LoginController extends Controller
         ];
 
         if (auth()->attempt($credentials)) {
-            if (auth()->user()->role->role_level == 'masyarakat') {
+            if (auth()->user()->role->role_level == 'masyarakat' || auth()->user()->role->role_level == 'verifikator_provinsi' || auth()->user()->role->role_level == 'verifikator_kabkot') {
                 Auth::logout();
                 return redirect()->route('login')->withToastError('Akun tidak memiliki akses');
             } else {

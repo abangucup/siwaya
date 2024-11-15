@@ -73,16 +73,22 @@
                         </li>
                     </ul>
                     <div class="d-flex navbar-search align-items-center ms-auto ms-lg-0 order-lg-last d-sm-none">
-                        <ul class="list-unstyled m-0 search-dropdown">
+                        {{-- <ul class="list-unstyled m-0 search-dropdown">
                             <li class="nav-item ">
                                 <a class="nav-link nav-search-link d-flex align-items-center" href="search">
                                     <i class="ph-magnifying-glass-bold"></i>
                                     Search
                                 </a>
                             </li>
-                        </ul>
-                        <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{{ route('home') }}#login"
-                            role="button">Log In</a>
+                        </ul> --}}
+                        @auth
+                            <a class="btn btn-small btn-outline" href="{{ route('dashboard') }}"
+                                role="button">Dashboard</a>
+                        @else
+                            <a class="btn btn-small btn-outline" data-bs-toggle="modal" href="{{ route('home') }}#login"
+                                role="button">Log In</a>
+                        @endauth
+
                     </div>
                 </div>
             </div>
