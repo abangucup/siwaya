@@ -14,7 +14,7 @@ class PenetapanWbtb extends Model
         'user_id',
         'tanggal_penetapan',
         'keterangan',
-        'status_verifikasi',
+        'status_penetapan',
     ];
 
     public function wbtb()

@@ -47,6 +47,7 @@ class RegisterController extends Controller
         $biodata->nama_lengkap = $request->nama_lengkap;
         $biodata->slug = Str::slug($request->nama_lengkap);
         $biodata->jenis_kelamin = $request->jenis_kelamin;
+        $biodata->nomor_telepon = $request->whatsapp;
         $biodata->whatsapp = $request->whatsapp;
         $biodata->save();
 

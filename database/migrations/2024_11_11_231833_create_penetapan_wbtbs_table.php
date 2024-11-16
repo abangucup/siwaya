@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->date('tanggal_penetapan');
             $table->text('keterangan')->nullable();
-            $table->enum('status_verifikasi', ['disetujui', 'ditolak'])->default('disetujui');
+            $table->enum('status_penetapan', ['disetujui', 'ditolak'])->default('disetujui');
             $table->timestamps();
         });
     }

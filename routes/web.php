@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
 
-    Route::group(['middleware' => 'guest'], function () {
+    Route::middleware(['guest'])->group(function () {
         Route::get('/', [HomeController::class, 'splash'])->name('splash');
 
         Route::get('login', [LoginController::class, 'mobileLogin'])->name('login');
@@ -113,7 +113,7 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
         Route::post('reset-password', [ResetPasswordController::class, 'mobilePostResetPassword']);
     });
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::middleware(['auth'])->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
 
         // Profile
