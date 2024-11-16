@@ -23,9 +23,10 @@
                 </div>
                 @forelse ($dataWbtb as $wbtb)
                 <div class="col-12">
-                    <div class="card border shadow-sm">
-                        <img src="{{ $wbtb->galeries->first()->url_image ?? asset('assets/images/no_image.svg') }}"
-                            class="card-img-top" alt="{{ $wbtb->nama_wbtb }}" style="object-fit: cover;">
+                    <div class="card border shadow-none">
+                        <img src="{{ $wbtb->galeries()->first()->url_image ?? asset('assets/images/no_image.svg') }}"
+                                    alt="Gambar" style="object-fit: cover; border-radius: 8px 8px 0 0;"
+                                    class="img-fluid w-100">
                         <div class="card-body">
                             <h5 class="card-title">{{ $wbtb->nama_wbtb }}</h5>
 
@@ -43,7 +44,7 @@
                 </div>
                 @empty
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card shadow-none border">
                         <div class="card-body text-center">
                             <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
                             <p class="card-text fs-5">

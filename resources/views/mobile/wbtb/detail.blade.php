@@ -57,7 +57,8 @@
                                 {{-- @if (auth()->user()->slug !== $wbtb->user->slug)
                                 <span class="text-primary"><u>#{!! $wbtb->deskripsi_wbtb !!}</u></span>
                                 @endif --}}
-                                <span class="text-grey border border-gray rounded-3 p-2">{{ \Carbon\Carbon::parse($wbtb->created_at)->isoFormat('LL') }}</span>
+                                <span class="text-grey border border-gray rounded-3 p-2">{{
+                                    \Carbon\Carbon::parse($wbtb->created_at)->isoFormat('LL') }}</span>
 
                             </div>
 
@@ -85,7 +86,8 @@
                     <div class="col-12">
                         <div class="card border shadow-none">
                             <div class="card-body">
-                                <h5 class="card-title d-flex justify-content-between align-items-center shadow-none">Kondisi
+                                <h5 class="card-title d-flex justify-content-between align-items-center shadow-none">
+                                    Kondisi
                                     <i class="fas fa-chevron-down float-end toggle-icon" data-bs-toggle="collapse"
                                         data-bs-target="#kondisiDetails" aria-expanded="false"
                                         aria-controls="kondisiDetails"></i>
@@ -172,7 +174,8 @@
                     <div class="col-12">
                         <div class="card border shadow-none">
                             <div class="card-body">
-                                <h5 class="card-title d-flex justify-content-between align-items-center">History Verifikasi
+                                <h5 class="card-title d-flex justify-content-between align-items-center">History
+                                    Verifikasi
                                     <i class="fas fa-chevron-down float-end toggle-icon" data-bs-toggle="collapse"
                                         data-bs-target="#verifikasiDetails" aria-expanded="false"
                                         aria-controls="verifikasiDetails"></i>
@@ -196,11 +199,14 @@
                                         <strong>Tanggal Verifikasi : </strong>
                                         <span class="text-end">{{ $wbtb->verifikasi->tanggal_verifikasi ?? '-' }}</span>
                                     </li>
-                                    @elseif (auth()->user()->role->role_level == 'verifikator_kabkot' && $wbtb->status == 'diajukan' && $wbtb->verifikasi == null)
+                                    @elseif (auth()->user()->role->role_level == 'verifikator_kabkot' && $wbtb->status
+                                    == 'diajukan' && $wbtb->verifikasi == null)
                                     <button class="btn btn-info w-100 mt-2">Verifikasi</button>
                                     @else
                                     <div class="d-flex justify-content-center mt-4">
-                                        <span class="fs-6 text-center text-primary border border-gray rounded-3 w-100">Menunggu Verifikasi</span>
+                                        <span
+                                            class="fs-6 text-center text-primary border border-gray rounded-3 w-100">Menunggu
+                                            Verifikasi</span>
                                     </div>
                                     @endif
                                 </ul>
@@ -212,7 +218,8 @@
                     <div class="col-12">
                         <div class="card border shadow-none">
                             <div class="card-body">
-                                <h5 class="card-title d-flex justify-content-between align-items-center">History Penetapan
+                                <h5 class="card-title d-flex justify-content-between align-items-center">History
+                                    Penetapan
                                     <i class="fas fa-chevron-down float-end toggle-icon" data-bs-toggle="collapse"
                                         data-bs-target="#penetapanDetails" aria-expanded="false"
                                         aria-controls="penetapanDetails"></i>
@@ -236,11 +243,14 @@
                                         <strong>Tanggal Penetapan : </strong>
                                         <span class="text-end">{{ $wbtb->penetapan->tanggal_penetapan ?? '-' }}</span>
                                     </li>
-                                    @elseif ($wbtb->penetapan == null && $wbtb->status == 'diverifikasi' && auth()->user()->role->role_level == 'verifikator_provinsi')
+                                    @elseif ($wbtb->penetapan == null && $wbtb->status == 'diverifikasi' &&
+                                    auth()->user()->role->role_level == 'verifikator_provinsi')
                                     <button class="btn btn-info w-100">Tetapkan Sebagai WBTB</button>
                                     @else
                                     <div class="d-flex justify-content-center mt-4">
-                                        <span class="fs-6 text-center text-primary border border-gray rounded-3 w-100">Menunggu Penetapan</span>
+                                        <span
+                                            class="fs-6 text-center text-primary border border-gray rounded-3 w-100">Menunggu
+                                            Penetapan</span>
                                     </div>
                                     @endif
 
@@ -273,20 +283,26 @@
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalLabel">Hapus WBTB</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                        <form action="{{ route('mobile.wbtb.destroy', $wbtb->slug) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Hapus WBTB</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Apakah Anda yakin ingin menghapus WBTB {{ $wbtb->nama_wbtb }} ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                Apakah Anda yakin ingin menghapus WBTB {{ $wbtb->nama_wbtb }} ?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <a href="{{ route('mobile.wbtb.destroy', $wbtb->id) }}" class="btn btn-danger">Hapus</a>
-                            </div>
-                        </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

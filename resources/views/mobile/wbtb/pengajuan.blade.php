@@ -16,10 +16,9 @@
                 <div class="col-12">
                     <div class="card border shadow-sm">
                         <img src="{{ $wbtb->galeries->first()->url_image ?? asset('assets/images/no_image.svg') }}"
-                            class="card-img-top" alt="{{ $wbtb->nama_wbtb }}" style="object-fit: cover;">
+                            class="card-img-top" alt="{{ $wbtb->nama_wbtb }}" style="object-fit: cover; border-radius: 8px 8px 0 0;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $wbtb->nama_wbtb }}</h5>
-
                             <p class="card-text">
                                 {{ Str::limit($wbtb->deskripsi_wbtb, 150) }} 
                                 <br><a href="{{ route('mobile.wbtb.show', $wbtb->slug) }}"
@@ -34,7 +33,7 @@
                 </div>
                 @empty
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card border shadow-none">
                         <div class="card-body text-center">
                             <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
                             <p class="card-text fs-6 mt-4">
