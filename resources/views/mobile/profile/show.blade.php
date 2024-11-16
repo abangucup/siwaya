@@ -20,7 +20,7 @@
         <div class="container fb">
 
             <!-- Dashboard Area -->
-            <div class="dashboard-area card shadow-sm p-3">
+            <div class="dashboard-area card shadow-none border p-3">
 
                 <div class="row">
                     <div class="col-12 text-center mb-3">

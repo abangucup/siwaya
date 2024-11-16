@@ -11,7 +11,7 @@
         <div class="container fb">
 
             <!-- Dashboard Area -->
-            <div class="dashboard-area card shadow-sm p-3">
+            <div class="dashboard-area card shadow-none border p-3">
                 <div class="row px-2">
                     <div class="col-12 text-center py-3 mb-4">
                         <img src="{{ auth()->user()->biodata->foto ?? asset('assets/images/profile.svg') }}"

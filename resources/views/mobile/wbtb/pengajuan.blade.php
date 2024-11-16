@@ -14,7 +14,7 @@
             <div class="dashboard-area">
                 @forelse ($dataWbtb as $wbtb)
                 <div class="col-12">
-                    <div class="card border shadow-sm">
+                    <div class="card border shadow-none">
                         <img src="{{ $wbtb->galeries->first()->url_image ?? asset('assets/images/no_image.svg') }}"
                             class="card-img-top" alt="{{ $wbtb->nama_wbtb }}" style="object-fit: cover; border-radius: 8px 8px 0 0;">
                         <div class="card-body">
