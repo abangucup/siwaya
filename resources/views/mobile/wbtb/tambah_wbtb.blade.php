@@ -2,6 +2,16 @@
 
 @section('title', 'Pengajuan')
 
+@section('btn-back')
+<a href="javascript:void(0);" class="back-btn">
+    <svg width="18" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M9.03033 0.46967C9.2966 0.735936 9.3208 1.1526 9.10295 1.44621L9.03033 1.53033L2.561 8L9.03033 14.4697C9.2966 14.7359 9.3208 15.1526 9.10295 15.4462L9.03033 15.5303C8.76406 15.7966 8.3474 15.8208 8.05379 15.6029L7.96967 15.5303L0.96967 8.53033C0.703403 8.26406 0.679197 7.8474 0.897052 7.55379L0.96967 7.46967L7.96967 0.46967C8.26256 0.176777 8.73744 0.176777 9.03033 0.46967Z"
+            fill="#a19fa8" />
+    </svg>
+</a>
+@endsection
+
 @section('header', 'Tambah WBTB')
 
 @section('content')
@@ -14,7 +24,7 @@
             @csrf
             <div class="row">
 
-                <div class="form-group mb-3">
+                <div class="form-group mb-2">
                     <label class="label">Nama WBTB <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <input type="text" class="form-control" name="nama_wbtb" placeholder="Masukan Nama WBTB"
@@ -22,61 +32,20 @@
                     </div>
                 </div>
 
-
-                <div class="form-group mb-3">
-                    <label class="label">Lokasi WBTB <span class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="nama_lokasi"
-                            placeholder="Dimana Lokasi WBTB Berada" required>
-                    </div>
-                </div>
-
-                <div class="form-group mb-3">
+                <div class="form-group mb-4">
                     <label class="label">Kabupaten <span class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <select name="kabkot" class="form-select form-control" required>
-                            <option value="">Pilih Kabupaten/Kota</option>
+                        <select name="kabkot[]" class="form-control select2-multiple" multiple="multiple"
+                            id="multipleSelectKabkot" required>
                             @foreach ($kabkots as $kabkot)
                             <option value="{{ $kabkot->slug }}">{{ $kabkot->nama_kabkot }}</option>
                             @endforeach
                         </select>
-                        <i
-                            class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label class="label">Kecamatan</label>
-                    <div class="input-group">
-                        <select name="kecamatan" class="form-select form-control">
-                            <option value="">Pilih Kecamatan</option>
-                            @foreach ($kecamatans as $kecamatan)
-                            <option value="{{ $kecamatan->slug }}">{{ $kecamatan->nama_kecamatan }}</option>
-                            @endforeach
-                        </select>
-                        <i
-                            class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label class="label">Kelurahan</label>
-                    <div class="input-group">
-                        <select name="kelurahan" class="form-select form-control">
-                            <option value="">Pilih Kelurahan</option>
-                            @foreach ($kelurahans as $kelurahan)
-                            <option value="{{ $kelurahan->slug }}">{{ $kelurahan->nama_kelurahan }}</option>
-                            @endforeach
-                        </select>
-                        <i
-                            class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
-
-                <div class="form-group mb-3">
+                <div class="form-group mb-4">
                     <label class="form-label">Kategori <span class="text-danger">*</span></label>
                     <select name="kategori[]" class="form-control select2-multiple" multiple="multiple"
-                        id="select2Multiple" required>
+                        id="multipleSelectKategori" required>
                         @foreach ($kategoris as $kategori)
                         <option value="{{ $kategori->slug }}">{{ $kategori->nama_kategori }}</option>
                         @endforeach
@@ -85,7 +54,7 @@
                 <!-- Menyimpan semua nilai terpilih ke dalam hidden input untuk dikirimkan ke server -->
                 <input type="hidden" name="selected_kondisi" id="selected-kondisi-input">
 
-                <div class="form-group mb-3">
+                <div class="form-group mb-2">
                     <label class="label">Kondisi <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <select name="kondisi" class="form-select form-control" required>
@@ -99,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="form-group mb-3">
+                <div class="form-group mb-2">
                     <label class="label">Deskripsi WBTB</label>
                     <div class="input-group">
                         <textarea class="form-control" placeholder="Tulis Deskripsi WBTB ... " cols="30" rows="5"
@@ -107,9 +76,7 @@
                     </div>
                 </div>
 
-
-
-                <div class="form-group mb-3">
+                <div class="form-group">
                     <label class="label">Gambar WBTB <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <input type="file" id="file-upload" class="form-control" name="galeri[]" accept="image/*"
@@ -119,17 +86,15 @@
                 </div>
 
 
-                <div class="form-group mb-3">
+                <div class="form-group mb-2">
                     <label class="label">Deskripsi Gambar</label>
                     <div class="input-group">
                         <textarea class="form-control" name="description_image"
                             placeholder="Tulis Deskripsi Gambar Yang DiUpload ... " cols="30" rows="5"></textarea>
                     </div>
-
                 </div>
 
                 <div class="card-body">
-
                     <button type="submit" id="submitButton" class="btn btn-primary fw-semibold text-white w-100">
                         <span id="buttonText">Kirim</span>
                         <div id="loadingSpinner" class="spinner-border spinner-border-sm text-light ms-2 d-none"

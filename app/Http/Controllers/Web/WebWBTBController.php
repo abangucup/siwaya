@@ -10,10 +10,8 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Kondisi;
 use App\Models\Lokasi;
-use App\Models\User;
 use App\Models\Wbtb;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -29,15 +27,11 @@ class WebWBTBController extends Controller
     public function create()
     {
         $kabkots = Kabkot::latest()->get();
-        $kecamatans = Kecamatan::latest()->get();
-        $kelurahans = Kelurahan::latest()->get();
         $kategoris = Kategori::latest()->get();
         $kondisis = Kondisi::latest()->get();
 
         return view('dashboard.wbtb.create', compact([
             'kabkots',
-            'kecamatans',
-            'kelurahans',
             'kategoris',
             'kondisis',
         ]));
@@ -45,10 +39,8 @@ class WebWBTBController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'nama_wbtb',
-            'nama_lokasi',
             'kabkot',
             'kategori',
             'kondisi',
@@ -91,18 +83,9 @@ class WebWBTBController extends Controller
             }
         }
 
-        $kabkot = Kabkot::where('slug', $request->kabkot)->firstOrFail();
-        $kecamatan = Kecamatan::where('slug', $request->kecamatan)->first() ?? null;
-        $kelurahan = Kelurahan::where('slug', $request->kelurahan)->first() ?? null;
+        $kabkotIds = Kabkot::whereIn('slug', $request->kabkot)->pluck('id');
 
-        $lokasi = new Lokasi();
-        $lokasi->wbtb_id = $wbtb->id;
-        $lokasi->nama_lokasi = $request->nama_lokasi;
-        $lokasi->slug = Str::slug($request->nama_lokasi);
-        $lokasi->kabkot_id = $kabkot->id;
-        $lokasi->kecamatan_id = $kecamatan->id ?? null;
-        $lokasi->kelurahan_id = $kelurahan->id ?? null;
-        $lokasi->save();
+        $wbtb->sebarans()->sync($kabkotIds);
 
         return redirect()->route('wbtb.index')->withToastSuccess('WBTB Tersimpan');
     }
@@ -117,7 +100,6 @@ class WebWBTBController extends Controller
     {
         $this->validate($request, [
             'nama_wbtb',
-            'nama_lokasi',
             'kabkot',
             'kategori',
             'kondisi',
@@ -140,20 +122,11 @@ class WebWBTBController extends Controller
             'deskripsi_wbtb' => $request->deskripsi_wbtb,
         ]);
 
-        $kabkot = Kabkot::where('slug', $request->kabkot)->firstOrFail();
-        $kecamatan = Kecamatan::where('slug', $request->kecamatan)->first() ?? null;
-        $kelurahan = Kelurahan::where('slug', $request->kelurahan)->first() ?? null;
+        $kabkotIds = Kabkot::whereIn('slug', $request->kabkot)->pluck('id');
 
-        $lokasi = Lokasi::where('slug', Str::slug($request->nama_lokasi))->firstOrFail();
-
-        $lokasi->update([
-            'nama_lokasi' => $request->nama_lokasi,
-            'slug' => Str::slug($request->nama_lokasi),
-            'kabkot_id' => $kabkot->id,
-            'kecamatan_id' => $kecamatan->id,
-            'kelurahan_id' => $kelurahan->id,
-        ]);
-
+        $wbtb->sebarans()->sync($kabkotIds);
+        //memperbaharui tanpa menghapus
+        // $wbtb->sebarans()->atttach($kabkotIds);
 
         return back()->withToastSuccess('WBTB Terupdate');
     }

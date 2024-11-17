@@ -17,9 +17,7 @@ class DatabaseSeeder extends Seeder
             BiodataSeeder::class,
             UserSeeder::class,
             KabkotSeeder::class,
-            KecamatanSeeder::class,
             KategoriSeeder::class,
-            KelurahanSeeder::class,
             KondisiSeeder::class
         ]);
     }

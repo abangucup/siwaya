@@ -1,6 +1,6 @@
 @extends('mobile.layouts.app')
 
-@section('title', 'Pengajuan')
+@section('title', 'Detail')
 
 @section('btn-back')
 <a href="javascript:void(0);" class="back-btn">
@@ -54,9 +54,6 @@
                                 @endif
                                 <h5 class="card-title">{{ $wbtb->nama_wbtb }}</h5>
                                 <p class="card-text">{!! $wbtb->deskripsi_wbtb !!}</p>
-                                {{-- @if (auth()->user()->slug !== $wbtb->user->slug)
-                                <span class="text-primary"><u>#{!! $wbtb->deskripsi_wbtb !!}</u></span>
-                                @endif --}}
                                 <span class="text-grey border border-gray rounded-3 p-2">{{
                                     \Carbon\Carbon::parse($wbtb->created_at)->isoFormat('LL') }}</span>
 
@@ -116,9 +113,9 @@
                                         aria-controls="sebaranDetails"></i>
                                 </h5>
                                 <ul id="sebaranDetails" class="list-group list-group-flush collapse">
-                                    @foreach ($wbtb->kategoris as $kategori)
+                                    @foreach ($wbtb->sebarans as $kabkot)
                                     <li class="my-2">
-                                        <span class="badge bg-info">{{ $kategori->nama_kategori }}</span>
+                                        <span class="badge bg-info">{{ $kabkot->nama_kabkot }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -189,7 +186,7 @@
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Status Verifikasi : </strong>
-                                        <span class="text-end">{{ $wbtb->verifikasi->status_verifikasi ?? '-' }}</span>
+                                        <span class="text-end">{{ Str::upper($wbtb->verifikasi->status_verifikasi) ?? '-' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Catatan : </strong>
@@ -197,7 +194,7 @@
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Tanggal Verifikasi : </strong>
-                                        <span class="text-end">{{ $wbtb->verifikasi->tanggal_verifikasi ?? '-' }}</span>
+                                        <span class="text-end">{{ \Carbon\Carbon::parse($wbtb->verifikasi->tanggal_verifikasi)->isoFormat('LL') ?? '-' }}</span>
                                     </li>
                                     @elseif (auth()->user()->role->role_level == 'verifikator_kabkot' && $wbtb->status
                                     == 'diajukan' && $wbtb->verifikasi == null)
@@ -233,7 +230,7 @@
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Status Penetapan : </strong>
-                                        <span class="text-end">{{ $wbtb->penetapan->status_penetapan ?? '-' }}</span>
+                                        <span class="text-end">{{ Str::upper($wbtb->penetapan->status_penetapan) ?? '-' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Catatan : </strong>
@@ -241,11 +238,11 @@
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Tanggal Penetapan : </strong>
-                                        <span class="text-end">{{ $wbtb->penetapan->tanggal_penetapan ?? '-' }}</span>
+                                        <span class="text-end">{{ \Carbon\Carbon::parse($wbtb->penetapan->tanggal_penetapan)->isoFormat('LL') ?? '-' }}</span>
                                     </li>
                                     @elseif ($wbtb->penetapan == null && $wbtb->status == 'diverifikasi' &&
                                     auth()->user()->role->role_level == 'verifikator_provinsi')
-                                    <button class="btn btn-info w-100">Tetapkan Sebagai WBTB</button>
+                                    <a href="{{ route('mobile.wbtb.penetapan.tambahPenetapan', $wbtb->slug) }}" class="btn btn-info w-100">Tetapkan Sebagai WBTB</a>
                                     @else
                                     <div class="d-flex justify-content-center mt-4">
                                         <span
@@ -267,17 +264,10 @@
                     Hapus
                 </button>
                 @elseif (auth()->user()->role->role_level == 'verifikator_kabkot' && $wbtb->status == 'diajukan')
-                <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal"
-                    data-bs-target="#deleteModal">
-                    Verifikikasi
-                </button>
+                <a href="{{ route('mobile.wbtb.verifikasi.tambahVerifikasi', $wbtb->slug) }}" class="btn btn-outline-info w-100">Verifikasi</a>
                 @elseif (auth()->user()->role->role_level == 'verifikator_provinsi' && $wbtb->status == 'diverifikasi')
-                <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal"
-                    data-bs-target="#deleteModal">
-                    Tetapkan sebagai WBTB
-                </button>
+                <a href="{{ route('mobile.wbtb.penetapan.tambahPenetapan', $wbtb->slug) }}" class="btn btn-outline-info w-100">Tetapkan sebagai WBTB</a>
                 @endif
-
 
                 <!-- Modal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"

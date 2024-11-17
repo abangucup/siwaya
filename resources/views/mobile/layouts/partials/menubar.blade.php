@@ -27,7 +27,7 @@
 
         {{-- VERIFIKATOR KABKOT --}}
         @if (auth()->user()->role->role_level == 'verifikator_kabkot')
-        <a href="{{ route('mobile.wbtb.verifikasi') }}" class="nav-link" id="nav-verifikasi" data-pjax>
+        <a href="{{ route('mobile.wbtb.verifikasi.list') }}" class="nav-link" id="nav-verifikasi" data-pjax>
             <svg id="verifikasi-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -42,7 +42,7 @@
 
         {{-- VERIFIKATOR PROVINSI --}}
         @elseif (auth()->user()->role->role_level == 'verifikator_provinsi')
-        <a href="{{ route('mobile.wbtb.penetapan') }}" class="nav-link" id="nav-penetapan" data-pjax>
+        <a href="{{ route('mobile.wbtb.penetapan.list') }}" class="nav-link" id="nav-penetapan" data-pjax>
             <svg id="penetapan-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path

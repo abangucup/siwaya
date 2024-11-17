@@ -42,7 +42,7 @@ Route::get('pencatatan-wbtb', [LandingController::class, 'pencatatanWbtb'])->nam
 Route::get('penetapan-wbtb', [LandingController::class, 'penetapanWbtb'])->name('penetapanWbtb');
 Route::get('kontak', [LandingController::class, 'kontak'])->name('kontak');
 
-Route::group(['middleware' => 'guest'], function () {
+Route::middleware(['guest'])->group(function () {
     Route::get('login', [LoginController::class, 'login'])->name('login');
     Route::post('login', [LoginController::class, 'postLogin']);
 
@@ -63,12 +63,12 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::group(['middleware' => ['role:operator_kabkot']], function () {
-            Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
-                Route::resource('kecamatan', KecamatanController::class);
-                Route::resource('kelurahan', KelurahanController::class);
-            });
-        });
+        // Route::group(['middleware' => ['role:operator_kabkot']], function () {
+        //     Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
+        //         Route::resource('kecamatan', KecamatanController::class);
+        //         Route::resource('kelurahan', KelurahanController::class);
+        //     });
+        // });
 
         Route::group(['middleware' => ['role:operator_provinsi']], function () {
 
@@ -129,12 +129,18 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
             Route::delete('destroy/{slug}', [MobileWBTBController::class, 'destroy'])->name('destroy');
 
             // verifikasi
-            Route::get('verifikasi', [VerifikasiWbtbController::class, 'verifikasi'])->name('verifikasi');
-            Route::post('verifikasi/{slug}', [VerifikasiWbtbController::class, 'storeVerifikasi'])->name('storeVerifikasi');
-
-            // penetapan
-            Route::get('penetapan', [PenetapanWbtbController::class, 'penetapan'])->name('penetapan');
-            Route::post('penetapan/{slug}', [PenetapanWbtbController::class, 'penetapan'])->name('storePenetapan');
+            Route::group(['prefix' => 'verifikasi', 'as' => 'verifikasi.'], function() {
+                Route::get('/', [VerifikasiWbtbController::class, 'index'])->name('list');
+                Route::get('{slug}', [VerifikasiWbtbController::class, 'verifikasi'])->name('tambahVerifikasi');
+                Route::post('{slug}', [VerifikasiWbtbController::class, 'storeVerifikasi'])->name('storeVerifikasi');
+            });
+                
+                // penetapan
+            Route::group(['prefix' => 'penetapan', 'as' => 'penetapan.'], function() {
+                Route::get('/', [PenetapanWbtbController::class, 'index'])->name('list');
+                Route::get('{slug}', [PenetapanWbtbController::class, 'penetapan'])->name('tambahPenetapan');
+                Route::post('{slug}', [PenetapanWbtbController::class, 'storePenetapan'])->name('storePenetapan');
+            });
         });
 
         Route::match(['get', 'post'], 'logout', [LogoutController::class, 'mobileLogout'])->name('logout');

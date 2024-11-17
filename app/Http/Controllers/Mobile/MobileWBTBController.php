@@ -36,14 +36,10 @@ class MobileWBTBController extends Controller
     public function create()
     {
         $kabkots = Kabkot::latest()->get();
-        $kecamatans = Kecamatan::latest()->get();
-        $kelurahans = Kelurahan::latest()->get();
         $kategoris = Kategori::latest()->get();
         $kondisis = Kondisi::latest()->get();
         return view('mobile.wbtb.tambah_wbtb', compact([
             'kabkots',
-            'kecamatans',
-            'kelurahans',
             'kategoris',
             'kondisis',
         ]));
@@ -53,7 +49,6 @@ class MobileWBTBController extends Controller
     {
         $this->validate($request, [
             'nama_wbtb',
-            'nama_lokasi',
             'kabkot',
             'kategori',
             'kondisi',
@@ -98,18 +93,9 @@ class MobileWBTBController extends Controller
             }
         }
 
-        $kabkot = Kabkot::where('slug', $request->kabkot)->firstOrFail();
-        $kecamatan = Kecamatan::where('slug', $request->kecamatan)->first() ?? null;
-        $kelurahan = Kelurahan::where('slug', $request->kelurahan)->first() ?? null;
+        $kabkotIds = Kabkot::whereIn('slug', $request->kabkot)->pluck('id');
 
-        $lokasi = new Lokasi();
-        $lokasi->wbtb_id = $wbtb->id;
-        $lokasi->nama_lokasi = $request->nama_lokasi;
-        $lokasi->slug = Str::slug($request->nama_lokasi);
-        $lokasi->kabkot_id = $kabkot->id;
-        $lokasi->kecamatan_id = $kecamatan->id ?? null;
-        $lokasi->kelurahan_id = $kelurahan->id ?? null;
-        $lokasi->save();
+        $wbtb->sebarans()->sync($kabkotIds);
 
         return redirect()->route('mobile.wbtb.pengajuan')->withToastSuccess('WBTB Diajukan');
     }

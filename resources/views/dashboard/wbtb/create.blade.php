@@ -35,51 +35,12 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group mb-4">
-                                <label class="label">Lokasi WBTB <span class="text-danger">*</span></label>
-                                <div class="form-group position-relative">
-                                    <input type="text" class="form-control text-dark ps-5 h-58" name="nama_lokasi"
-                                        placeholder="Dimana Lokasi WBTB Berada" required>
-                                    <i
-                                        class="ri-edit-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group mb-4">
                                 <label class="label">Kabupaten <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
                                     <select name="kabkot" class="form-select form-control ps-5 h-58" required>
                                         <option value="">Pilih Kabupaten/Kota</option>
                                         @foreach ($kabkots as $kabkot)
                                             <option value="{{ $kabkot->slug }}">{{ $kabkot->nama_kabkot }}</option>
-                                        @endforeach
-                                    </select>
-                                    <i class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group mb-4">
-                                <label class="label">Kecamatan</label>
-                                <div class="form-group position-relative">
-                                    <select name="kecamatan" class="form-select form-control ps-5 h-58">
-                                        <option value="">Pilih Kecamatan</option>
-                                        @foreach ($kecamatans as $kecamatan)
-                                            <option value="{{ $kecamatan->slug }}">{{ $kecamatan->nama_kecamatan }}</option>
-                                        @endforeach
-                                    </select>
-                                    <i class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group mb-4">
-                                <label class="label">Kelurahan</label>
-                                <div class="form-group position-relative">
-                                    <select name="kelurahan" class="form-select form-control ps-5 h-58">
-                                        <option value="">Pilih Kelurahan</option>
-                                        @foreach ($kelurahans as $kelurahan)
-                                            <option value="{{ $kelurahan->slug }}">{{ $kelurahan->nama_kelurahan }}</option>
                                         @endforeach
                                     </select>
                                     <i class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>

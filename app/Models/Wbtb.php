@@ -34,11 +34,6 @@ class Wbtb extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function lokasis()
-    {
-        return $this->hasMany(Lokasi::class);
-    }
-
     public function galeries()
     {
         return $this->hasMany(Galeri::class);
@@ -52,6 +47,11 @@ class Wbtb extends Model
     public function kondisi()
     {
         return $this->belongsTo(Kondisi::class);
+    }
+
+    public function sebarans()
+    {
+        return $this->belongsToMany(Kabkot::class, 'sebarans', 'wbtb_id', 'kabkot_id');
     }
 
     public function getRouteKeyName()

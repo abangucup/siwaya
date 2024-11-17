@@ -19,9 +19,9 @@ class Kabkot extends Model
         return $this->hasMany(Instansi::class);
     }
 
-    public function lokasis()
+    public function wbtbs()
     {
-        return $this->hasMany(Lokasi::class);
+        return $this->belongsToMany(Wbtb::class, 'sebarans', 'kabkot_id', 'wbtb_id');
     }
 
     public function getRouteKeyName()

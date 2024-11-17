@@ -9,7 +9,7 @@
 <div class="banner-wrapper">
     <div class="container inner-wrapper text-center">
         <div class="dz-info">
-            <span class="fs-5 text-white">Selamat Datang !!!</span>
+            <span class="fs-6 text-white">Selamat Datang !!!</span>
             <h2 class="name mb-0">{{ auth()->user()->biodata->nama_lengkap }}</h2>
         </div>
     </div>
@@ -39,7 +39,7 @@
 
                 {{-- Penetapan Terbaru --}}
                 <div class="title-bar">
-                    <h5 class="dz-title">PENETAPAN TERBARU WBTB</h5>
+                    <h6 class="dz-title">Penetapan Terbaru WBTB</h6>
                     <a class="btn btn-sm text-primary" href="{{ route('mobile.wbtb.list') }}">LAINNYA</a>
                 </div>
                 <div class="list item-list recent-jobs-list">
@@ -52,7 +52,7 @@
                                     class="img-fluid w-100">
                                 <div class="item-content">
                                     <div class="item-inner">
-                                        <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a>
+                                        <h6 class="item-title mt-2">{{ $wbtb->nama_wbtb }}
                                         </h6>
                                         <div class="item-title-row">
                                             <div class="item-subtitle">
@@ -61,11 +61,11 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
-                                            <div class="item-price">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}
+                                            <div class="item-title">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}
                                             </div>
                                         </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="item-price">{{ $wbtb->penetapan->user->biodata->nama_lengkap ??
+                                        <div class="d-flex align-items-center border border-info w-100 px-2 rounded">
+                                            <div class="item-title">Ditetapkan: {{ $wbtb->penetapan->user->biodata->nama_lengkap ??
                                                 $wbtb->user->biodata->nama_lengkap }}</div>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                             <div class="card shadow-none border">
                                 <div class="card-body text-center">
                                     <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
-                                    <p class="card-text fs-5 mt-4">
+                                    <p class="card-text fs-6 mt-4">
                                         Belum ada data yang ditetapkan
                                     </p>
                                 </div>
@@ -90,12 +90,12 @@
 
                 {{-- Verifikasi Terbaru --}}
                 <div class="title-bar">
-                    <h5 class="dz-title">VERIFIKASI TERBARU WBTB</h5>
+                    <h6 class="dz-title">Verifikasi Terbaru WBTB</h6>
                     <a class="btn btn-sm text-primary" href="{{ route('mobile.wbtb.list') }}">LAINNYA</a>
                 </div>
                 <div class="list item-list recent-jobs-list">
                     <ul>
-                        @forelse ($wbtbDitetapkan as $wbtb)
+                        @forelse ($wbtbDiverifikasi as $wbtb)
                         <li>
                             <a href="{{ route('mobile.wbtb.show', $wbtb->slug) }}" class="item-media">
                                 <img src="{{ $wbtb->galeries()->first()->url_image ?? asset('assets/images/no_image.svg') }}"
@@ -103,7 +103,7 @@
                                     class="img-fluid w-100">
                                 <div class="item-content">
                                     <div class="item-inner">
-                                        <h6 class="item-title mt-2"><a href="job-detail.html">{{ $wbtb->nama_wbtb }}</a>
+                                        <h6 class="item-title mt-2">{{ $wbtb->nama_wbtb }}
                                         </h6>
                                         <div class="item-title-row">
                                             <div class="item-subtitle">
@@ -112,11 +112,11 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
-                                            <div class="item-price">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}
+                                            <div class="item-title">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}
                                             </div>
                                         </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="item-price">{{ $wbtb->verifikasi->user->biodata->nama_lengkap ??
+                                        <div class="d-flex align-items-center border border-info w-100 px-2 rounded">
+                                            <div class="item-title">Diverifikasi: {{ $wbtb->verifikasi->user->biodata->nama_lengkap ??
                                                 $wbtb->user->biodata->nama_lengkap }}</div>
                                         </div>
                                     </div>
@@ -129,7 +129,7 @@
                             <div class="card shadow-none border">
                                 <div class="card-body text-center">
                                     <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
-                                    <p class="card-text fs-5 mt-4">
+                                    <p class="card-text fs-6 mt-4">
                                         Belum ada data yang diverifikasi
                                     </p>
                                 </div>
@@ -141,7 +141,7 @@
 
                 {{-- Pengajuan Terbaru --}}
                 <div class="title-bar">
-                    <h5 class="dz-title">PENGAJUAN WBTB TERBARU</h5>
+                    <h6 class="dz-title">Pengajuan Terbaru WBTB</h6>
                     <a class="btn btn-sm text-primary" href="{{ route('mobile.wbtb.list') }}">LAINNYA</a>
                 </div>
                 <div class="list item-list recent-jobs-list">

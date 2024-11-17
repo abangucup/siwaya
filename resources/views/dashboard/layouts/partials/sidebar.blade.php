@@ -23,7 +23,6 @@
             </li>
 
             @if (auth()->user()->role->role_level == 'operator_provinsi')
-                
             <li class="menu-item open">
                 <a href="{{ route('instansi.index') }}" class="menu-link {{ request()->routeIs('instansi.*') ? 'active' : '' }}">
                     <i data-feather="briefcase" class="menu-icon tf-icons"></i>
@@ -81,21 +80,6 @@
                 <a href="{{ route('wbtb.index') }}" class="menu-link {{ request()->routeIs('wbtb.*') ? 'active' : '' }}">
                     <i data-feather="award" class="menu-icon tf-icons"></i>
                     <span class="title">WBTB</span>
-                </a>
-            </li>
-            <li class="menu-title small text-uppercase">
-                <span class="menu-title-text">Wilayah</span>
-            </li>
-            <li class="menu-item open">
-                <a href="{{ route('wilayah.kecamatan.index') }}" class="menu-link {{ request()->routeIs('wilayah.kecamatan.*') ? 'active' : '' }}">
-                    <i data-feather="map" class="menu-icon tf-icons"></i>
-                    <span class="title">Kecamatan</span>
-                </a>
-            </li>
-            <li class="menu-item open">
-                <a href="{{ route('wilayah.kelurahan.index') }}" class="menu-link {{ request()->routeIs('wilayah.kelurahan.*') ? 'active' : '' }}">
-                    <i data-feather="map" class="menu-icon tf-icons"></i>
-                    <span class="title">Kelurahan</span>
                 </a>
             </li>
             @endif
