@@ -55,7 +55,7 @@
                                 <label class="label">Kategori <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
                                     <select name="kategori[]" class="form-control form-select ps-5 h-58" required>
-                                        <option value="">{{ $wbtb->kategoris()->pluck('nama_kategori')->implode(', ') }}</option>
+                                        <option value="{{ $wbtb->kategoris()->pluck('slug')->implode(', ') }}">{{ $wbtb->kategoris()->pluck('nama_kategori')->implode(', ') }}</option>
                                         <option value="">Pilih Kategori</option>
                                         @foreach ($kategoris as $kategori)
                                         <option value="{{ $kategori->slug }}">{{ $kategori->nama_kategori }}</option>

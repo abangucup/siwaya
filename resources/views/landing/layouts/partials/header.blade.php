@@ -7,8 +7,13 @@
                     </a>
                 </div>
                 <div class=" d-none d-sm-flex navbar-search align-items-center ms-auto ms-lg-0 order-lg-last">
+                    @auth
+                    <a class="btn btn-small btn-outline d-none d-lg-inline-block"
+                    href="{{ route('dashboard') }}" role="button">Dashboard</a>
+                    @else
                     <a class="btn btn-small btn-outline d-none d-lg-inline-block" data-bs-toggle="modal"
-                        href="{{ route('home') }}#login" role="button">Log In</a>
+                    href="{{ route('home') }}#login" role="button">Log In</a>
+                    @endauth
                 </div>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
