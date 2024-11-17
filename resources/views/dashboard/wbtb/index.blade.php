@@ -58,7 +58,7 @@
                             </td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
-                                    @if (auth()->user()->role->role_level == 'operator_kabkot')
+                                    {{-- @if (auth()->user()->role->role_level == 'operator_kabkot') --}}
                                         
                                     <a href="{{ route('wbtb.edit', $wbtb->slug) }}"
                                         class="btn btn-warning btn-sm text-white mt-2 mt-sm-0">
@@ -68,9 +68,9 @@
                                         data-bs-toggle="modal" data-bs-target="#modalHapusWbtb-{{ $wbtb->slug }}">
                                         <i data-feather="trash"></i> Hapus
                                     </button>
-                                    @else
+                                    {{-- @else
                                     -
-                                    @endif
+                                    @endif --}}
 
                                 </div>
                                 
