@@ -19,15 +19,15 @@
     <div class="col-lg-12">
         <div class="card bg-white border-0 rounded-10 mb-4">
             <div class="card-body p-4">
-                <form action="{{ route("wbtb.store") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('wbtb.store') }}" method="POST" enctype="multipart/form-data" id="formWbtb">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group mb-4">
                                 <label class="label">Nama WBTB <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
-                                    <input type="text" class="form-control text-dark ps-5 h-58" name="nama_wbtb" required
-                                        placeholder="Masukan Nama WBTB">
+                                    <input type="text" class="form-control text-dark ps-5 h-58" name="nama_wbtb"
+                                        required placeholder="Masukan Nama WBTB">
                                     <i
                                         class="ri-edit-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                                 </div>
@@ -37,13 +37,16 @@
                             <div class="form-group mb-4">
                                 <label class="label">Kabupaten <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
-                                    <select name="kabkot" class="form-select form-control ps-5 h-58" required>
+                                    <select name="kabkot[]"
+                                        class="form-control form-select select2-multiple ps-5 h-58"
+                                        id="multipleSelectKabkot" required>
                                         <option value="">Pilih Kabupaten/Kota</option>
                                         @foreach ($kabkots as $kabkot)
-                                            <option value="{{ $kabkot->slug }}">{{ $kabkot->nama_kabkot }}</option>
+                                        <option value="{{ $kabkot->slug }}">{{ $kabkot->nama_kabkot }}</option>
                                         @endforeach
                                     </select>
-                                    <i class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                    <i
+                                    class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                                 </div>
                             </div>
                         </div>
@@ -51,13 +54,16 @@
                             <div class="form-group mb-4">
                                 <label class="label">Kategori <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
-                                    <select name="kategori" class="form-select form-control ps-5 h-58" required>
+                                    <select name="kategori[]"
+                                        class="form-control form-select ps-5 h-58"
+                                        id="multipleSelectKategori" required>
                                         <option value="">Pilih Kategori</option>
                                         @foreach ($kategoris as $kategori)
-                                            <option value="{{ $kategori->slug }}">{{ $kategori->nama_kategori }}</option>
+                                        <option value="{{ $kategori->slug }}">{{ $kategori->nama_kategori }}</option>
                                         @endforeach
                                     </select>
-                                    <i class="ri-grid-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                    <i
+                                        class="ri-grid-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                                 </div>
                             </div>
                         </div>
@@ -68,19 +74,21 @@
                                     <select name="kondisi" class="form-select form-control ps-5 h-58" required>
                                         <option value="">Pilih Kondisi</option>
                                         @foreach ($kondisis as $kondisi)
-                                            <option value="{{ $kondisi->slug }}">{{ $kondisi->nama_kondisi }}</option>
+                                        <option value="{{ $kondisi->slug }}">{{ $kondisi->nama_kondisi }}</option>
                                         @endforeach
                                     </select>
-                                    <i class="ri-filter-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                    <i
+                                        class="ri-filter-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group mb-4">
                                 <label class="label">Deskripsi WBTB</label>
                                 <div class="form-group position-relative">
                                     <textarea class="form-control ps-5 text-dark"
-                                        placeholder="Tulis Deskripsi WBTB ... " cols="30" rows="5" name="deskripsi_wbtb"></textarea>
+                                        placeholder="Tulis Deskripsi WBTB ... " cols="30" rows="5"
+                                        name="deskripsi_wbtb"></textarea>
                                     <i
                                         class="ri-information-line position-absolute top-0 start-0 fs-20 text-gray-light ps-20 pt-2"></i>
                                 </div>
@@ -96,7 +104,8 @@
                                             <i class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
                                             <span class="d-block fw-semibold text-body">Pilih Gambar</span>
                                         </label>
-                                        <input id="file-upload" type="file" name="galeri[]" multiple onchange="previewImages(event)" />
+                                        <input id="file-upload" type="file" name="galeri[]" multiple
+                                            onchange="previewImages(event)" />
                                     </div>
                                     <div id="preview-container" class="d-flex flex-wrap mt-3"></div>
                                 </div>
@@ -107,7 +116,8 @@
                                 <label class="label">Deskripsi Gambar</label>
                                 <div class="form-group position-relative">
                                     <textarea class="form-control ps-5 text-dark" name="description_image"
-                                        placeholder="Tulis Deskripsi Gambar Yang DiUpload ... " cols="30" rows="5"></textarea>
+                                        placeholder="Tulis Deskripsi Gambar Yang DiUpload ... " cols="30"
+                                        rows="5"></textarea>
                                     <i
                                         class="ri-information-line position-absolute top-0 start-0 fs-20 text-gray-light ps-20 pt-2"></i>
                                 </div>
@@ -115,9 +125,14 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary py-3 px-5 fw-semibold text-white">Kirim</button>
-                            </div>
+                            <button type="submit" id="btnSubmit"
+                                class="btn btn-primary py-3 px-5 fw-semibold text-white w-100">
+                                <span id="btnText">Kirim</span>
+                                <div id="loadingSubmit" class="spinner-border spinner-border-sm text-light ms-2 d-none"
+                                    role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -130,7 +145,22 @@
 
 @push('script')
 <script>
-let selectedFiles = [];
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('formWbtb');
+        const submitButton = document.getElementById('btnSubmit');
+        const buttonText = document.getElementById('btnText');
+        const loadingSpinner = document.getElementById('loadingSubmit');
+
+        form.addEventListener('submit', (e) => {
+            // Tampilkan spinner dan nonaktifkan tombol
+            submitButton.disabled = true;
+            buttonText.textContent = 'Mengirim...';
+            loadingSpinner.classList.remove('d-none');
+        });
+    });
+</script>
+<script>
+    let selectedFiles = [];
 
 function previewImages(event) {
     const previewContainer = document.getElementById("preview-container");

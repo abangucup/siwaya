@@ -129,14 +129,14 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
             Route::delete('destroy/{slug}', [MobileWBTBController::class, 'destroy'])->name('destroy');
 
             // verifikasi
-            Route::group(['prefix' => 'verifikasi', 'as' => 'verifikasi.'], function() {
+            Route::group(['prefix' => 'verifikasi', 'as' => 'verifikasi.'], function () {
                 Route::get('/', [VerifikasiWbtbController::class, 'index'])->name('list');
                 Route::get('{slug}', [VerifikasiWbtbController::class, 'verifikasi'])->name('tambahVerifikasi');
                 Route::post('{slug}', [VerifikasiWbtbController::class, 'storeVerifikasi'])->name('storeVerifikasi');
             });
-                
-                // penetapan
-            Route::group(['prefix' => 'penetapan', 'as' => 'penetapan.'], function() {
+
+            // penetapan
+            Route::group(['prefix' => 'penetapan', 'as' => 'penetapan.'], function () {
                 Route::get('/', [PenetapanWbtbController::class, 'index'])->name('list');
                 Route::get('{slug}', [PenetapanWbtbController::class, 'penetapan'])->name('tambahPenetapan');
                 Route::post('{slug}', [PenetapanWbtbController::class, 'storePenetapan'])->name('storePenetapan');

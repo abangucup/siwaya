@@ -48,13 +48,6 @@
                                     </span>
                                 </div>
                             </div>
-
-                            <div class="col-12">
-                                <div class="form-check text-end">
-                                    <a href="index.html#resetPassword" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                        Forget Password</a>
-                                </div>
-                            </div>
                             <div class="w-100 contact-form-button">
                                 <button type="submit" class="btn btn-large d-block w-100">Log In</button>
                             </div>
@@ -62,10 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer text-center justify-content-center">
-                <p class="bold">Don’t have an account? <a href="index.html#createAccount" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Create Account</a> </p>
-            </div>
+            
         </div>
     </div>
 </div>

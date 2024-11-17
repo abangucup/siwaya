@@ -38,14 +38,9 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $wbtb->nama_wbtb }}</td>
                             <td>
-                                {{-- <ul>
-                                    @foreach ($wbtb->lokasis as $lokasi)
-                                    <li>{{ $lokasi->kabkot->nama_kabkot }}</li>
-                                    @endforeach
-                                </ul> --}}
                                 <span>
-                                    @foreach ($wbtb->lokasis as $lokasi)
-                                    {{ $lokasi->kabkot->nama_kabkot . ', '}}
+                                    @foreach ($wbtb->sebarans as $kabkot)
+                                    {{ $kabkot->nama_kabkot . ', '}}
                                     @endforeach
                                 </span>
                             </td>
@@ -58,15 +53,13 @@
                             <td>{{ $wbtb->kondisi->nama_kondisi }}</td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
-                                    {{-- <a href="{{ $galeri->url_image }}" target="_blank"
-                                        class="btn btn-primary btn-sm text-white mt-2 mt-sm-0">
-                                        <i data-feather="eye"></i> Lihat
-                                    </a> --}}
                                     <img src="{{ $wbtb->galeries()->first()->url_image }}" alt="">
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
+                                    @if (auth()->user()->role->role_level == 'operator_kabkot')
+                                        
                                     <a href="{{ route('wbtb.edit', $wbtb->slug) }}"
                                         class="btn btn-warning btn-sm text-white mt-2 mt-sm-0">
                                         <i data-feather="edit"></i> Ubah
@@ -75,9 +68,12 @@
                                         data-bs-toggle="modal" data-bs-target="#modalHapusWbtb-{{ $wbtb->slug }}">
                                         <i data-feather="trash"></i> Hapus
                                     </button>
+                                    @else
+                                    -
+                                    @endif
+
                                 </div>
-
-
+                                
                                 <!-- Modal Hapus -->
                                 @include('dashboard.wbtb.hapus_wbtb')
 

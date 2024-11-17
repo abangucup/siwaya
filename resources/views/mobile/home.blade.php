@@ -191,7 +191,7 @@
                                 <div class="card-body text-center">
                                     <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
                                     <p class="card-text fs- mt-4">
-                                        Belum ada data yang diverifikasi
+                                        Belum ada data yang diajukan
                                     </p>
                                 </div>
                             </div>

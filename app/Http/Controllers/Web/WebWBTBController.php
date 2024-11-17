@@ -19,8 +19,7 @@ class WebWBTBController extends Controller
 {
     public function index()
     {
-
-        $dataWbtb = Wbtb::with('lokasis', 'verifikasi', 'user')->latest()->get();
+        $dataWbtb = Wbtb::with('sebarans', 'verifikasi', 'user')->latest()->get();
         return view('dashboard.wbtb.index', compact('dataWbtb'));
     }
 
@@ -92,8 +91,11 @@ class WebWBTBController extends Controller
 
     public function edit($slug)
     {
+        $kabkots = Kabkot::all();
+        $kondisis = Kondisi::all();
+        $kategoris = Kategori::all();
         $wbtb = Wbtb::where('slug', $slug)->firstOrFail();
-        return view('dashboard.wbtb.edit', compact('wbtb'));
+        return view('dashboard.wbtb.edit', compact('wbtb', 'kabkots', 'kategoris', 'kondisis'));
     }
 
     public function update(Request $request, $slug)
@@ -106,7 +108,8 @@ class WebWBTBController extends Controller
             'deskripsi_wbtb',
         ]);
 
-        $kategori = Kategori::where('slug', $request->kategori)->firstOrFail();
+        // $kategori = Kategori::where('slug', $request->kategori)->firstOrFail();
+        $kategoriIds = Kategori::whereIn('slug', $request->kategori)->pluck('id');
         $kondisi = Kondisi::where('slug', $request->kondisi)->firstOrFail();
 
         if (Wbtb::where('slug', '!=', $slug)->where('slug', Str::slug($request->nama_wbtb))->exists()) {
@@ -114,21 +117,54 @@ class WebWBTBController extends Controller
         }
 
         $wbtb = Wbtb::where('slug', $slug)->firstOrFail();
+
         $wbtb->update([
-            'kategori_id' => $kategori->id,
             'kondisi_id' => $kondisi->id,
             'nama_wbtb' => $request->nama_wbtb,
             'slug' => Str::slug($request->nama_wbtb),
             'deskripsi_wbtb' => $request->deskripsi_wbtb,
         ]);
 
+        $wbtb->kategoris()->attach($kategoriIds);
+
         $kabkotIds = Kabkot::whereIn('slug', $request->kabkot)->pluck('id');
 
-        $wbtb->sebarans()->sync($kabkotIds);
+        $wbtb->sebarans()->attach($kabkotIds);
         //memperbaharui tanpa menghapus
         // $wbtb->sebarans()->atttach($kabkotIds);
 
-        return back()->withToastSuccess('WBTB Terupdate');
+        if ($request->hasFile('galeri')) {
+
+            $galeriItems = $wbtb->galeries;
+            // Hapus setiap file gambar yang terkait dengan $wbtb dari storage
+            foreach ($galeriItems as $galeri) {
+                if ($galeri->url_image) {
+                    // Menghapus file dari storage
+                    Storage::delete(str_replace('/storage', 'public', $galeri->url_image));
+                }
+                $galeri->delete();
+            }
+
+            // Simpan file baru
+            foreach ($request->file('galeri') as $file) {
+                // Simpan file ke dalam storage dan dapatkan URL publik
+                $path = $file->store('public/galeri'); // Menyimpan file di storage/app/public/galeri
+                $publicUrl = Storage::url($path); // URL publik untuk akses file
+                $fullUrl = url($publicUrl); // URL lengkap
+
+                // Simpan informasi ke dalam database
+                $galeri = new Galeri();
+                $galeri->wbtb_id = $wbtb->id;
+                $galeri->hash_name = basename($path); // Nama file yang tersimpan
+                $galeri->url_image = $publicUrl;
+                $galeri->full_url_image = $fullUrl; // Menyimpan URL lengkap
+                $galeri->original_name = $file->getClientOriginalName();
+                $galeri->description_image = $request->description_image;
+                $galeri->save();
+            }
+        }
+
+        return redirect()->route('wbtb.index')->withToastSuccess('WBTB Terupdate');
     }
 
     public function destroy($slug)

@@ -7,45 +7,75 @@ use App\Models\Kabkot;
 use App\Models\User;
 use App\Models\Wbtb;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class LandingController extends Controller
 {
-    public function home(Request $request)
+    public function home()
     {
-        // $userAgent = str_contains($request->header('User-Agent'), 'Android');
-
-        // $userAgent = $request->header('User-Agent');
-        // $deviceAndroid = strpos($userAgent, 'wv');
-        // dd($deviceAndroid);
-
-        // dd($userAgent);
-        // if (auth()->check()) {
-        //     dd('OK');
-        // } else {
-        //     dd('NOT');
-        // }
-
         $pencatatanTerbaru = Wbtb::where('status', 'diajukan')->latest()->take(3)->get();
-        $pencatatanTerbaru = Wbtb::where('status', 'ditetapkan')->latest()->take(3)->get();
-        return view('landing.home', compact('pencatatanTerbaru', 'pencatatanTerbaru'));
+        $penetapanTerbaru = Wbtb::where('status', 'ditetapkan')->latest()->take(3)->get();
+        return view('landing.home', compact('pencatatanTerbaru', 'penetapanTerbaru'));
     }
 
     public function demografis()
     {
-        $demografis = Kabkot::withCount('lokasis')->get();
+        // $demografis = Kabkot::withCount('wbtbs')->latest()->get()->toArray();
+        // dd($demografis);
+        // $akbkot = DB::table('kabkots')->select('id', 'nama_kabkot')->get();
+        $kabkot = Kabkot::select('id', 'nama_kabkot')->get();
+
+        $geoWilayahPath = public_path('assets/json/geoWilayahGorontalo.json');
+        $geoWilayah = json_decode(File::get($geoWilayahPath), true);
+
+        // Gabungkan data dari database dan JSON
+        $demografis = $kabkot->map(function ($item) use ($geoWilayah) {
+            // Cari data koordinat berdasarkan nama kabkot
+            $regency = collect($geoWilayah)
+                ->pluck('regencies') // Ambil semua kabupaten dari JSON
+                ->flatten(1) // Flatten array menjadi satu level
+                ->firstWhere('name', strtoupper($item->nama_kabkot)); // Cocokkan nama kabkot
+
+            // dd($regency);
+            return [
+                'id' => $item->id,
+                'name' => $item->nama_kabkot,
+                'latitude' => $regency['latitude'] ?? null,
+                'longitude' => $regency['longitude'] ?? null,
+                'total' => $item->wbtbs->count(),
+            ];
+        });
+
+        // dd($demografis);
+
+
         return view('landing.demografis', compact('demografis'));
     }
 
-    public function pencatatanWbtb()
+    public function pencatatanWbtb(Request $request)
     {
-        $pencatatans = Wbtb::where('status', 'diajukan')->latest()->get();
-        return view('landing.pencatatanWbtb', compact('pencatatans'));
+        $query = $request->get('search');
+
+        $wbtbs = Wbtb::where('status', 'diajukan')
+            ->where(function ($query) use ($request) {
+                $query->where('nama_wbtb', 'LIKE', "%{$request->get('search')}%")
+                    ->orWhere('deskripsi_wbtb', 'LIKE', "%{$request->get('search')}%");
+            })->latest()->get();
+
+        return view('landing.pencatatanWbtb', compact('wbtbs', 'query'));
     }
 
-    public function penetapanWbtb()
+    public function penetapanWbtb(Request $request)
     {
-        $penetapans = Wbtb::where('status', 'ditetapkan')->latest()->get();
-        return view('landing.penetapanWbtb', compact('penetapans'));
+        $query = $request->get('search');
+
+        $wbtbs = Wbtb::where('status', 'ditetapkan')
+            ->where(function ($query) use ($request) {
+                $query->where('nama_wbtb', 'LIKE', "%{$request->get('search')}%")
+                    ->orWhere('deskripsi_wbtb', 'LIKE', "%{$request->get('search')}%");
+            })->latest()->get();
+        return view('landing.penetapanWbtb', compact('wbtbs', 'query'));
     }
 
     public function kontak()
@@ -53,6 +83,4 @@ class LandingController extends Controller
         $kontaks = User::where('role_id', 1)->orWhere('role_id', 3)->get();
         return view('landing.kontak', compact('kontaks'));
     }
-
-
 }

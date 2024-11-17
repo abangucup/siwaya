@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="hero"
-    style="background-image: url('{{ asset('assets/images/pantai.jpg') }}'); background-size: cover; background-position: center;">
+    style="background-image: url('{{ asset('assets/images/banner.png') }}'); background-size: cover; background-position: center;">
     <div class="container">
         <div class="row">
             <div class="col-xl-8 col-lg-10">
