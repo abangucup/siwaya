@@ -10,7 +10,7 @@
         <div class="banner-wrapper shape-1">
             <div class="container inner-wrapper text-center">
                 <h1 class="dz-title">Halaman Login</h1>
-                <p class="mb-0">Selamat Datang di <br>Aplikasi Warisan Budaya Tak Benda (Siwaya App)
+                <p class="mb-0">Selamat Datang di <br>Aplikasi Warisan Budaya Tak Benda <br>(Siwaya App)
                 </p>
             </div>
         </div>

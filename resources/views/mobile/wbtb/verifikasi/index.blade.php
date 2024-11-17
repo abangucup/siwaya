@@ -24,7 +24,7 @@
             <div class="dashboard-area">
                 @forelse ($wbtbDiajukan as $wbtb)
                 <div class="col-12">
-                    <div class="card border shadow-sm">
+                    <div class="card border shadow-none">
                         <img src="{{ $wbtb->galeries->first()->url_image ?? asset('assets/images/no_image.svg') }}"
                             class="card-img-top" alt="{{ $wbtb->nama_wbtb }}" style="object-fit: cover;">
                         <div class="card-body">
@@ -44,7 +44,7 @@
                 </div>
                 @empty
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card border shadow-none">
                         <div class="card-body text-center">
                             <img src="{{ asset('assets/images/no_data.svg') }}" alt="" width="50%">
                             <p class="card-text fs-6 mt-4">
