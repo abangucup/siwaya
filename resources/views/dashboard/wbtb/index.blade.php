@@ -47,19 +47,19 @@
                             <td>{{ $wbtb->status }}</td>
                             <td>
                                 @foreach ($wbtb->kategoris as $kategori)
-                                    {{ $kategori->nama_kategori . ', '}}
+                                {{ $kategori->nama_kategori . ', '}}
                                 @endforeach
                             </td>
                             <td>{{ $wbtb->kondisi->nama_kondisi }}</td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
-                                    <img src="{{ $wbtb->galeries()->first()->url_image }}" alt="">
+                                    <img src="{{ $wbtb?->galeries()->first()->url_image }}" alt="">
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
                                     {{-- @if (auth()->user()->role->role_level == 'operator_kabkot') --}}
-                                        
+
                                     <a href="{{ route('wbtb.edit', $wbtb->slug) }}"
                                         class="btn btn-warning btn-sm text-white mt-2 mt-sm-0">
                                         <i data-feather="edit"></i> Ubah
@@ -73,7 +73,7 @@
                                     @endif --}}
 
                                 </div>
-                                
+
                                 <!-- Modal Hapus -->
                                 @include('dashboard.wbtb.hapus_wbtb')
 
