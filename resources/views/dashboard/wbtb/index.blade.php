@@ -53,7 +53,7 @@
                             <td>{{ $wbtb->kondisi->nama_kondisi }}</td>
                             <td>
                                 <div class="d-flex flex-column flex-sm-row gap-2">
-                                    <img src="{{ $wbtb?->galeries()->first()->url_image }}" alt="">
+                                    <img src="{{ $wbtb?->galeries()->first()?->url_image }}" alt="">
                                 </div>
                             </td>
                             <td>
