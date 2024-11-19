@@ -40,7 +40,7 @@ class VerifikasiWbtbController extends Controller
         $verifikasiWbtb->keterangan = $request->keterangan;
         $verifikasiWbtb->save();
 
-        $wbtb->update(['status' => $request->status_verifikasi == 'disetujui' ? 'diverifikasi' : 'ditolak']);
+        $wbtb->update(['status' => $verifikasiWbtb->status_verifikasi == 'disetujui' ? 'diverifikasi' : 'ditolak']);
 
         return redirect()->route('mobile.wbtb.verifikasi.list')->withToastSuccess('Verifikasi WBTB Berhasil');
     }

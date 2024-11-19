@@ -40,7 +40,7 @@ class PenetapanWbtbController extends Controller
         $penetapanWbtb->keterangan = $request->keterangan;
         $penetapanWbtb->save();
 
-        if ($request->status_penetapan == 'disetujui') {
+        if ($penetapanWbtb->status_penetapan == 'disetujui') {
 
             $tahun = Carbon::parse(now())->isoFormat('YYYY');
 
