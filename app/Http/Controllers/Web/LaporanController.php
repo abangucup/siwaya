@@ -42,7 +42,7 @@ class LaporanController extends Controller
     {
         $wbtbs = Wbtb::with('galeries', 'kategoris', 'sebarans')->where('status', 'ditolak')->latest()->get();
         $pdf = Pdf::loadView('dashboard.laporan.cetak.laporan_ditolak', compact('wbtbs'))
-            ->setPaper('a4', 'landscape');
+            ->setPaper('legal', 'landscape');
         return $pdf->stream('laporan_penolakan.pdf');
     }
 
@@ -50,7 +50,7 @@ class LaporanController extends Controller
     {
         $wbtbs = Wbtb::with('galeries', 'kategoris', 'sebarans')->where('status', 'diajukan')->latest()->get();
         $pdf = Pdf::loadView('dashboard.laporan.cetak.laporan_diajukan', compact('wbtbs'))
-            ->setPaper('a4', 'landscape');
+            ->setPaper('legal', 'landscape');
         return $pdf->stream('laporan_pengajuan.pdf');
     }
 
@@ -58,7 +58,7 @@ class LaporanController extends Controller
     {
         $wbtbs = Wbtb::with('galeries', 'kategoris', 'sebarans')->where('status', 'diverifikasi')->latest()->get();
         $pdf = Pdf::loadView('dashboard.laporan.cetak.laporan_diverifikasi', compact('wbtbs'))
-            ->setPaper('A4', 'landscape');
+            ->setPaper('legal', 'landscape');
         return $pdf->stream('laporan_verifikasi.pdf');
     }
 
@@ -66,7 +66,8 @@ class LaporanController extends Controller
     {
         $wbtbs = Wbtb::with('galeries', 'kategoris', 'sebarans')->where('status', 'ditetapkan')->latest()->get();
         $pdf = Pdf::loadView('dashboard.laporan.cetak.laporan_ditetapkan', compact('wbtbs'))
-            ->setPaper('a4', 'landscape');
+            ->setPaper('legal', 'landscape')
+            ->setOptions(['margin_left' => 0, 'margin_right' => 0, 'margin_top' => 0, 'margin_bottom' => 0]);
         return $pdf->stream('laporan_penetapan.pdf');
     }
 

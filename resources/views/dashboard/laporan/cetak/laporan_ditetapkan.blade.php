@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Penetapan WBTB</title>
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,11 +32,11 @@
         .tabel th {
             background-color: #f2f2f2;
         }
-        
+
         thead {
             display: table-header-group;
         }
-
+        
     </style>
 </head>
 
@@ -46,6 +46,7 @@
         <span>Dinas Pendidikan dan Kebudayaan Provinsi Gorontalo</span>
         <hr>
     </div>
+
     <table class="tabel">
         <thead>
             <tr>
@@ -88,12 +89,14 @@
                 <td>{{ $wbtb->penetapan?->keterangan }}</td>
                 <td>{{ \Carbon\Carbon::parse($wbtb->penetapan?->tanggal_penetapan)->isoFormat('LL') }}</td>
                 <td>
-                    <img src="{{ public_path($wbtb->galeries()->first()->url_image) }}" alt="Gambar" style="max-width: 100px; height: auto;">
+                    <img src="{{ public_path($wbtb->galeries()->first()->url_image) }}" alt="Gambar"
+                        style="max-width: 100px; height: auto;">
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+
     <table style="margin-top: 4rem; width: 100%; text-align: center">
         <tr>
             <td colspan="3" style="padding-bottom: 20px">Mengetahui,</td>
