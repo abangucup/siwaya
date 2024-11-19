@@ -34,7 +34,7 @@ class PenetapanWbtbController extends Controller
 
         $penetapanWbtb = new PenetapanWbtb();
         $penetapanWbtb->wbtb_id = $wbtb->id;
-        $penetapanWbtb->status_penetapan = $request->status_penetapan;
+        $penetapanWbtb->status_penetapan = $request->status_penetapan ?? 'disetujui';
         $penetapanWbtb->tanggal_penetapan = date(now());
         $penetapanWbtb->user_id = auth()->user()->id;
         $penetapanWbtb->keterangan = $request->keterangan;

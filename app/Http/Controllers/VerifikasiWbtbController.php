@@ -34,7 +34,7 @@ class VerifikasiWbtbController extends Controller
         
         $verifikasiWbtb = new VerifikasiWbtb();
         $verifikasiWbtb->wbtb_id = $wbtb->id;
-        $verifikasiWbtb->status_verifikasi = $request->status_verifikasi;
+        $verifikasiWbtb->status_verifikasi = $request->status_verifikasi ?? 'disetujui';
         $verifikasiWbtb->tanggal_verifikasi = date(now());
         $verifikasiWbtb->user_id = auth()->user()->id;
         $verifikasiWbtb->keterangan = $request->keterangan;
