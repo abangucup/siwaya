@@ -18,6 +18,7 @@ use App\Http\Controllers\VerifikasiWbtbController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\InstansiController;
 use App\Http\Controllers\Web\LandingController;
+use App\Http\Controllers\Web\LaporanController;
 use App\Http\Controllers\Web\WebWBTBController;
 use App\Http\Controllers\Web\Wilayah\KabkotController;
 use App\Http\Controllers\Web\Wilayah\KecamatanController;
@@ -63,13 +64,6 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        // Route::group(['middleware' => ['role:operator_kabkot']], function () {
-        //     Route::group(['prefix' => 'wilayah', 'as' => 'wilayah.'], function () {
-        //         Route::resource('kecamatan', KecamatanController::class);
-        //         Route::resource('kelurahan', KelurahanController::class);
-        //     });
-        // });
-
         Route::group(['middleware' => ['role:operator_provinsi']], function () {
 
             Route::resource('instansi', InstansiController::class);
@@ -90,6 +84,28 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::resource('wbtb', WebWBTBController::class);
+
+        Route::group(['prefix' => 'laporan', 'as' => 'laporan.'], function () {
+            Route::get('laporan-ditolak', [LaporanController::class, 'laporanDitolak'])->name('ditolak');
+            Route::get('laporan-diverifikasi', [LaporanController::class, 'laporanDiverifikasi'])->name('diverifikasi');
+            Route::get('laporan-ditetapkan', [LaporanController::class, 'laporanDitetapkan'])->name('ditetapkan');
+            Route::get('laporan-diajukan', [LaporanController::class, 'laporanDiajukan'])->name('diajukan');
+
+
+            Route::group(['prefix' => 'cetak', 'as' => 'cetak.'], function () {
+                Route::get('laporan-ditolak', [LaporanController::class, 'laporanCetakDitolak'])->name('ditolak');
+                Route::get('laporan-diverifikasi', [LaporanController::class, 'laporanCetakDiverifikasi'])->name('diverifikasi');
+                Route::get('laporan-ditetapkan', [LaporanController::class, 'laporanCetakDitetapkan'])->name('ditetapkan');
+                Route::get('laporan-diajukan', [LaporanController::class, 'laporanCetakDiajukan'])->name('diajukan');
+            });
+
+            Route::group(['prefix' => 'export', 'as' => 'export.'], function () {
+                Route::get('export-ditolak', [LaporanController::class, 'exportDitolak'])->name('ditolak');
+                Route::get('export-ditetapkan', [LaporanController::class, 'exportDitetapkan'])->name('ditetapkan');
+                Route::get('export-diverifikasi', [LaporanController::class, 'exportDiverifikasi'])->name('diverifikasi');
+                Route::get('export-diajukan', [LaporanController::class, 'exportDiajukan'])->name('diajukan');
+            });
+        });
 
         Route::match(['get', 'post'], 'logout', [LogoutController::class, 'logout'])->name('logout');
     });

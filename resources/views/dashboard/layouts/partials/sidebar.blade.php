@@ -83,6 +83,34 @@
                 </a>
             </li>
             @endif
+            
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">Laporan</span>
+            </li>
+            <li class="menu-item open">
+                <a href="{{ route('laporan.diajukan') }}" class="menu-link {{ request()->routeIs('laporan.diajukan*') ? 'active' : '' }}">
+                    <i data-feather="file-text" class="menu-icon tf-icons"></i>
+                    <span class="title">WBTB Diajukan</span>
+                </a>
+            </li>
+            <li class="menu-item open">
+                <a href="{{ route('laporan.diverifikasi') }}" class="menu-link {{ request()->routeIs('laporan.diverifikasi*') ? 'active' : '' }}">
+                    <i data-feather="file-text" class="menu-icon tf-icons"></i>
+                    <span class="title">WBTB Diverifikasi</span>
+                </a>
+            </li>
+            <li class="menu-item open">
+                <a href="{{ route('laporan.ditetapkan') }}" class="menu-link {{ request()->routeIs('laporan.ditetapkan*') ? 'active' : '' }}">
+                    <i data-feather="file-text" class="menu-icon tf-icons"></i>
+                    <span class="title">WBTB Ditetapkan</span>
+                </a>
+            </li>
+            <li class="menu-item open">
+                <a href="{{ route('laporan.ditolak') }}" class="menu-link {{ request()->routeIs('laporan.ditolak*') ? 'active' : '' }}">
+                    <i data-feather="file-text" class="menu-icon tf-icons"></i>
+                    <span class="title">WBTB Ditolak</span>
+                </a>
+            </li>
 
         </ul>
     </aside>
