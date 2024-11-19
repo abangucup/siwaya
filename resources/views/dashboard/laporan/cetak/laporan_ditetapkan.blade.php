@@ -36,7 +36,7 @@
         thead {
             display: table-header-group;
         }
-        
+
     </style>
 </head>
 
@@ -88,7 +88,7 @@
                 <td>{{ Str::upper($wbtb->penetapan?->status_penetapan) }}</td>
                 <td>{{ $wbtb->penetapan?->keterangan }}</td>
                 <td>{{ \Carbon\Carbon::parse($wbtb->penetapan?->tanggal_penetapan)->isoFormat('LL') }}</td>
-                <td>
+                <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
                     <img src="{{ public_path($wbtb->galeries()->first()->url_image) }}" alt="Gambar"
                         style="max-width: 100px; height: auto;">
                 </td>

@@ -66,8 +66,7 @@ class LaporanController extends Controller
     {
         $wbtbs = Wbtb::with('galeries', 'kategoris', 'sebarans')->where('status', 'ditetapkan')->latest()->get();
         $pdf = Pdf::loadView('dashboard.laporan.cetak.laporan_ditetapkan', compact('wbtbs'))
-            ->setPaper('legal', 'landscape')
-            ->setOptions(['margin_left' => 0, 'margin_right' => 0, 'margin_top' => 0, 'margin_bottom' => 0]);
+            ->setPaper('legal', 'landscape');
         return $pdf->stream('laporan_penetapan.pdf');
     }
 
