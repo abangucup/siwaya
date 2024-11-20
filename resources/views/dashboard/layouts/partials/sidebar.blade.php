@@ -84,7 +84,7 @@
             </li>
             @endif
             
-            <li class="menu-title small text-uppercase">
+            {{-- <li class="menu-title small text-uppercase">
                 <span class="menu-title-text">Laporan</span>
             </li>
             <li class="menu-item open">
@@ -110,7 +110,7 @@
                     <i data-feather="file-text" class="menu-icon tf-icons"></i>
                     <span class="title">WBTB Ditolak</span>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
     </aside>
