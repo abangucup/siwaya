@@ -27,10 +27,10 @@
         <div class="row g-3">
             <div class="col-xl-6 col-lg-5">
                 <div class="work-area--card">
-                    <h3>Mudah & Sederhana Menemukan Wisata Budaya Tak Benda</h3>
+                    <h3>Mudah & Sederhana Menemukan Warisan Budaya Tak Benda</h3>
                     <p>Pelajari dan jelajahi kekayaan budaya tak benda di Provinsi Gorontalo yang mempesona dan penuh
                         makna.</p>
-                    <a class="btn btn-small" href="#">Liat Wisata</a>
+                    <a class="btn btn-small" href="{{ route('pencatatanWbtb') }}">Lihat warisan budaya tak benda</a>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7">
@@ -49,7 +49,7 @@
                             <path d="M27.5 27.5L25 25" stroke="#1C4456" stroke-width="2.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                        <h4>Cari <br> warisan budaya</h4>
+                        <h4>Cari Warisan Budaya Tak Benda</h4>
                     </div>
                     <div class="work-area--service--items order-1 order-md-2">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +60,8 @@
                                 d="M21.95 6.9751C19.8375 5.4751 17.4625 4.6626 15 4.6626C10.5875 4.6626 6.47505 7.2626 3.61255 11.7626C2.48755 13.5251 2.48755 16.4876 3.61255 18.2501C6.47505 22.7501 10.5875 25.3501 15 25.3501C19.4125 25.3501 23.525 22.7501 26.3875 18.2501C27.5125 16.4876 27.5125 13.5251 26.3875 11.7626"
                                 stroke="#1C4456" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <h4>Kunjungi <br> Warisan Budaya Tak Benda</h4>
+                        <h4>Catat dan Dokumentasikan Warisan Budaya Tak Benda</h4>
+
                     </div>
                     <div class="work-area--service--items order-4 order-md-3">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +81,8 @@
                                 d="M27.1999 18.6875C26.6874 18.6875 26.2624 18.2625 26.2624 17.75C26.2624 15.4875 24.7499 13.4625 22.5999 12.8C22.3499 12.725 22.1374 12.55 22.0249 12.3125C21.9124 12.075 21.8999 11.8 21.9999 11.5625C22.5874 10.1 22.7374 9.03747 22.4999 8.21247C22.4749 8.09997 22.4499 8.04997 22.4374 7.99997C22.2749 7.63747 22.3624 7.21247 22.6499 6.93747C22.9374 6.66247 23.3749 6.59997 23.7249 6.78747C26.4499 8.21247 28.1374 11.0125 28.1374 14.0875V17.75C28.1374 18.2625 27.7124 18.6875 27.1999 18.6875ZM24.0624 11.3625C24.8499 11.725 25.5499 12.2375 26.1374 12.85C25.8999 11.625 25.3124 10.5125 24.4499 9.63747C24.3874 10.1625 24.2624 10.7375 24.0624 11.3625Z"
                                 fill="#1C4456" />
                         </svg>
-                        <h4>Dapatkan warisan budaya impianmu</h4>
+                        <h4>Tersedia Mobile Apps</h4>
+
                     </div>
                     <div class="work-area--service--items order-3 order-md-4">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +102,7 @@
                                 stroke="#1C4456" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                        <h4>Temukan Warisan <br> Budaya yang berharga</h4>
+                        <h4>Temukan Warisan Budaya yang berharga</h4>
                     </div>
                 </div>
             </div>
@@ -128,7 +130,7 @@
                             </svg>
                         </div>
                         <div class="counter--content-percent">
-                            <h2> <span class="counter--content-number">10</span></h2>
+                            <h2> <span class="counter--content-number">{{ $totalWbtbDitetapkan }}</span></h2>
                         </div>
                         <p class="bold">Warisan yang<br> tervalidasi</p>
                     </div>
@@ -145,7 +147,7 @@
                             </svg>
                         </div>
                         <div class="counter--content-percent">
-                            <h2> <span class="counter--content-number">25</span></h2>
+                            <h2> <span class="counter--content-number">{{ $totalKabkot }}</span></h2>
                         </div>
                         <p class="bold">Lokasi tempat warisan <br> budaya berada</p>
                     </div>
@@ -162,7 +164,7 @@
                             </svg>
                         </div>
                         <div class="counter--content-percent">
-                            <h2> <span class="counter--content-number">100</span></h2>
+                            <h2> <span class="counter--content-number">{{ $totalPengguna }}</span></h2>
                         </div>
                         <p class="bold">Pengguna yang terdaftar <br> dalam sistem</p>
                     </div>
@@ -187,7 +189,7 @@
                             </svg>
                         </div>
                         <div class="counter--content-percent">
-                            <h2><span class="counter--content-number">100</span></h2>
+                            <h2><span class="counter--content-number">{{ $totalMasyarakat }}</span></h2>
                         </div>
                         <p class="bold">Kotribusi masyarakat dalam <br> pencatatan warisan budaya</p>
                     </div>

@@ -14,9 +14,20 @@ class LandingController extends Controller
 {
     public function home()
     {
+        $totalPengguna = User::count();
+        $totalWbtbDitetapkan = Wbtb::where('status', 'ditetapkan')->count();
+        $totalKabupatenKota = Kabkot::count();
+        $totalMasyarakat = User::where('role_id', 2)->count();
         $pencatatanTerbaru = Wbtb::where('status', 'diajukan')->latest()->take(3)->get();
         $penetapanTerbaru = Wbtb::where('status', 'ditetapkan')->latest()->take(3)->get();
-        return view('landing.home', compact('pencatatanTerbaru', 'penetapanTerbaru'));
+        return view('landing.home', compact([
+            'pencatatanTerbaru',
+            'penetapanTerbaru',
+            'totalPengguna',
+            'totalWbtbDitetapkan',
+            'totalKabkot',
+            'totalMasyarakat'
+        ]));
     }
 
     public function demografis()
