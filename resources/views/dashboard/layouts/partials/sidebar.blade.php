@@ -42,12 +42,12 @@
                 </a>
             </li>
             
-            <li class="menu-item open">
+            {{-- <li class="menu-item open">
                 <a href="{{ route('wbtb.index') }}" class="menu-link {{ request()->routeIs('wbtb.*') ? 'active' : '' }}">
                     <i data-feather="award" class="menu-icon tf-icons"></i>
                     <span class="title">WBTB</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu-title small text-uppercase">
                 <span class="menu-title-text">Wilayah</span>
