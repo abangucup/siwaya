@@ -141,7 +141,7 @@
                                 alt="agent">
                         </div>
                         <div class="property-details-agent-content-name">
-                            <a href="agent-details">
+                            <a href="{{ route('home') }}">
                                 <h5>{{ $wbtb->user->biodata->nama_lengkap }}</h5>
                             </a>
                             <div class="property-details-agent-content-contact">
