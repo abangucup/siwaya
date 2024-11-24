@@ -51,10 +51,6 @@
                                         data-bs-toggle="modal" data-bs-target="#modalUbahUser-{{ $user->slug }}">
                                         <i data-feather="edit" class="me-1"></i> Edit
                                     </button>
-                                    <a href="{{ route('settings.user.show', $user->slug) }}" type="button"
-                                        class="btn btn-info btn-sm text-white d-flex align-items-center mt-2 mt-sm-0">
-                                        <i data-feather="external-link" class="me-1"></i> Detail
-                                    </a>
                                     <button type="button"
                                         class="btn btn-danger btn-sm text-white d-flex align-items-center mt-2 mt-sm-0"
                                         data-bs-toggle="modal" data-bs-target="#modalHapusUser-{{ $user->slug }}">

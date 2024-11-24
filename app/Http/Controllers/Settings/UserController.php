@@ -60,7 +60,7 @@ class UserController extends Controller
 
         return redirect()->route('settings.user.index')->withToastSuccess('User ditambahkan');
     }
-    
+
     public function update(Request $request, $slug)
     {
         $request->validate([
