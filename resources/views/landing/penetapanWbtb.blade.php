@@ -27,9 +27,9 @@
 
                         <div class="search-result-item d-flex">
                             <img src="{{ $wbtb->galeries()->first()->url_image ?? asset('assets/images/no_image.svg') }}"
-                                width="120" class="img-thumbnail" alt="Gambar">
+                                width="250" class="img-thumbnail" alt="Gambar">
                             <div class="ms-4">
-                                <a href="">{{ $wbtb->nama_wbtb }}</a>
+                                <a href="{{ route('detailWbtb', $wbtb->slug) }}">{{ $wbtb->nama_wbtb }}</a>
                                 <p class="mb-3">{{ Str::limit($wbtb->deskripsi_wbtb, 200, '...') }}</p>
                                 <span class="rounded border border-gray px-4 py-1">{{
                                     \Carbon\Carbon::parse($wbtb->penetapan->tanggal_penetapan)->isoFormat('LL') .' |

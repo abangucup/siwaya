@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kabkot;
+use App\Models\Kategori;
 use App\Models\User;
 use App\Models\Wbtb;
 use Illuminate\Http\Request;
@@ -58,9 +59,6 @@ class LandingController extends Controller
             ];
         });
 
-        // dd($demografis);
-
-
         return view('landing.demografis', compact('demografis'));
     }
 
@@ -93,5 +91,12 @@ class LandingController extends Controller
     {
         $kontaks = User::where('role_id', 1)->orWhere('role_id', 3)->get();
         return view('landing.kontak', compact('kontaks'));
+    }
+
+    public function detailWbtb($slug)
+    {
+        $wbtb = Wbtb::where('slug', $slug)->first();
+
+        return view('landing.detailWbtb', compact('wbtb'));
     }
 }

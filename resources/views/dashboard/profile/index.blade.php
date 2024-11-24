@@ -1,30 +1,41 @@
-@extends('mobile.layouts.app')
+@extends('dashboard.layouts.app')
 
 @section('title', 'Profile')
 
-@section('btn-back')
-<a href="javascript:void(0);" class="back-btn">
-    <svg width="18" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-            d="M9.03033 0.46967C9.2966 0.735936 9.3208 1.1526 9.10295 1.44621L9.03033 1.53033L2.561 8L9.03033 14.4697C9.2966 14.7359 9.3208 15.1526 9.10295 15.4462L9.03033 15.5303C8.76406 15.7966 8.3474 15.8208 8.05379 15.6029L7.96967 15.5303L0.96967 8.53033C0.703403 8.26406 0.679197 7.8474 0.897052 7.55379L0.96967 7.46967L7.96967 0.46967C8.26256 0.176777 8.73744 0.176777 9.03033 0.46967Z"
-            fill="#a19fa8" />
-    </svg>
-</a>
-@endsection
+@section('pageTitle', 'Detail Profile')
 
-@section('header', 'Update Biodata')
+@section('pageContent')
+<span class="fw-semibold fs-14 heading-font text-dark dot ms-2">Detail Profile</span>
+@endsection
 
 @section('content')
 
-<div class="page-content">
-    <div class="content-inner pt-0">
-        <div class="container fb">
-            <div class="dashboard-area card shadow-none border py-3 px-4">
+<div class="card bg-white border-0 rounded-10 mb-4">
+    <div class="card-body p-4">
 
-                <form action="{{ route('mobile.profile.update', $biodata->slug) }}" method="post"
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Biodata</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Reset Password</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
+                <form action="{{ route('profile.update', $biodata->slug) }}" method="post"
                     enctype="multipart/form-data" id="formProfile">
                     @csrf
                     @method('PUT')
+                    @if ($biodata->foto)
+                    <div class="form-group mb-3">
+                        <div for="foto" class="required">Foto Sekarang</div>
+                        <img src="{{ $biodata->foto }}" alt="" class="img-fluid rounded border shadow-none" width="250px" height="250px">
+                    </div>
+                    @endif
                     <div class="form-group mb-3">
                         <label for="nama" class="required">Nama Lengkap <span class="text-danger">*</span></label>
                         <input type="text" name="nama" id="nama" value="{{ old('nama', $biodata->nama_lengkap) }}"
@@ -51,12 +62,13 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="jenis_kelamin" class="required">Jenis Kelamin <span class="text-danger">*</span></label>
-                        <select name="jenis_kelamin" id="jenis_kelamin" class="form-control form-select @error('jenis_kelamin') is-invalid @enderror" required>
+                        <select name="jenis_kelamin" id="jenis_kelamin" class="form-control form-select text-dark @error('jenis_kelamin') is-invalid @enderror" required>
                             {{-- <option value="">Pilih Jenis Kelamin</option> --}}
                             <option value="P" {{ old('jenis_kelamin', $biodata->jenis_kelamin) == 'P' ? 'selected' : '' }}>Perempuan</option>
                             <option value="L" {{ old('jenis_kelamin', $biodata->jenis_kelamin) == 'L' ? 'selected' : '' }}>Laki - Laki</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
                         <label for="foto" class="required">Foto</label>
                         <div class="input-group">
@@ -85,10 +97,73 @@
                         </button>
                     </div>
                 </form>
-
             </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Reset Password</h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('reset-password') }}">
+                                    @csrf
 
+                                    @guest
+                                    <div class="row mb-3">
+                                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address')
+                                            }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                                name="email" value="{{ $email ?? old('email') }}" required autocomplete="email"
+                                                autofocus>
+
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    @endguest
+
+                                    <div class="row mb-3">
+                                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password Baru')
+                                            }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror" name="password_baru"
+                                                required autocomplete="new-password">
+
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-0">
+                                        <div class="col-md-6 offset-md-4 d-flex justify-content-between">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Reset Password') }}
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
+
     </div>
 </div>
 

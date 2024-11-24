@@ -6,8 +6,11 @@
                 <div class="left-content">
                     <div class="author-box">
                         <div class="dz-media">
-                            <img src="{{ auth()->user()->biodata->foto ?? asset('assets/images/altPhoto.png') }}" class="rounded-circle bg-light"
-                                alt="author-image">
+                            <div style="width: 50px; height: 50px; overflow: hidden; border-radius: 50%; background-color: #f8f9fa;">
+                                <img src="{{ auth()->user()->biodata->foto ?? asset('assets/images/altPhoto.png') }}" 
+                                     alt="author-image" 
+                                     style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
 

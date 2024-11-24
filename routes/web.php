@@ -18,6 +18,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\InstansiController;
 use App\Http\Controllers\Web\LandingController;
 use App\Http\Controllers\Web\LaporanController;
+use App\Http\Controllers\Web\WebProfileController;
 use App\Http\Controllers\Web\WebWBTBController;
 use App\Http\Controllers\Web\Wilayah\KabkotController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,7 @@ Route::get('/', [LandingController::class, 'home'])->name('home');
 Route::get('demografis', [LandingController::class, 'demografis'])->name('demografis');
 Route::get('pencatatan-wbtb', [LandingController::class, 'pencatatanWbtb'])->name('pencatatanWbtb');
 Route::get('penetapan-wbtb', [LandingController::class, 'penetapanWbtb'])->name('penetapanWbtb');
+Route::get('detail-wbtb/{slug}', [LandingController::class, 'detailWbtb'])->name('detailWbtb');
 Route::get('kontak', [LandingController::class, 'kontak'])->name('kontak');
 
 Route::middleware(['guest'])->group(function () {
@@ -46,12 +48,13 @@ Route::middleware(['guest'])->group(function () {
     Route::get('register', [RegisterController::class, 'register'])->name('register');
     Route::post('register', [RegisterController::class, 'postRegister'])->name('postRegister');
 
-    Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot-password');
-    Route::post('forgot-password', [ForgotPasswordController::class, 'postForgotPassword']);
-
-    Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
-    Route::post('reset-password', [ResetPasswordController::class, 'postResetPassword']);
 });
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot-password');
+Route::post('forgot-password', [ForgotPasswordController::class, 'postForgotPassword']);
+
+Route::get('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset-password');
+Route::post('reset-password', [ResetPasswordController::class, 'storeResetPassword'])->name('reset-password');
 
 Route::middleware(['auth'])->group(function () {
     # code...
@@ -59,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'dashboard'], function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('profile', WebProfileController::class);
 
         Route::post('search', [DashboardController::class, 'search'])->name('search');
 
@@ -128,7 +133,7 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
 
     Route::get('reset-password', [ResetPasswordController::class, 'mobileResetPassword'])->name('reset-password');
     Route::post('reset-password', [ResetPasswordController::class, 'mobileStoreResetPassword']);
-    
+
     // KETIKA SUDAH LOGIN
     Route::middleware(['auth'])->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');

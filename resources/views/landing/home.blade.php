@@ -233,21 +233,19 @@
         @else
         <div class="grid row row-cols-xl-3 row-cols-md-2 g-4">
             @foreach ($pencatatanTerbaru as $wbtb)
-
-            <div class="properties-card wilayah resident">
+            <a href="{{ route('detailWbtb', $wbtb->slug) }}" class="properties-card">
                 <div class="properties-card--thumb">
                     <img src="{{ asset($wbtb->galeries()->first()->url_image) }}" alt="{{ $wbtb->nama_wbtb }}">
                 </div>
                 <div class="properties-card--content ">
                     <div class="properties-card--content--address">
-                        <span>{{ $wbtb->nama_wbtb}}</span><br>
-                        <span>{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}</span>
-                        <span></span>
-                        <span class="mt-2 badge bg-info text-white">Dibuat pada: {{
-                            \Carbon\Carbon::parse($wbtb->created_at)->isoFormat('LLLL') }}</span>
+                        <h4>{{ $wbtb->nama_wbtb}}</h4>
+                        <p class="text-secondary">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}</p>
+                        <div class="mt-2 badge bg-info text-white">Dibuat pada: {{
+                            \Carbon\Carbon::parse($wbtb->created_at)->isoFormat('LL') }}</div>
                     </div>
                 </div>
-            </div>
+            </a>
 
             @endforeach
 
@@ -281,7 +279,7 @@
                 </div>
             </div>
         </div>
-        @if ($pencatatanTerbaru->isEmpty())
+        @if ($penetapanTerbaru->isEmpty())
         <div class="container p-4 mt-2">
             <div class="properties-card">
                 <div class="properties-card--content">
@@ -301,23 +299,21 @@
         @else
         <div class="grid row row-cols-xl-3 row-cols-md-2 g-4">
             @foreach ($penetapanTerbaru as $wbtb)
-
-            <div class="properties-card industrial wilayah resident">
+            <a href="{{ route('detailWbtb', $wbtb->slug) }}" class="properties-card">
                 <div class="properties-card--thumb">
                     <img src="{{ asset($wbtb->galeries()->first()->url_image) }}" alt="{{ $wbtb->nama_wbtb }}">
                 </div>
                 <div class="properties-card--content ">
                     <div class="properties-card--content--address">
-                        <span>{{ $wbtb->nama_wbtb}}</span><br>
-                        <span class="badge bg-secondary text-white mb-2">{{ $wbtb->nomor_wbtb }}</span>
-                        <span>{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}</span>
-                        <span class="mt-2 badge bg-info text-white">Ditetapkan Tanggal: {{
-                            \Carbon\Carbon::parse($wbtb->penetapan->tanggal_penetapan)->isoFormat('LL') }}</span>
+                        <h4>{{ $wbtb->nama_wbtb}}</h4>
+                        <div class="rounded border border-info p-1 fs-6">{{ $wbtb->nomor_wbtb }}</div>
+                        <p class="text-secondary">{{ Str::limit($wbtb->deskripsi_wbtb, 100, '...') }}</p>
+                        <div class="mt-2 badge bg-info text-white">Ditetapkan Tanggal: {{
+                            \Carbon\Carbon::parse($wbtb->penetapan->tanggal_penetapan)->isoFormat('LL') }}</div>
                     </div>
                 </div>
-            </div>
+            </a>
             @endforeach
-
         </div>
         @endif
         <div class="row">

@@ -110,6 +110,7 @@ class WebWBTBController extends Controller
 
         // $kategori = Kategori::where('slug', $request->kategori)->firstOrFail();
         $kategoriIds = Kategori::whereIn('slug', $request->kategori)->pluck('id');
+
         $kondisi = Kondisi::where('slug', $request->kondisi)->firstOrFail();
 
         if (Wbtb::where('slug', '!=', $slug)->where('slug', Str::slug($request->nama_wbtb))->exists()) {
@@ -125,11 +126,11 @@ class WebWBTBController extends Controller
             'deskripsi_wbtb' => $request->deskripsi_wbtb,
         ]);
 
-        $wbtb->kategoris()->attach($kategoriIds);
+        $wbtb->kategoris()->syncWithoutDetaching($kategoriIds);
 
         $kabkotIds = Kabkot::whereIn('slug', $request->kabkot)->pluck('id');
 
-        $wbtb->sebarans()->attach($kabkotIds);
+        $wbtb->sebarans()->syncWithoutDetaching($kabkotIds);
         //memperbaharui tanpa menghapus
         // $wbtb->sebarans()->atttach($kabkotIds);
 

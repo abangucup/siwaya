@@ -21,7 +21,7 @@
                         <h6>Kata Kunci: {{ request()->query('search') }}</h6>
                         @endif
                         <div class="search-result-item">
-                            <a href="">{{ $wbtb->nama_wbtb }}</a>
+                            <a href="{{ route('detailWbtb', $wbtb->slug) }}">{{ $wbtb->nama_wbtb }}</a>
                             <p class="mb-4">{{ Str::limit($wbtb->deskripsi_wbtb, 200, '...') }}</p>
                             <span class="rounded border border-gray px-4 py-2">{{ \Carbon\Carbon::parse($wbtb->created_at)->isoFormat('LLLL') }}</span>
                         </div>

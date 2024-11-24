@@ -52,7 +52,7 @@
                             </div>
                             <ul class="dropdown-menu border-0 bg-white w-100 admin-link">
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center text-body" href="profile.html">
+                                    <a class="dropdown-item d-flex align-items-center text-body" href="{{ route('profile.index') }}">
                                         <i data-feather="user"></i>
                                         <span class="ms-2">Profile</span>
                                     </a>

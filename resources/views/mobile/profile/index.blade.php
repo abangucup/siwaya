@@ -14,9 +14,13 @@
             <div class="dashboard-area card shadow-none border p-3">
                 <div class="row px-2">
                     <div class="col-12 text-center py-3 mb-4">
-                        <img src="{{ auth()->user()->biodata->foto ?? asset('assets/images/profile.svg') }}"
-                            class="rounded shadow-none border w-50" alt="{{ auth()->user()->nama_lengkap }}">
+                        <div style="width: 50%; max-width: 200px; margin: 0 auto; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 50%; background-color: #f8f9fa;">
+                            <img src="{{ auth()->user()->biodata->foto ?? asset('assets/images/profile.svg') }}"
+                                 alt="{{ auth()->user()->nama_lengkap }}" 
+                                 style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
                     </div>
+                    
                     <div class="col-12 mt-4 mb-4">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">

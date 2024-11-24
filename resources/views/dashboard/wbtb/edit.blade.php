@@ -37,7 +37,7 @@
                             <div class="form-group mb-4">
                                 <label class="label">Kabupaten <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
-                                    <select name="kabkot[]" class="form-control form-select select2-multiple ps-5 h-58" required>
+                                    <select name="kabkot[]" class="form-control ps-5 h-58" required>
                                         <option value="{{ $wbtb->sebarans()->pluck('slug')->implode(', ') }}">{{ $wbtb->sebarans()->pluck('nama_kabkot')->implode(', ') }}</option>
 
                                         <option value="">Pilih Kabupaten/Kota</option>
@@ -54,7 +54,7 @@
                             <div class="form-group mb-4">
                                 <label class="label">Kategori <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
-                                    <select name="kategori[]" class="form-control form-select ps-5 h-58" required>
+                                    <select name="kategori[]" class="form-control ps-5 h-58" required>
                                         <option value="{{ $wbtb->kategoris()->pluck('slug')->implode(', ') }}">{{ $wbtb->kategoris()->pluck('nama_kategori')->implode(', ') }}</option>
                                         <option value="">Pilih Kategori</option>
                                         @foreach ($kategoris as $kategori)
@@ -70,7 +70,7 @@
                             <div class="form-group mb-4">
                                 <label class="label">Kondisi <span class="text-danger">*</span></label>
                                 <div class="form-group position-relative">
-                                    <select name="kondisi" class="form-select form-control ps-5 h-58" required>
+                                    <select name="kondisi" class="form-control ps-5 h-58" required>
                                         <option value="{{ $wbtb->kondisi->slug }}">{{ $wbtb->kondisi->nama_kondisi }}</option>
                                         <option value="">Pilih Kondisi</option>
                                         @foreach ($kondisis as $kondisi)
