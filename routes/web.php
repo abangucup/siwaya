@@ -10,7 +10,6 @@ use App\Http\Controllers\KondisiController;
 use App\Http\Controllers\Mobile\HomeController;
 use App\Http\Controllers\Mobile\MobileProfileController;
 use App\Http\Controllers\Mobile\MobileWBTBController;
-use App\Http\Controllers\Mobile\SplashController;
 use App\Http\Controllers\PenetapanWbtbController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
@@ -21,9 +20,6 @@ use App\Http\Controllers\Web\LandingController;
 use App\Http\Controllers\Web\LaporanController;
 use App\Http\Controllers\Web\WebWBTBController;
 use App\Http\Controllers\Web\Wilayah\KabkotController;
-use App\Http\Controllers\Web\Wilayah\KecamatanController;
-use App\Http\Controllers\Web\Wilayah\KelurahanController;
-use App\Http\Controllers\Web\Wilayah\ProvinsiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'dashboard'], function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::post('search', [DashboardController::class, 'search'])->name('search');
 
         Route::group(['middleware' => ['role:operator_provinsi']], function () {
 
@@ -113,6 +111,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
 
+    // KETIKA BELUM LOGIN
     Route::middleware(['guest'])->group(function () {
         Route::get('/', [HomeController::class, 'splash'])->name('splash');
 
@@ -121,14 +120,16 @@ Route::group(['prefix' => 'mobile', 'as' => 'mobile.'], function () {
 
         Route::get('register', [RegisterController::class, 'mobileRegister'])->name('register');
         Route::post('register', [RegisterController::class, 'mobilePostRegister'])->name('postRegister');
-
-        Route::get('forgot-password', [ForgotPasswordController::class, 'mobileForgotPassword'])->name('forgot-password');
-        Route::post('forgot-password', [ForgotPasswordController::class, 'mobilePostForgotPassword']);
-
-        Route::get('reset-password', [ResetPasswordController::class, 'mobileResetPassword'])->name('reset-password');
-        Route::post('reset-password', [ResetPasswordController::class, 'mobilePostResetPassword']);
     });
 
+    // PENGATURAN AKUN (LOGIN DAN TIDAK LOGIN)
+    Route::get('forgot-password', [ForgotPasswordController::class, 'mobileForgotPassword'])->name('forgot-password');
+    Route::post('forgot-password', [ForgotPasswordController::class, 'mobilePostForgotPassword']);
+
+    Route::get('reset-password', [ResetPasswordController::class, 'mobileResetPassword'])->name('reset-password');
+    Route::post('reset-password', [ResetPasswordController::class, 'mobileStoreResetPassword']);
+    
+    // KETIKA SUDAH LOGIN
     Route::middleware(['auth'])->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
 

@@ -63,9 +63,18 @@ class User extends Authenticatable
         return $this->belongsTo(Instansi::class);
     }
 
+    public function verifikator()
+    {
+        return $this->hasOne(VerifikasiWbtb::class);
+    }
+
+    public function penetap()
+    {
+        return $this->hasOne(PenetapanWbtb::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
     }
 }
-

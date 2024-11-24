@@ -170,6 +170,9 @@ class WebWBTBController extends Controller
     public function destroy($slug)
     {
         $wbtb = Wbtb::where('slug', $slug)->firstOrFail();
+        if ($wbtb->verifikasi || $wbtb->penetapan) {
+            return redirect()->back()->withToastError('WBTB sudah diverifikasi');
+        }
         // Ambil semua data galeri yang terkait dengan $wbtb sebelum menghapusnya
         $galeriItems = $wbtb->galeries;
 
@@ -180,6 +183,7 @@ class WebWBTBController extends Controller
                 Storage::delete(str_replace('/storage', 'public', $galeri->url_image));
             }
         }
+
         $wbtb->delete();
         return back()->withToastSuccess('WBTB Terhapus');
     }

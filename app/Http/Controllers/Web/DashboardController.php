@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Instansi;
+use App\Models\Kabkot;
+use App\Models\Kategori;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Wbtb;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
 {
@@ -41,4 +44,40 @@ class DashboardController extends Controller
 
         return view('dashboard.dashboard', compact('datas', 'register', 'dataWbtb'));
     }
+
+        public function search(Request $request)
+        {
+            $key = $request->search;
+
+            $wbtb = Wbtb::where('nama_wbtb', 'LIKE', "%{$key}%")->first();
+
+            $user = User::where('username', 'LIKE', "%{$key}%")->first();
+
+            $kategori = Kategori::where('nama_kategori', 'LIKE', "%{$key}%")->first();
+
+            $kabkot = Kabkot::where('nama_kabkot', 'LIKE', "%{$key}%")->first();
+
+            $instansi = Instansi::where('nama_instansi', 'LIKE', "%{$key}%")->first();
+
+            switch (true) {
+                case !is_null($wbtb):
+                    return redirect()->route('wbtb.index')
+                        ->with('success', "Ditemukan WBTB dengan nama '{$key}'");
+                case !is_null($user):
+                    return redirect()->route('settings.user.index')
+                        ->with('success', "Ditemukan pengguna dengan username '{$key}'");
+                case !is_null($kategori):
+                    return redirect()->route('kategori.index')
+                        ->with('success', "Ditemukan kategori dengan nama '{$key}'");
+                case !is_null($kabkot):
+                    return redirect()->route('wilayah.kabkot.index')
+                        ->with('success', "Ditemukan kabupaten/kota dengan nama '{$key}'");
+                case !is_null($instansi):
+                    return redirect()->route('instansi.index')
+                        ->with('success', "Ditemukan instansi dengan nama '{$key}'");
+                default:
+                    return redirect()->back()->with('error', "Kata kunci '{$key}' tidak ditemukan");
+            }
+
+        }
 }
