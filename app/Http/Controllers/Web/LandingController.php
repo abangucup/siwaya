@@ -16,7 +16,7 @@ class LandingController extends Controller
     {
         $totalPengguna = User::count();
         $totalWbtbDitetapkan = Wbtb::where('status', 'ditetapkan')->count();
-        $totalKabupatenKota = Kabkot::count();
+        $totalKabkot = Kabkot::count();
         $totalMasyarakat = User::where('role_id', 2)->count();
         $pencatatanTerbaru = Wbtb::where('status', 'diajukan')->latest()->take(3)->get();
         $penetapanTerbaru = Wbtb::where('status', 'ditetapkan')->latest()->take(3)->get();
