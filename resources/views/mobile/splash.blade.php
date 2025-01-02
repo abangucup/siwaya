@@ -51,6 +51,19 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="slide-info">
+                                <div class="d-flex justify-content-center align-items-center" style="height: 85%;">
+                                    <img src="{{ asset('assets/images/alur_siwaya.png') }}" alt="SOP SIWAYA" style="height: 80%; width: 90%;" class="img-fluid"/>
+                                </div>
+                                
+                                <div class="slide-content">
+                                    <h1 class="dz-title">SOP</h1>
+                                    <p>Standar Operasional Prosedur (SOP) Pengajuan Warisan Budaya Tak Benda
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="slide-info">
                                 <div class="dz-media">
                                     <img src="{{ asset('assets/images/search.svg') }}" alt="" />
                                 </div>
